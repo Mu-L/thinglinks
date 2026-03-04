@@ -26,6 +26,9 @@ spy.log
 *.iml
 *.ipr
 
+### AI Coding ###
+.claude
+
 ### NetBeans ###
 nbproject/private/
 build/
