@@ -24,6 +24,10 @@ x-env-config: &env-config
   NACOS_PASSWORD: 12345678
   # 指定服务注册 IP
   NACOS_DISCOVERY_IP: 127.0.0.1
+  # 健康检查用户名
+  ACTUATOR_USERNAME: actuator-admin
+  # 健康检查密码
+  ACTUATOR_PASSWORD: Secure@mqttsnet
 
 # 共享配置
 x-common-config: &common-config
@@ -54,7 +58,7 @@ services:
       <<: *env-config
       SERVICE_PORT: 18767
     healthcheck:
-      test: [ "CMD", "curl", "-f", "-u", "actuator-admin:Secure@mqttsnet", "http://localhost:18767/thinglinks-job-admin/actuator/health" ]
+      test: [ "CMD", "sh", "-c", "curl -f -u ${ACTUATOR_USERNAME}:${ACTUATOR_PASSWORD} http://localhost:${SERVICE_PORT}/thinglinks-job-admin/actuator/health" ]
       interval: 30s
       timeout: 10s
       retries: 5
