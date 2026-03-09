@@ -1,6 +1,7 @@
 <div align="center">
 
-[![MQTTSNET Logo](./doc/imgs/logo.png)](http://www.mqttsnet.com)
+[![MQTTSNET Logo](./docs/images/logo.png)](https://thinglinks.mqttsnet.com)
+
 
 </div>
 
