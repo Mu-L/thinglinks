@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.mqttsnet.thinglinks</groupId>
+        <artifactId>thinglinks-dependencies-parent</artifactId>
+        <version>${revision}</version>
+        <relativePath>../thinglinks-dependencies-parent/pom.xml</relativePath>
+    </parent>
+
+    <artifactId>thinglinks-generator</artifactId>
+
+    <modelVersion>4.0.0</modelVersion>
+    <name>${project.artifactId}</name>
+    <description>在线代码生成器模块服务</description>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>thinglinks-generator-server</module>
+        <module>thinglinks-generator-entity</module>
+        <module>thinglinks-generator-biz</module>
+        <module>thinglinks-generator-controller</module>
+    </modules>
+</project>

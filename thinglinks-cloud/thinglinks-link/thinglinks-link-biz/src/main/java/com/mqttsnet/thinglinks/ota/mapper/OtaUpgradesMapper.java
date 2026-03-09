@@ -1,0 +1,22 @@
+package com.mqttsnet.thinglinks.ota.mapper;
+
+import com.mqttsnet.basic.base.mapper.SuperMapper;
+import com.mqttsnet.thinglinks.ota.entity.OtaUpgrades;
+import org.springframework.stereotype.Repository;
+
+/**
+ * <p>
+ * Mapper 接口
+ * OTA升级包
+ * </p>
+ *
+ * @author mqttsnet
+ * @date 2024-01-12 22:36:27
+ * @create [2024-01-12 22:36:27] [mqttsnet]
+ */
+@Repository
+public interface OtaUpgradesMapper extends SuperMapper<OtaUpgrades> {
+
+}
+
+

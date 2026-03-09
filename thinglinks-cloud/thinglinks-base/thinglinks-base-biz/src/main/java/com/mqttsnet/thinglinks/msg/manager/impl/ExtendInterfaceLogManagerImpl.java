@@ -1,0 +1,44 @@
+package com.mqttsnet.thinglinks.msg.manager.impl;
+
+import com.mqttsnet.basic.base.manager.impl.SuperManagerImpl;
+import com.mqttsnet.basic.database.mybatis.conditions.Wraps;
+import com.mqttsnet.thinglinks.msg.entity.ExtendInterfaceLog;
+import com.mqttsnet.thinglinks.msg.manager.ExtendInterfaceLogManager;
+import com.mqttsnet.thinglinks.msg.mapper.ExtendInterfaceLogMapper;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+
+/**
+ * <p>
+ * 通用业务实现类
+ * 接口执行日志
+ * </p>
+ *
+ * @author mqttsnet
+ * @date 2022-07-09 23:58:59
+ * @create [2022-07-09 23:58:59] [mqttsnet] 
+ */
+@Slf4j
+@RequiredArgsConstructor
+@Service
+public class ExtendInterfaceLogManagerImpl extends SuperManagerImpl<ExtendInterfaceLogMapper, ExtendInterfaceLog> implements ExtendInterfaceLogManager {
+    @Override
+    public ExtendInterfaceLog getByInterfaceId(Long interfaceId) {
+        return getOne(Wraps.<ExtendInterfaceLog>lbQ().eq(ExtendInterfaceLog::getInterfaceId, interfaceId));
+    }
+
+    @Override
+    public void incrSuccessCount(Long id) {
+        baseMapper.incrSuccessCount(id, LocalDateTime.now());
+    }
+
+    @Override
+    public void incrFailCount(Long id) {
+        baseMapper.incrFailCount(id, LocalDateTime.now());
+    }
+}
+
+

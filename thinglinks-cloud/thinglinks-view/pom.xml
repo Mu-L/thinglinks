@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.mqttsnet.thinglinks</groupId>
+        <artifactId>thinglinks-dependencies-parent</artifactId>
+        <version>${revision}</version>
+        <relativePath>../thinglinks-dependencies-parent/pom.xml</relativePath>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.mqttsnet.thinglinks</groupId>
+    <artifactId>thinglinks-view</artifactId>
+    <name>${project.artifactId}</name>
+    <description>可视化服务</description>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>thinglinks-view-server</module>
+        <module>thinglinks-view-entity</module>
+        <module>thinglinks-view-biz</module>
+        <module>thinglinks-view-controller</module>
+        <module>thinglinks-view-facade</module>
+    </modules>
+</project>

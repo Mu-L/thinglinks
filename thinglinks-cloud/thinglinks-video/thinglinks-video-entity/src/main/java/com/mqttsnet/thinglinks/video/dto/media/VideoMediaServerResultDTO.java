@@ -1,0 +1,226 @@
+package com.mqttsnet.thinglinks.video.dto.media;
+
+import cn.hutool.core.map.MapUtil;
+import com.mqttsnet.basic.base.entity.Entity;
+import com.mqttsnet.basic.interfaces.echo.EchoVO;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import lombok.experimental.Accessors;
+
+import java.io.Serial;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.Map;
+
+/**
+ * <p>
+ * 表单查询方法返回值VO
+ * 流媒体服务器信息表
+ * </p>
+ *
+ * @author mqttsnet
+ * @date 2024-07-03 17:56:38
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString(callSuper = true)
+@Accessors(chain = true)
+@EqualsAndHashCode(callSuper = true)
+@Builder
+@Schema(description = "流媒体服务器信息表")
+public class VideoMediaServerResultDTO extends Entity<Long> implements Serializable, EchoVO {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
+
+    private Map<String, Object> echoMap = MapUtil.newHashMap();
+
+    @Schema(description = "唯一标识符")
+    private Long id;
+
+    /**
+     * 应用ID
+     */
+    @Schema(description = "应用ID")
+    private String appId;
+
+    /**
+     * 媒体唯一标识
+     */
+    @Schema(description = "媒体唯一标识")
+    private String mediaIdentification;
+
+    /**
+     * 服务器IP地址
+     */
+    @Schema(description = "服务器IP地址")
+    private String ip;
+    /**
+     * hook使用的IP（zlm访问客户端使用的IP）
+     */
+    @Schema(description = "hook使用的IP（zlm访问客户端使用的IP）")
+    private String hookIp;
+    /**
+     * SDP IP地址
+     */
+    @Schema(description = "SDP IP地址")
+    private String sdpIp;
+    /**
+     * 流IP地址
+     */
+    @Schema(description = "流IP地址")
+    private String streamIp;
+    /**
+     * HTTP端口
+     */
+    @Schema(description = "HTTP端口")
+    private Integer httpPort;
+    /**
+     * HTTPS端口
+     */
+    @Schema(description = "HTTPS端口")
+    private Integer httpSslPort;
+    /**
+     * RTMP端口
+     */
+    @Schema(description = "RTMP端口")
+    private Integer rtmpPort;
+    /**
+     * RTMP SSL端口
+     */
+    @Schema(description = "RTMP SSL端口")
+    private Integer rtmpSslPort;
+    /**
+     * RTP代理端口（单端口模式）
+     */
+    @Schema(description = "RTP代理端口（单端口模式）")
+    private Integer rtpProxyPort;
+    /**
+     * RTSP端口
+     */
+    @Schema(description = "RTSP端口")
+    private Integer rtspPort;
+    /**
+     * RTSP SSL端口
+     */
+    @Schema(description = "RTSP SSL端口")
+    private Integer rtspSslPort;
+    /**
+     * FLV端口
+     */
+    @Schema(description = "FLV端口")
+    private Integer flvPort;
+    /**
+     * FLV SSL端口
+     */
+    @Schema(description = "FLV SSL端口")
+    private Integer flvSslPort;
+    /**
+     * WebSocket FLV端口
+     */
+    @Schema(description = "WebSocket FLV端口")
+    private Integer wsFlvPort;
+    /**
+     * WebSocket FLV SSL端口
+     */
+    @Schema(description = "WebSocket FLV SSL端口")
+    private Integer wsFlvSslPort;
+    /**
+     * 是否开启自动配置ZLM
+     */
+    @Schema(description = "是否开启自动配置ZLM")
+    private Boolean autoConfig;
+    /**
+     * ZLM鉴权参数
+     */
+    @Schema(description = "ZLM鉴权参数")
+    private String secret;
+    /**
+     * 类型（zlm/abl）
+     */
+    @Schema(description = "类型（zlm/abl）")
+    private String type;
+    /**
+     * 是否启用多端口模式
+     */
+    @Schema(description = "是否启用多端口模式")
+    private Boolean rtpEnable;
+    /**
+     * 多端口RTP收流端口范围
+     */
+    @Schema(description = "多端口RTP收流端口范围")
+    private String rtpPortRange;
+    /**
+     * RTP发流端口范围
+     */
+    @Schema(description = "RTP发流端口范围")
+    private String sendRtpPortRange;
+    /**
+     * 录制辅助服务端口
+     */
+    @Schema(description = "录制辅助服务端口")
+    private Integer recordAssistPort;
+    /**
+     * 是否是默认ZLM服务器
+     */
+    @Schema(description = "是否是默认ZLM服务器")
+    private Boolean defaultServer;
+
+    /**
+     * 上次心跳时间
+     */
+    @Schema(description = "上次心跳时间")
+    private LocalDateTime lastAliveTime;
+    /**
+     * keepalive hook触发间隔，单位秒
+     */
+    @Schema(description = "keepalive hook触发间隔，单位秒")
+    private Integer hookAliveInterval;
+    /**
+     * 录像存储路径
+     */
+    @Schema(description = "录像存储路径")
+    private String recordPath;
+    /**
+     * 录像存储时长（天）
+     */
+    @Schema(description = "录像存储时长（天）")
+    private Integer recordDay;
+    /**
+     * 转码的前缀
+     */
+    @Schema(description = "转码的前缀")
+    private String transcodeSuffix;
+    /**
+     * 备注
+     */
+    @Schema(description = "备注")
+    private String remark;
+    /**
+     * 创建人组织
+     */
+    @Schema(description = "创建人组织")
+    private Long createdOrgId;
+    /**
+     * 在线状态
+     */
+    @Schema(description = "在线状态")
+    private Boolean onlineStatus;
+    /**
+     * 扩展参数
+     */
+    @Schema(description = "扩展参数")
+    private String extendParams;
+    /**
+     * 名称
+     */
+    @Schema(description = "多媒体名称")
+    private String name;
+
+}
