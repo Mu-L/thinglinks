@@ -1,7 +1,7 @@
 # ThingLinks 大屏可视化平台
 
 <p align="center">
-  <b>ThingLinks-View - 开源物联网可视化大屏</b>
+  <b>ThingLinks - 开源物联网大屏可视化</b>
 </p>
 
 ---
@@ -268,7 +268,7 @@ footer
 
 ## 🔗 相关链接
 
-- [ThingLinks 官网](https://wwww.mqttsnet.com)
+- [ThingLinks 官网](https://thinglinks.mqttsnet.com)
 
 ## 💬 联系我们
 
