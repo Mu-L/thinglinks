@@ -121,9 +121,6 @@ npm install -g pnpm
 
 # 安装项目依赖
 pnpm install
-
-# 或者使用淘宝镜像
-npm install --registry=https://registry.npm.taobao.org --force
 ```
 
 ### 开发环境
@@ -131,9 +128,6 @@ npm install --registry=https://registry.npm.taobao.org --force
 ```bash
 # 启动开发服务器
 pnpm dev
-
-# 或者
-pnpm serve
 ```
 
 ### 生产环境打包
@@ -155,15 +149,22 @@ pnpm report
 
 ```bash
 pnpm dev          # 启动开发服务器
-pnpm serve        # 启动开发服务器（同 dev）
 pnpm preview      # 本地进行打包预览
+```
+
+### 构建脚本
+
+```bash
+pnpm build          # 构建生产环境代码
+pnpm build:no-cache # 删除依赖后重新构建
+pnpm report         # 生成构建包报表预览
 ```
 
 ### 代码质量
 
 ```bash
-pnpm lint         # 代码检查
-pnpm lint:fix     # 代码检查并自动修复
+pnpm lint             # 代码检查
+pnpm lint:fix         # 代码检查并自动修复
 pnpm lint:stylelint   # 样式格式化
 pnpm lint:prettier    # js/ts 代码格式化
 ```
@@ -171,11 +172,11 @@ pnpm lint:prettier    # js/ts 代码格式化
 ### 其他脚本
 
 ```bash
-pnpm reinstall    # 删除依赖重新装，兼容 Windows
-pnpm log          # 生成 CHANGELOG
-pnpm clean:cache  # 删除缓存
-pnpm clean:lib    # 删除 node_modules，兼容 Windows
-pnpm new          # 创建新组件（基于 plop）
+pnpm reinstall     # 删除依赖重新安装
+pnpm log           # 生成 CHANGELOG
+pnpm clean:cache   # 删除缓存
+pnpm clean:lib     # 删除 node_modules
+pnpm new           # 创建新组件（基于 plop）
 ```
 
 ## ⚙️ 配置说明
