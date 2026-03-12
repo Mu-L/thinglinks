@@ -39,7 +39,7 @@ public interface IotNorthboundOtaUpgradeApi {
      *                       </ul>
      * @apiNote 该接口用于批量确认处于待确认状态的设备升级作业
      * 典型场景：应用服务器可调用此接口确认一批设备的升级作业，使其进入待升级状态;
-     * 具体使用方法请参考 <a href="https://www.mqttsnet.com" target="_blank">接入指南</a>
+     * 具体使用方法请参考 <a href="https://mqttsnet.com" target="_blank">接入指南</a>
      */
     @Open(
             value = "iot.northbound.ota.confirmTask",

@@ -21,7 +21,7 @@ import java.util.List;
  * @Description: 网关设备更新子设备状态数据模型
  * @Author: ShiHuan SUN
  * @E-mail: 13733918655@163.com
- * @Website: <a href="http://thinglinks.mqttsnet.com">官方地址</a>
+ * @Website: <a href="https://mqttsnet.com">官方地址</a>
  * @CreateDate: 2022/4/25$ 12:52$
  * @UpdateUser: ShiHuan SUN
  * @UpdateDate: 2022/4/25$ 12:52$

@@ -269,7 +269,7 @@ footer
 
 ## 🔗 相关链接
 
-- [ThingLinks 官网](https://thinglinks.mqttsnet.com)
+- [ThingLinks 官网](https://mqttsnet.com)
 
 ## 💬 联系我们
 

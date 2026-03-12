@@ -19,7 +19,7 @@ import java.util.List;
  * @Description: 网关设备添加子设备数据模型
  * @Author: ShiHuan SUN
  * @E-mail: 13733918655@163.com
- * @Website: http://thinglinks.mqttsnet.com
+ * @Website: https://mqttsnet.com
  * @CreateDate: 2022/4/25$ 12:52$
  * @UpdateUser: ShiHuan SUN
  * @UpdateDate: 2022/4/25$ 12:52$

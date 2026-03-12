@@ -4,7 +4,7 @@ package com.mqttsnet.thinglinks.common.mq;
  * @Description: Rabbitmq 消费者常量（队列、交换机等信息）
  * @Author: ShiHuan SUN
  * @E-mail: 13733918655@163.com
- * @Website: http://thinglinks.mqttsnet.com
+ * @Website: https://mqttsnet.com
  * @CreateDate: 2022/4/15$ 15:53$
  * @UpdateUser: ShiHuan SUN
  * @UpdateDate: 2022/4/15$ 15:53$
