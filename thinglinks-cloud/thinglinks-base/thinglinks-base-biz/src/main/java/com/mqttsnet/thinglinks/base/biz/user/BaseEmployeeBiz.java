@@ -13,6 +13,7 @@ import com.mqttsnet.basic.database.mybatis.conditions.Wraps;
 import com.mqttsnet.basic.exception.BizException;
 import com.mqttsnet.basic.utils.ArgumentAssert;
 import com.mqttsnet.basic.utils.CollHelper;
+import com.mqttsnet.basic.utils.SnowflakeIdUtil;
 import com.mqttsnet.thinglinks.base.entity.user.BaseEmployee;
 import com.mqttsnet.thinglinks.base.service.user.BaseEmployeeOrgRelService;
 import com.mqttsnet.thinglinks.base.service.user.BaseEmployeeRoleRelService;
@@ -125,7 +126,7 @@ public class BaseEmployeeBiz {
         if (existDefUser) {
             throw new BizException("手机号已被注册,请重新输入手机号 或 直接邀请它加入贵公司。");
         }
-        String username = StrUtil.isBlank(saveVO.getUsername()) ? IdUtil.simpleUUID() : saveVO.getUsername();
+        String username = StrUtil.isBlank(saveVO.getUsername()) ? SnowflakeIdUtil.nextId() : saveVO.getUsername();
         // 保存默认库的 用户表 和 员工表
         DefUserSaveVO userSaveVO = BeanUtil.toBean(saveVO, DefUserSaveVO.class);
         userSaveVO.setUsername(username);

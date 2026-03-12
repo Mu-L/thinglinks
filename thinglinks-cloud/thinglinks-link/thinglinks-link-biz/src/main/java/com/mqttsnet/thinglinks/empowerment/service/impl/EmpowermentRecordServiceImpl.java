@@ -380,7 +380,7 @@ public class EmpowermentRecordServiceImpl extends SuperServiceImpl<EmpowermentRe
     private void checkedProductEmpowermentSaveVO(ProductEmpowermentSaveVO saveVO) {
         ArgumentAssert.notNull(saveVO, "save product empower saveVO is null");
         ArgumentAssert.isTrue(EmpowermentTypeEnum.PRODUCT.getValue().equals(saveVO.getEmpowermentType()), "save product empower saveVO.empowermentType is null");
-        ArgumentAssert.notNull(saveVO.getEmpowermentIdentification(), "save product empower saveVO.empowermentIdentification is null");
+        ArgumentAssert.notNull(saveVO.getEmpowermentIdentification(), "empowermentIdentification is null");
     }
 
     private void checkedEmpowermentRecordUpdateVO(EmpowermentRecordUpdateVO updateVO) {

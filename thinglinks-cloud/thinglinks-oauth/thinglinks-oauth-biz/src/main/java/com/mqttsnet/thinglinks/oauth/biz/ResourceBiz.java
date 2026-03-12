@@ -127,9 +127,9 @@ public class ResourceBiz {
 
             List<VueRouter> routers = BeanPlusUtil.copyToList(list, VueRouter.class);
             List<VueRouter> tree = TreeUtil.buildTree(routers);
-            if (ClientTypeEnum.LAMP_WEB_PRO_SOYBEAN.eq(type)) {
+            if (ClientTypeEnum.THINGLINKS_WEB_SOYBEAN.eq(type)) {
                 forEachTreeBySoybean(tree, 1, null);
-            } else if (ClientTypeEnum.LAMP_WEB_PRO_VBEN5.eq(type)) {
+            } else if (ClientTypeEnum.THINGLINKS_WEB_VBEN5.eq(type)) {
                 forEachTreeByVben5(tree, 1, null);
             } else {
                 forEachTree(tree, 1);
@@ -208,9 +208,9 @@ public class ResourceBiz {
 
         List<VueRouter> routers = BeanPlusUtil.copyToList(list, VueRouter.class);
         List<VueRouter> tree = TreeUtil.buildTree(routers);
-        if (ClientTypeEnum.LAMP_WEB_PRO_SOYBEAN.eq(type)) {
+        if (ClientTypeEnum.THINGLINKS_WEB_SOYBEAN.eq(type)) {
             forEachTreeBySoybean(tree, 1, null);
-        } else if (ClientTypeEnum.LAMP_WEB_PRO_VBEN5.eq(type)) {
+        } else if (ClientTypeEnum.THINGLINKS_WEB_VBEN5.eq(type)) {
             forEachTreeByVben5(tree, 1, null);
         } else {
             forEachTree(tree, 1);

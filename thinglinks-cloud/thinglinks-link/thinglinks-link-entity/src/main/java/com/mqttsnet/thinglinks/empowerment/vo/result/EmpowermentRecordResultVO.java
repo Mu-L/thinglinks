@@ -1,8 +1,11 @@
 package com.mqttsnet.thinglinks.empowerment.vo.result;
 
 import cn.hutool.core.map.MapUtil;
+import com.mqttsnet.basic.annotation.echo.Echo;
 import com.mqttsnet.basic.base.entity.Entity;
 import com.mqttsnet.basic.interfaces.echo.EchoVO;
+import com.mqttsnet.thinglinks.model.constant.EchoApi;
+import com.mqttsnet.thinglinks.model.constant.EchoDictType;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,6 +15,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Map;
@@ -35,6 +39,7 @@ import java.util.Map;
 @Schema(title = "EmpowermentRecordResultVO", description = "赋能记录表")
 public class EmpowermentRecordResultVO extends Entity<Long> implements Serializable, EchoVO {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     private Map<String, Object> echoMap = MapUtil.newHashMap();
@@ -56,6 +61,7 @@ public class EmpowermentRecordResultVO extends Entity<Long> implements Serializa
      * 赋能类型
      */
     @Schema(description = "赋能类型")
+    @Echo(api = EchoApi.DICTIONARY_ITEM_FEIGN_CLASS, dictType = EchoDictType.Link.LINK_EMPOWERMENT_TYPE)
     private Integer empowermentType;
     /**
      * 开始时间
@@ -81,6 +87,7 @@ public class EmpowermentRecordResultVO extends Entity<Long> implements Serializa
      * 状态
      */
     @Schema(description = "状态")
+    @Echo(api = EchoApi.DICTIONARY_ITEM_FEIGN_CLASS, dictType = EchoDictType.Link.LINK_EMPOWERMENT_STATUS)
     private Integer status;
     /**
      * 版本

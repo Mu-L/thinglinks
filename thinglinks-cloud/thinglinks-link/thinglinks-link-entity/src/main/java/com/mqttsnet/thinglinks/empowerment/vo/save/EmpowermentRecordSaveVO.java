@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -34,6 +35,7 @@ import java.time.LocalDateTime;
 @Schema(title = "EmpowermentRecordSaveVO", description = "赋能记录表")
 public class EmpowermentRecordSaveVO implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**

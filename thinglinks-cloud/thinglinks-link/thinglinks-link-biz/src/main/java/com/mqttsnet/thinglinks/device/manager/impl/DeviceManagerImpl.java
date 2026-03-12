@@ -106,6 +106,10 @@ public class DeviceManagerImpl extends SuperManagerImpl<DeviceMapper, Device> im
         queryWrap.lambda().eq(query.getConnectStatus() != null, Device::getConnectStatus, query.getConnectStatus());
         queryWrap.lambda().in(CollUtil.isNotEmpty(query.getFwVersionList()), Device::getFwVersion, query.getFwVersionList());
         queryWrap.lambda().in(CollUtil.isNotEmpty(query.getSwVersionList()), Device::getSwVersion, query.getSwVersionList());
+        queryWrap.lambda().eq(CharSequenceUtil.isNotBlank(query.getGatewayId()), Device::getGatewayId, query.getGatewayId());
+        queryWrap.lambda().in(CollUtil.isNotEmpty(query.getGatewayIdList()), Device::getGatewayId, query.getGatewayIdList());
+        queryWrap.lambda().eq(query.getNodeType() != null, Device::getNodeType, query.getNodeType());
+        queryWrap.lambda().in(CollUtil.isNotEmpty(query.getNodeTypeList()), Device::getNodeType, query.getNodeTypeList());
         return deviceMapper.selectList(queryWrap);
     }
 

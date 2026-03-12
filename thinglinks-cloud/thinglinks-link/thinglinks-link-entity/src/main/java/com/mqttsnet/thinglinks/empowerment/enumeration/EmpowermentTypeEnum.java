@@ -47,9 +47,9 @@ public enum EmpowermentTypeEnum {
 
     public static EmpowermentTypeEnum valueOf(Integer value) {
         return Arrays.stream(values())
-                .filter(type -> type.getValue().equals(Optional.ofNullable(value).orElse(-1))) // 使用一个不存在的默认值，如-1
+                .filter(type -> type.getValue().equals(Optional.ofNullable(value).orElse(-1)))
                 .findFirst()
-                .orElse(UNKNOWN); // 或者您可以选择返回一个默认的枚举值，比如UNKNOWN
+                .orElse(UNKNOWN);
     }
 
     public Integer getValue() {

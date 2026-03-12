@@ -405,6 +405,19 @@ public interface EchoDictType {
          */
         String LINK_OTA_TASK_RECORD_COMMAND_SEND_STATUS = "LINK_OTA_TASK_RECORD_COMMAND_SEND_STATUS";
 
+
+        /**
+         * 赋能记录类型
+         */
+        String LINK_EMPOWERMENT_TYPE = "LINK_EMPOWERMENT_TYPE";
+
+
+        /**
+         * 赋能记录状态
+         */
+        String LINK_EMPOWERMENT_STATUS = "LINK_EMPOWERMENT_STATUS";
+
+
     }
 
     // 新增内部 Xxx 接口后，请在PackageUtils的static代码块中新增 putDictType(EchoDictType.Xxx.class)， 否则代码生成器会重复生成
