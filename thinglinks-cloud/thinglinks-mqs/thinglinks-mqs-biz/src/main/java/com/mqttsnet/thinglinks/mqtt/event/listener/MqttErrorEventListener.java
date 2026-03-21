@@ -9,7 +9,7 @@ import com.mqttsnet.thinglinks.cache.vo.device.DeviceCacheVO;
 import com.mqttsnet.thinglinks.common.cache.link.device.DeviceCacheKeyBuilder;
 import com.mqttsnet.thinglinks.common.constant.CommonConstants;
 import com.mqttsnet.thinglinks.device.enumeration.DeviceActionTypeEnum;
-import com.mqttsnet.thinglinks.mqtt.event.MqttPingEvent;
+import com.mqttsnet.thinglinks.mqtt.event.MqttErrorEvent;
 import com.mqttsnet.thinglinks.service.DeviceEventActionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +42,7 @@ public class MqttErrorEventListener {
      */
     @EventListener
     @Retryable(value = {Exception.class}, maxAttempts = 3, backoff = @Backoff(delay = 1000))
-    public void publishMqttErrorEvent(MqttPingEvent event) {
+    public void publishMqttErrorEvent(MqttErrorEvent event) {
         log.info("Publishing MQTT ERROR event: message={}", event.getMessage());
         JSONObject messageObj = JSONUtil.parseObj(event.getMessage());
         String clientId = String.valueOf(messageObj.get(CommonConstants.CLIENT_ID));
