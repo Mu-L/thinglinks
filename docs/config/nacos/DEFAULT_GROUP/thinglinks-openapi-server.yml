@@ -1,0 +1,34 @@
+springdoc:
+  group-configs:
+    - group: 'openapi'
+      displayName: '开放接口服务'
+      paths-to-match: '/**'
+      packages-to-scan: com.mqttsnet.thinglinks.openapi.controller
+
+
+server:
+  port: 18766
+  
+dubbo:
+  protocol:
+    name: dubbo
+    port: -1
+    parameters:
+      sba: ignore
+  application:
+    qos-enable: false
+  # 提供方
+  provider:
+    validation: jvalidationNew
+  # 消费方
+  consumer:
+    timeout: 30000  # 全局默认30秒
+    retries: 0     # 全局关闭重试（超时后重试会导致服务端处理多份相同请求）
+    check: false
+    validation: jvalidationNew
+  # 注册中心
+  registry:
+    address: nacos://${thinglinks.nacos.username}:${thinglinks.nacos.password}@${thinglinks.nacos.ip}:${thinglinks.nacos.port}?namespace=${thinglinks.nacos.namespace}
+    check: false
+    parameters:
+      sba: ignore

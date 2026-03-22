@@ -1,0 +1,16 @@
+thinglinks:
+  database:
+    isSeata: false
+
+
+springdoc:
+  group-configs:
+    - group: 'oauth_auth'
+      displayName: '认证服务'
+      paths-to-match: '/**'
+      packages-to-scan: com.mqttsnet.thinglinks
+
+
+
+server:
+  port: 18773

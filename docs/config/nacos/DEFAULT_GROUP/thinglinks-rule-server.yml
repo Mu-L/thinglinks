@@ -1,0 +1,61 @@
+springdoc:
+  group-configs:
+    - group: 'rule'
+      displayName: '规则服务'
+      paths-to-match: '/**'
+      packages-to-scan: com.mqttsnet.thinglinks
+
+
+server:
+  port: 18786
+
+
+# 插件管理配置信息
+plugin:
+  server:
+    # 默认端口号，如果未设置，会默认使用18787（此端口用于插件集群间心跳通讯）
+    port: 18787 
+  application:
+    name: ${spring.application.name} # 继承Spring Boot应用程序的名称
+
+exp_enable: true
+plugins_path: exp-plugins
+plugins_work_dir: exp-workdir
+plugins_spring_url_replace_enable: true
+exp_object_field_config_json: '[
+{
+	"className": "com.mqttsnet.thinglinks.vo.result.plugin.PluginResultVO",
+	"fieldModelsDesc": [{
+		"fieldType": "java.lang.String",
+		"fieldName": "tenantId"
+	}]
+}
+]'
+
+
+
+
+# groovy 规则脚本
+thinglinks:
+  groovy:
+    engine:
+      # 脚本检查更新周期（单位：秒），（默认300L）
+      pollingCycle: 10
+      # 开启功能
+      enable: true
+      # 缓存过期时间(默认600L分钟)
+      cacheExpireAfterWrite: 10
+      #缓存初始容量(默认100)
+      cacheInitialCapacity: 10
+      # 缓存最大容量(默认500)
+      cacheMaximumSize: 20
+      # 开启基于Redis加载groovy脚本
+      redis-loader:
+        # 命名空间，可以和应用名称保持一致即可，主要是为了区分不同的应用
+        namespace: thinglinks
+        # 开启基于Redis的loader
+        enable: true
+      mysql-loader:
+        # 不配置则和应用名称相同
+        namespace: thinglinks
+        enable: true

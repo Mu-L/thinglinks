@@ -1,0 +1,9 @@
+springdoc:
+  group-configs:
+    - group: 'mqs'
+      displayName: '消息治理服务'
+      paths-to-match: '/**'
+      packages-to-scan: com.mqttsnet.thinglinks
+
+server:
+  port: 18784

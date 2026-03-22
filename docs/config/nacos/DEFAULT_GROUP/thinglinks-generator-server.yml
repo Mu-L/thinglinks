@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    dynamic:
+      seata: false
+
+server:
+  port: 18780
