@@ -457,9 +457,10 @@ public class PluginInfoServiceImpl extends SuperServiceImpl<PluginInfoManager, L
 
         ArgumentAssert.notEmpty(mappings, "无插件实例可卸载");
 
-        // 使用 distinct() 确保每个实例只处理一次
-        mappings.parallelStream()
+        // 使用 distinct() 确保每个实例只处理一次（不使用 parallelStream，避免 @DS 数据源上下文在 ForkJoinPool 线程中丢失）
+        mappings.stream()
                 .map(PluginInstanceMappingResultVO::getInstanceIdentification)
+                .filter(Objects::nonNull)
                 .distinct()
                 .forEach(instanceIdentification -> {
                     try {

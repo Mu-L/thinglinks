@@ -320,7 +320,7 @@ public class RuleAlarmRecordServiceImpl extends SuperServiceImpl<RuleAlarmRecord
         if (StringUtils.isNotBlank(atPhone)) {
             Arrays.stream(atPhone.split(StrUtil.COMMA))
                     .map(String::trim)
-                    .filter(phone -> !phone.isEmpty())
+                    .filter(StrUtil::isNotBlank)
                     .distinct()
                     .forEach(phone -> {
                         ExtendMsgRecipientSaveVO recipient = new ExtendMsgRecipientSaveVO();

@@ -863,7 +863,7 @@ public class DeviceServiceImpl extends SuperServiceImpl<DeviceManager, Long, Dev
      */
     @Override
     public boolean isProductInUseByDevices(String productIdentification) {
-        if (productIdentification == null || productIdentification.isEmpty()) {
+        if (StrUtil.isBlank(productIdentification)) {
             throw BizException.wrap("Product identification cannot be null or empty.");
         }
 

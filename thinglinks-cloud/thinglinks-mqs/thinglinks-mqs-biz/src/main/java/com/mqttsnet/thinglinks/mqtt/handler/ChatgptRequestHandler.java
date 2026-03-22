@@ -194,13 +194,13 @@ public class ChatgptRequestHandler extends AbstractMessageHandler implements Top
         OpenAiClient.Builder clientBuilder = OpenAiClient.builder()
                 .okHttpClient(okHttpClient);
 
-        if (apiKey != null && !apiKey.isEmpty()) {
+        if (StrUtil.isNotBlank(apiKey)) {
             clientBuilder.apiKey(Collections.singletonList(apiKey));
         } else {
             throw BizException.wrap("API Key is required");
         }
 
-        if (apiHost != null && !apiHost.isEmpty()) {
+        if (StrUtil.isNotBlank(apiHost)) {
             clientBuilder.apiHost(apiHost);
         }
 

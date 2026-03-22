@@ -3,6 +3,7 @@ package com.mqttsnet.thinglinks.ws;
 import jakarta.websocket.Session;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -60,11 +61,11 @@ public class WebSocketObserver implements Observer {
         }
         WebSocketObserver other = (WebSocketObserver) obj;
         if (session == null) {
-            if (other.session != null) {
-                return false;
-            }
+            return other.session == null;
+        } else if (other.session == null) {
+            return false;
         }
-        return session.getId().equals(other.session.getId());
+        return Objects.equals(session.getId(), other.session.getId());
     }
 
 }

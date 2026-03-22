@@ -392,9 +392,9 @@ public class DevicePropertiesPolicy implements RulePolicyStrategyService {
 
             // Extract the desired value from the selected ProductResult
             return selectedProductResult.getServices().stream()
-                    .filter(serviceResult -> serviceResult.getServiceCode().equals(leftParam.getServiceCode()))
+                    .filter(serviceResult -> Objects.equals(serviceResult.getServiceCode(), leftParam.getServiceCode()))
                     .flatMap(serviceResult -> serviceResult.getProperties().stream())
-                    .filter(propertyResult -> propertyResult.getPropertyCode().equals(leftParam.getField()))
+                    .filter(propertyResult -> Objects.equals(propertyResult.getPropertyCode(), leftParam.getField()))
                     .findFirst()
                     .map(this::safelyGetPropertyValue)
                     .orElse(null);

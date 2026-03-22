@@ -1,5 +1,6 @@
 package com.mqttsnet.thinglinks.ws.handler;
 
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson2.JSON;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mqttsnet.basic.chatgpt.model.enumeration.OpenAiGptModelEnum;
@@ -187,13 +188,13 @@ public class WebSocketChatgptRequestHandler extends WebSocketAbstractMessageHand
         OpenAiClient.Builder clientBuilder = OpenAiClient.builder()
                 .okHttpClient(okHttpClient);
 
-        if (apiKey != null && !apiKey.isEmpty()) {
+        if (StrUtil.isNotBlank(apiKey)) {
             clientBuilder.apiKey(Collections.singletonList(apiKey));
         } else {
             throw BizException.wrap("API Key is required");
         }
 
-        if (apiHost != null && !apiHost.isEmpty()) {
+        if (StrUtil.isNotBlank(apiHost)) {
             clientBuilder.apiHost(apiHost);
         }
 

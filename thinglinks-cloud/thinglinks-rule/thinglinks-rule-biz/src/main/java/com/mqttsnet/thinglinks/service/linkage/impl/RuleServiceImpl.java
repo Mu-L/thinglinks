@@ -89,7 +89,7 @@ public class RuleServiceImpl extends SuperServiceImpl<RuleManager, Long, Rule> i
         Rule rule = builderRuleSaveVO(saveVO);
 
         if (saveRuleToSuperManager(rule)) {
-            XxlJobTriggerStatusEnum jobTriggerStatusEnum = saveVO.getStatus().equals(RuleStatusEnum.ACTIVATED.getValue())
+            XxlJobTriggerStatusEnum jobTriggerStatusEnum = Objects.equals(saveVO.getStatus(), RuleStatusEnum.ACTIVATED.getValue())
                     ? XxlJobTriggerStatusEnum.RUNNING : XxlJobTriggerStatusEnum.STOPPED;
             scheduleTimingTask(rule, jobTriggerStatusEnum);
         }
@@ -193,7 +193,7 @@ public class RuleServiceImpl extends SuperServiceImpl<RuleManager, Long, Rule> i
         // Check if the frequency has changed or the status has changed. If yes, handle job updates.
         if (!Objects.equals(existingAppoint.getFrequency(), newAppoint.getFrequency())
                 || !Objects.equals(existingRule.getStatus(), updateVO.getStatus())) {
-            XxlJobTriggerStatusEnum jobTriggerStatusEnum = updateVO.getStatus().equals(RuleStatusEnum.ACTIVATED.getValue())
+            XxlJobTriggerStatusEnum jobTriggerStatusEnum = Objects.equals(updateVO.getStatus(), RuleStatusEnum.ACTIVATED.getValue())
                     ? XxlJobTriggerStatusEnum.RUNNING : XxlJobTriggerStatusEnum.STOPPED;
             handleJobUpdates(existingAppoint, updateVO, existingRule, jobTriggerStatusEnum);
         }
@@ -340,7 +340,7 @@ public class RuleServiceImpl extends SuperServiceImpl<RuleManager, Long, Rule> i
         if (null == rule) {
             throw BizException.wrap("The rule does not exist");
         }
-        if (status.equals(rule.getStatus())) {
+        if (Objects.equals(status, rule.getStatus())) {
             throw BizException.wrap("The rule status is the same as the current status");
         }
         rule.setStatus(status);

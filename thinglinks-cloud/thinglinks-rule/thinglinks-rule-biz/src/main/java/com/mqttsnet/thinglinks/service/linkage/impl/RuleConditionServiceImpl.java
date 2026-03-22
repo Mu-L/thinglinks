@@ -15,6 +15,8 @@ import com.mqttsnet.basic.exception.BizException;
 import com.mqttsnet.basic.utils.ArgumentAssert;
 import com.mqttsnet.basic.utils.BeanPlusUtil;
 import com.mqttsnet.basic.utils.SnowflakeIdUtil;
+import java.util.Objects;
+
 import com.mqttsnet.thinglinks.common.constant.DsConstant;
 import com.mqttsnet.thinglinks.dto.linkage.condition.group.DevicePropertiesConditionGroupDTO;
 import com.mqttsnet.thinglinks.entity.linkage.RuleCondition;
@@ -284,7 +286,7 @@ public class RuleConditionServiceImpl extends SuperServiceImpl<RuleConditionMana
         // Update or create new actions based on the provided action updates
         actionUpdateVOS.forEach(actionUpdateVO -> {
             Optional<RuleConditionActionResultVO> optionalExistingAction = existingActions.stream()
-                    .filter(action -> action.getId().equals(actionUpdateVO.getId()))
+                    .filter(action -> Objects.equals(action.getId(), actionUpdateVO.getId()))
                     .findFirst();
 
             if (optionalExistingAction.isPresent()) {
@@ -298,7 +300,7 @@ public class RuleConditionServiceImpl extends SuperServiceImpl<RuleConditionMana
 
         // Delete any existing actions that weren't included in the action updates
         existingActions.stream()
-                .filter(existingAction -> actionUpdateVOS.stream().noneMatch(vo -> vo.getId().equals(existingAction.getId())))
+                .filter(existingAction -> actionUpdateVOS.stream().noneMatch(vo -> Objects.equals(vo.getId(), existingAction.getId())))
                 .forEach(action -> ruleConditionActionService.deleteRuleConditionAction(action.getId()));
     }
 

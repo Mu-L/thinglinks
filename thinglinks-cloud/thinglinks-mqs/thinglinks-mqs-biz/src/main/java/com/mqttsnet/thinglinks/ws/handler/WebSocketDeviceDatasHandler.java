@@ -1,6 +1,7 @@
 package com.mqttsnet.thinglinks.ws.handler;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson2.JSON;
 import com.mqttsnet.basic.base.R;
@@ -165,7 +166,14 @@ public class WebSocketDeviceDatasHandler extends WebSocketAbstractMessageHandler
             Map<String, Map<String, Object>> dataMap = new HashMap<>();
 
             device.getServices().forEach(service -> {
-                String superTableName = TdsUtils.superTableName(ProductTypeEnum.valueOf(deviceCacheVO.getProductCacheVO().getProductType()).getDesc(),
+                String productType = Optional.ofNullable(deviceCacheVO.getProductCacheVO())
+                        .map(p -> p.getProductType())
+                        .orElse(null);
+                if (StrUtil.isBlank(productType)) {
+                    log.warn("processingDeviceDataTopic ProductCacheVO or productType is null, deviceId:{}", deviceId);
+                    return;
+                }
+                String superTableName = TdsUtils.superTableName(ProductTypeEnum.valueOf(productType).getDesc(),
                         deviceCacheVO.getProductIdentification(),
                         service.getServiceCode());
 
