@@ -32,6 +32,7 @@ public class UpgradeScopeStrategyFactory {
      */
     public UpgradeScopeStrategyFactory(List<UpgradeScopeStrategy> strategies) {
         this.strategyMap = strategies.stream()
+                .filter(s -> s != null && s.getSupportedScope() != null)
                 .collect(Collectors.toMap(
                         UpgradeScopeStrategy::getSupportedScope,
                         Function.identity(),

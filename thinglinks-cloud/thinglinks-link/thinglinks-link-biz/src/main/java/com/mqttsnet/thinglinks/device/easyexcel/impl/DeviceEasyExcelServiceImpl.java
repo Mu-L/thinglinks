@@ -125,6 +125,7 @@ public class DeviceEasyExcelServiceImpl implements DeviceEasyExcelService {
                 .orElse(Collections.emptyList());
 
         return deviceResultVOList.stream()
+                .filter(d -> d.getDeviceIdentification() != null)
                 .collect(Collectors.toMap(DeviceResultVO::getDeviceIdentification,
                         Function.identity(), (existing, replacement) -> existing));
     }
@@ -137,6 +138,7 @@ public class DeviceEasyExcelServiceImpl implements DeviceEasyExcelService {
                 .orElse(Collections.emptyList());
 
         return productResultVOList.stream()
+                .filter(p -> p.getProductIdentification() != null)
                 .collect(Collectors.toMap(ProductResultVO::getProductIdentification,
                         Function.identity(), (existing, replacement) -> existing));
     }

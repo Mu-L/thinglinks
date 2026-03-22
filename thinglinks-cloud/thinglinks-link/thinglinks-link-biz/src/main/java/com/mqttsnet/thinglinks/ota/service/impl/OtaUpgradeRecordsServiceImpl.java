@@ -105,7 +105,7 @@ public class OtaUpgradeRecordsServiceImpl extends SuperServiceImpl<OtaUpgradeRec
         if (otaUpgradeRecordsPage.getRecords().isEmpty()) {
             return new Page<>();
         }
-        IPage<OtaUpgradeRecordsResultVO> resultPage = BeanPlusUtil.toBeanPage(otaUpgradeRecordsPage, OtaUpgradeRecordsResultVO.class);
+        Page<OtaUpgradeRecordsResultVO> resultPage = new Page<>(otaUpgradeRecordsPage.getCurrent(), otaUpgradeRecordsPage.getSize(), otaUpgradeRecordsPage.getTotal());
         resultPage.setRecords(BeanPlusUtil.toBeanList(otaUpgradeRecordsPage.getRecords(), OtaUpgradeRecordsResultVO.class));
 
         return resultPage;

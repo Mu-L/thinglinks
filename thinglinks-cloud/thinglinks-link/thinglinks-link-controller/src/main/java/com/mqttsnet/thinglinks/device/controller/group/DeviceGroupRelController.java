@@ -127,6 +127,7 @@ public class DeviceGroupRelController extends SuperController<DeviceGroupRelServ
                                 .orElseGet(Collections::emptyList)
                                 .stream()
                                 .filter(Objects::nonNull)
+                                .filter(g -> g.getId() != null)
                                 .collect(Collectors.toMap(
                                         DeviceGroupResultVO::getId,
                                         Function.identity(),
@@ -148,6 +149,7 @@ public class DeviceGroupRelController extends SuperController<DeviceGroupRelServ
                                         .orElseGet(Collections::emptyList)
                                         .stream()
                                         .filter(Objects::nonNull)
+                                        .filter(d -> d.getDeviceIdentification() != null)
                                         .collect(Collectors.toMap(
                                                 DeviceResultVO::getDeviceIdentification,
                                                 Function.identity(),

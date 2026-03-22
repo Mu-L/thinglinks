@@ -148,6 +148,7 @@ public class OtaUpgradeRecordsController extends SuperController<OtaUpgradeRecor
                                         .stream()
                                         .filter(Objects::nonNull)
                                         .map(dto -> BeanPlusUtil.toBeanIgnoreError(dto, OtaUpgradeTasksResultVO.class))
+                                        .filter(vo -> vo.getId() != null)
                                         .collect(Collectors.toMap(
                                                 OtaUpgradeTasksResultVO::getId,
                                                 Function.identity(),
@@ -166,6 +167,7 @@ public class OtaUpgradeRecordsController extends SuperController<OtaUpgradeRecor
                                         .stream()
                                         .filter(Objects::nonNull)
                                         .map(dto -> BeanPlusUtil.toBeanIgnoreError(dto, OtaUpgradesResultVO.class))
+                                        .filter(vo -> vo.getId() != null)
                                         .collect(Collectors.toMap(
                                                 OtaUpgradesResultVO::getId,
                                                 Function.identity(),
