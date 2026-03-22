@@ -1,6 +1,10 @@
 <template>
   <div style="width: 100%">
-    <div :id="'container' + keyNum" class="map" v-bind="$attrs"></div>
+    <div :id="'container' + keyNum" class="map" v-bind="$attrs">
+      <div v-if="!mapReady" class="map-loading">
+        <a-spin :tip="t('component.map.loading')" />
+      </div>
+    </div>
     <a-auto-complete
       class="search_box"
       v-model:value="searchTerm"
@@ -8,8 +12,9 @@
       @search="onSearch"
       @select="onSelect"
       style="width: 300px; margin-bottom: 20px"
+      :disabled="!mapReady"
     >
-      <a-input v-model:value="searchTerm" placeholder="输入关键字搜索" />
+      <a-input v-model:value="searchTerm" :placeholder="t('component.map.searchPlaceholder')" :disabled="!mapReady" />
     </a-auto-complete>
   </div>
 </template>
@@ -39,6 +44,7 @@
     setup(props, { emit }) {
       const { notification } = useMessage();
       const loading = ref(false);
+      const mapReady = ref(false); // 地图是否加载完成
       const attrs = useAttrs();
       const { t } = useI18n();
       const searchTerm = ref('');
@@ -95,6 +101,9 @@
       }
 
       const onSearch = (value) => {
+        if (!mapReady.value) {
+          return; // 地图未加载完成，不执行搜索
+        }
         if (mapObj.autoComplete && value) {
           mapObj.autoComplete.search(value, (status, result) => {
             console.log(status, result);
@@ -111,6 +120,9 @@
       };
 
       const onSelect = (value, option) => {
+        if (!mapReady.value) {
+          return; // 地图未加载完成，不执行选择操作
+        }
         if (mapObj.placeSearch) {
           mapObj.placeSearch.search(value, (status, result) => {
             if (status === 'complete' && result.info === 'OK') {
@@ -142,8 +154,8 @@
                 toGetAddress();
               }
             } else {
-              console.error('搜索失败: ', result);
-              notification.error({ message: '搜索失败', description: result });
+              console.error('Search failed: ', result);
+              notification.error({ message: t('component.map.searchFailed'), description: result });
             }
           });
         }
@@ -180,6 +192,9 @@
               offset: new AMap.Pixel(0, -30),
             });
 
+            flag.value = true;
+            mapReady.value = true; // 地图加载完成
+
             if (props.value && props.value[0] && props.value[1]) {
               mapObj.form.lng = props.value[0];
               mapObj.form.lat = props.value[1];
@@ -196,8 +211,6 @@
               setMapMarker();
               toGetAddress();
             });
-
-            flag.value = true;
           })
           .catch((e) => {
             console.error(e);
@@ -205,6 +218,9 @@
       }
 
       const getLnglat = (address) => {
+        if (!mapReady.value) {
+          return; // 地图未加载完成，不执行地理编码
+        }
         if (!mapObj.geocoder) {
           mapObj.geocoder = new AMap.Geocoder();
         }
@@ -222,6 +238,9 @@
       };
 
       function setMapMarker() {
+        if (!mapReady.value) {
+          return; // 地图未加载完成，不设置标记
+        }
         if (mapObj.form.lng === '' && mapObj.form.lat === '') {
           return;
         }
@@ -287,6 +306,7 @@
         suggestions,
         attrs,
         loading,
+        mapReady,
         t,
         handleChange,
         mapObj,
@@ -303,6 +323,20 @@
   .map {
     width: 100%;
     height: 400px;
+    position: relative;
+  }
+
+  .map-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index: 10;
   }
 
   .search_box {

@@ -137,4 +137,9 @@ export default {
     templateHref: 'Template download',
     templateTitle: 'Click me to download',
   },
+  map: {
+    loading: 'Map loading...',
+    searchPlaceholder: 'Enter keyword to search',
+    searchFailed: 'Search failed',
+  },
 };
