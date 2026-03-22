@@ -1,0 +1,65 @@
+export default {
+  table: {
+    title: '製品模型リスト',
+  },
+  id: 'id',
+  appId: 'アプリケーションシーン',
+  templateId: '製品id',
+  productName: '製品名称',
+  productIdentification: '製品标识',
+  productType: '製品タイプ',
+  manufacturerId: '厂商ID',
+  manufacturerName: '厂商名称',
+  model: '製品型号',
+  dataFormat: 'データ格式',
+  deviceType: 'デバイスタイプ',
+  protocolType: 'プロトコルタイプ',
+  productStatus: 'ステータス',
+  productVersion: '製品バージョン',
+  icon: '图标',
+  remark: '製品説明',
+  createdTime: '作成時間',
+  createdBy: '作成者',
+  updatedTime: '最后更新時間',
+  updatedBy: '最后更新者',
+  createdOrgId: '作成者組織',
+  updateProductButton: '更新製品情報',
+  detailTitle: '製品詳細',
+  productInfo: '製品情報',
+  tab0: '基本情報',
+  tab1: 'モデル定義',
+  tab2: 'Topicリスト',
+  tab3: '製品赋能',
+  tab4: 'デバイスデバッグ',
+  productImage: '製品画像',
+  helpMessage: {
+    productName: '自定义，支持中文、英文大小写、数字、下划线和中划线，长度[2,64]',
+    productType:
+      '支持以下两种製品タイプ： \n 1:COMMON(普通製品，需直连デバイス。) \n 2:GATEWAY(ゲートウェイ製品，可挂载子デバイス)',
+    manufacturerId: '支持英文大小写，数字，下划线和中划线，长度[2,50]',
+    manufacturerName: '支持中文、英文大小写、数字、下划线和中划线，长度[2,64]',
+    model:
+      '製品型号，建议包含字母或数字来保证拡張可能性。支持英文大小写、数字、下划线和中划线，长度[2,50]',
+    dataFormat: 'データ格式，默认为JSON无需修改',
+    deviceType: '支持英文大小写、数字、下划线和中划线，长度[3,50]',
+    protocolType: 'デバイス接入平台的プロトコルタイプ，默认为MQTT无需修改',
+    productVersion:
+      '按照以下格式输入製品バージョン号：主バージョン号.次バージョン号.修订号,例如 1.0.0',
+  },
+  quick: {
+    service: '製品サービス',
+    serviceAttributes: '製品サービスプロパティ',
+    serviceCommands: '製品サービスコマンド',
+    serviceRequestCommand: '製品サービス请求コマンド',
+    serviceResponseCommand: '製品サービス响应コマンド',
+  },
+  import: {
+    warningDescription: {
+      prefix:
+        '製品モデルをインポートする際は、以下のフィールドの組み合わせがシステム内で一意であることを確認してください：\n\n',
+      highlight: 'メーカーID + 製品モデル + デバイスタイプ',
+      suffix:
+        '\n\nシステムに同じ組み合わせのレコードが既に存在する場合、新しい製品モデルはインポートできません。\nインポート前に製品リストでデータを確認することをお勧めします。',
+    },
+  },
+};

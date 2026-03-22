@@ -1,0 +1,23 @@
+export default {
+  table: {
+    title: 'メッセージリスト',
+  },
+  id: '短信记录ID',
+  templateId: 'メッセージテンプレート',
+  type: 'メッセージタイプ',
+  status: '実行ステータス',
+  channel: '发送渠道',
+  param: 'パラメータ',
+  title: '标题',
+  content: '发送内容',
+  sendTime: '发送时间',
+  author: 'リリース人姓名',
+  remindMode: '提醒方式',
+  bizId: '业务ID',
+  bizType: '业务タイプ',
+  createdBy: '作成者ID',
+  createdTime: '作成時間',
+  updatedBy: '最后更新者',
+  updatedTime: '最后更新時間',
+  publish: 'リリース',
+};

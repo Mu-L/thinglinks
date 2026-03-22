@@ -1,0 +1,89 @@
+<template>
+  <BasicModal v-bind="$attrs" @register="registerModel" :title="t(`common.title.${type}`)" :maskClosable="false"
+    @ok="handleSubmit" :keyboard="true">
+    <BasicForm @register="registerForm" />
+  </BasicModal>
+</template>
+<script lang="ts">
+import { defineComponent, ref, unref } from 'vue';
+import { BasicModal, useModalInner } from '/@/components/Modal';
+import { BasicForm, useForm } from '/@/components/Form/index';
+import { useI18n } from '/@/hooks/web/useI18n';
+import { useMessage } from '/@/hooks/web/useMessage';
+import { ActionEnum, VALIDATE_API } from '/@/enums/commonEnum';
+import { save, update, detail } from '../../../../../api/iot/rule/alarm/alarm';
+import { getValidateRules } from '/@/api/thinglinks/common/formValidateService';
+import { customFormSchemaRules, editFormSchema } from './alarm.data';
+
+export default defineComponent({
+  name: '编辑告警渠道',
+  components: { BasicModal, BasicForm },
+  emits: ['success', 'register'],
+  setup(_, { emit }) {
+    const { t } = useI18n();
+    const type = ref<ActionEnum>(ActionEnum.ADD);
+    const { createMessage, notification } = useMessage();
+
+    const [registerForm, { setFieldsValue, resetFields, updateSchema, validate, resetSchema }] =
+      useForm({
+        name: 'AlarmEdit',
+        labelWidth: 100,
+        schemas: editFormSchema(type),
+        showActionButtonGroup: false,
+        disabled: (_) => {
+          return unref(type) === ActionEnum.VIEW;
+        },
+        baseColProps: { span: 11 },
+        actionColOptions: {
+          span: 22,
+        },
+      });
+
+    const [registerModel, { setModalProps: setProps, closeModal: close }] = useModalInner(
+      async (data) => {
+        setProps({ confirmLoading: false });
+        await resetSchema(editFormSchema(type));
+        await resetFields();
+        type.value = data?.type || ActionEnum.ADD;
+
+        if (unref(type) !== ActionEnum.ADD) {
+          // 赋值
+          const record = await detail(data?.record?.id);
+          record.status = String(record.status);
+          record.level = String(record.level);
+          record.alarmChannelIds = record.alarmChannelIds?.split(',');
+          await setFieldsValue(record);
+        }
+      },
+    );
+
+    async function handleSubmit() {
+      try {
+        const params = await validate();
+        setProps({ confirmLoading: true });
+        let obj = { ...params };
+        console.log('obj:', obj);
+        obj.alarmChannelIds = obj.alarmChannelIds?.join(',');
+        console.log('obj:', obj);
+
+        if (unref(type) !== ActionEnum.VIEW) {
+          if (unref(type) === ActionEnum.EDIT) {
+            await update(obj);
+          } else {
+            delete obj.id;
+            await save(obj);
+          }
+          notification.success({ message: "提示", description: t(`common.tips.${type.value}Success`) });
+        }
+        close();
+        emit('success');
+      } finally {
+        setProps({ confirmLoading: false });
+      }
+    }
+
+    return { type, t, registerModel, registerForm, handleSubmit };
+  },
+});
+</script>
+../../../../../api/iot/link/alarm/alarm

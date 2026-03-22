@@ -1,0 +1,17 @@
+export default {
+  table: { title: 'Dict Item list' },
+  id: 'ID',
+  parentId: 'parentId',
+  parentKey: 'parentKey',
+  label: 'label',
+  key: 'key',
+  classify: 'classify',
+  name: 'name',
+  state: 'state',
+  remark: 'remark',
+  sortValue: 'sortValue',
+  icon: 'icon',
+  cssStyle: 'cssStyle',
+  cssClass: 'cssClass',
+  i18nJson: 'i18nJson',
+};

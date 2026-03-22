@@ -1,0 +1,22 @@
+export default {
+  table: {
+    title: 'ファイルアップロード记录',
+  },
+  id: '主键',
+  bizType: '业务タイプ',
+  fileType: 'ファイルタイプ',
+  storageType: '存储タイプ',
+  bucket: '桶',
+  path: 'ファイル相对地址',
+  url: 'ファイル访问地址',
+  uniqueFileName: '唯一ファイル名',
+  fileMd5: 'ファイルmd5',
+  originalFileName: '原始ファイル名',
+  contentType: 'ファイルタイプ',
+  suffix: '后缀',
+  size: '大小',
+  createdOrgId: '作成者組織',
+  debug: 'デバッグアップロード',
+  preview: 'ファイルプレビュー',
+  file: 'ファイル',
+};

@@ -1,0 +1,129 @@
+.node-card-list {
+  background-color: #fff;
+  padding: 22px;
+}
+.node-card-list .loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.node-card-list .card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.node-card-list .card-header .title {
+  font-weight: 600;
+  font-size: 16px;
+}
+.node-card-list .card-header .btn_group :deep(.ant-btn) {
+  margin-left: 8px;
+}
+.node-card-list .card-content {
+  display: flex;
+  flex-direction: column;
+}
+.node-card-list .card-content .card_wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  background-image: url('../../../../../../../assets/images/iot/link/blue-bg.png');
+  height: 200px;
+  border: 1px solid #e8e8e8;
+  padding: 8px 12px 8px;
+  border-radius: 8px;
+  transition: all linear 0.2s;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 104% 104%;
+  transition: all 0.5s;
+  height: 100%;
+}
+.node-card-list .card-content .card_wrap:hover {
+  border-color: #1a66ff;
+  transform: scale(1.01);
+  box-shadow: 0px 4px 12px rgba(0, 26, 51, 0.08);
+}
+.node-card-list .card-content .card_wrap .left_info {
+  flex: 1;
+  max-width: calc(100% - 128px);
+}
+.node-card-list .card-content .card_wrap .left_info .item {
+  margin-bottom: 4px;
+}
+.node-card-list .card-content .card_wrap .left_info .item .label {
+  font-size: 12px;
+  color: #999;
+}
+.node-card-list .card-content .card_wrap .left_info .item .name {
+  font-weight: 500;
+}
+.node-card-list .card-content .card_wrap .left_info .item .content {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.node-card-list .card-content .card_wrap .left_info .last_item {
+  margin-bottom: 36px;
+}
+.node-card-list .card-content .card_wrap .left_info .btns {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: absolute;
+  left: 12px;
+  bottom: 8px;
+  width: 130px;
+  height: 28px;
+  border-radius: 45px;
+  padding: 0 10px;
+  border: 2px solid #1a66ff;
+}
+.node-card-list .card-content .card_wrap .left_info .btns .btn img {
+  width: 16px;
+  height: 16px;
+}
+.node-card-list .card-content .card_wrap .right_img {
+  width: 140px;
+  height: 140px;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 50px;
+}
+.node-card-list .card-content .card_wrap .type {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 0 8px 0 4px;
+  background-color: #dce5f5;
+  color: #1a66ff;
+  padding: 2px 8px;
+}
+.node-card-list .card-content .card_wrap .status {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+.node-card-list .card-content .card_wrap .status.online {
+  background-color: #00c100;
+  color: #fff;
+}
+.node-card-list .card-content .card_wrap .status.offline {
+  background-color: #ff0000;
+  color: #fff;
+}
+.node-card-list .card-content .card_pagination {
+  align-self: flex-end;
+}
+.node-card-list .ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

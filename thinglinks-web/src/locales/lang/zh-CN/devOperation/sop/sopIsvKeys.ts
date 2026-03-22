@@ -1,0 +1,16 @@
+export default {
+  table: { title: 'ISV秘钥管理列表' },
+  id: 'id',
+  isvId: 'ISV',
+  keyFormat: '秘钥格式',
+  publicKeyIsv: '开发者生成的公钥',
+  privateKeyIsv: '开发者生成的私钥',
+  publicKeyPlatform: '平台生成的公钥',
+  privateKeyPlatform: '平台生成的私钥',
+  createdTime: '添加时间',
+  updatedTime: '修改时间',
+  createdBy: '创建人id',
+  updatedBy: '修改人id',
+  resetIsvKeys: '重置开发者秘钥',
+  restPlatformKeys: '重置平台秘钥',
+};

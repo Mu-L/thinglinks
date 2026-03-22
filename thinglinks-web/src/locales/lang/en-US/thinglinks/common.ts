@@ -1,0 +1,14 @@
+export default {
+  createdTime: 'createdTime',
+  updatedTime: 'updatedTime',
+  updateBy: 'updateBy',
+  createeBy: 'createeBy',
+  receiveBy: 'ReceiveBy',
+  all: 'All',
+  yes: 'yes',
+  no: 'no',
+  enable: 'Enable',
+  disable: 'Disable',
+  read: 'read',
+  unread: 'unread',
+};

@@ -1,0 +1,16 @@
+export default {
+  title: 'WebSocket Debugging',
+  send: 'Send',
+  connectionStatus: 'Connection Status',
+  closeConnection: 'Close Connection',
+  openConnection: 'Open Connection',
+  server: 'Server Address',
+  serverPlaceholder: 'Content to be sent to the server',
+  message: 'Message',
+  record: 'Message Record',
+  receivedMsg: 'Received Message',
+  setting: 'Settings',
+  mqttTitle: 'MQTT command is issued',
+  payload: '// Binary data input in hexadecimal starting with 0x, string data input original string',
+  pleaseEnter: 'Please enter',
+};

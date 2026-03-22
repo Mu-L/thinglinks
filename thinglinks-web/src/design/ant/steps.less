@@ -1,0 +1,29 @@
+html[data-theme='dark'] {
+  .ant-steps-navigation {
+    .ant-steps-item {
+      &:last-child {
+        flex: 1;
+
+        &::after {
+          display: none;
+        }
+      }
+
+      &::after {
+        position: absolute;
+        top: 50%;
+        left: 100%;
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        margin-top: -14px;
+        margin-left: -2px;
+        border: 1px solid rgb(255 255 255 / 20%);
+        border-bottom: none;
+        border-left: none;
+        transform: rotate(45deg);
+        content: '';
+      }
+    }
+  }
+}

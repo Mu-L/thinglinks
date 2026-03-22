@@ -1,0 +1,16 @@
+export default {
+  title: 'WebSocket 调试',
+  send: '发送',
+  connectionStatus: '连接状态',
+  closeConnection: '关闭连接',
+  openConnection: '开启连接',
+  server: '服务地址',
+  serverPlaceholder: '需要发送到服务器的内容',
+  message: '消息',
+  record: '消息记录',
+  receivedMsg: '收到消息',
+  setting: '设置',
+  mqttTitle: 'MQTT命令下发',
+  payload: '// 二进制数据以0x开头的十六进制输入，字符串数据输入原始字符串',
+  pleaseEnter: '请输入',
+};

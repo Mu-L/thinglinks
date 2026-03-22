@@ -1,0 +1,24 @@
+export default {
+  table: { title: '产品模型服务列表' },
+  id: '服务id',
+  productId: '产品ID',
+  serviceCode: '服务编码',
+  serviceName: '服务名称',
+  serviceType: '服务类型',
+  serviceStatus: '状态',
+  description: '描述信息',
+  remark: '备注',
+  createdTime: '创建时间',
+  createdBy: '创建人',
+  updatedTime: '最后修改时间',
+  updatedBy: '最后修改人',
+  createdOrgId: '创建人组织',
+  serviceList: '服务列表',
+  attributeList: '属性列表',
+  commandList: '命令列表',
+  helpMessage: {
+    serviceCode:
+      '支持英文小写、数字及下划线，全部小写命名，禁止出现英文大写，多个单词用下划线，分隔长度[2,50]',
+    description: '文本描述，不影响实际功能，可配置为空字符串””',
+  },
+};

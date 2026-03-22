@@ -1,0 +1,14 @@
+export default {
+  createdTime: '作成時間',
+  updatedTime: '更新時間',
+  updateBy: '更新者',
+  createBy: '作成者',
+  receiveBy: '接收人',
+  all: 'すべて',
+  yes: 'はい',
+  no: 'いいえ',
+  enable: '有効',
+  disable: '無効',
+  read: '已读',
+  unread: '未读',
+};

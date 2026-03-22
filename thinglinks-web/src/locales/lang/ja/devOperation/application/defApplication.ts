@@ -1,0 +1,21 @@
+export default {
+  table: {
+    title: 'アプリケーションリスト',
+    resource: 'アプリケーションリソース维护',
+  },
+  id: '主键',
+  appKey: 'アプリケーション标识',
+  appSecret: 'アプリケーションキー',
+  name: 'アプリケーション名称',
+  version: 'バージョン',
+  redirect: '默认地址',
+  type: 'アプリケーションタイプ',
+  introduce: '简介',
+  remark: '备考',
+  url: 'アプリケーション地址',
+  isVisible: 'ホーム显示',
+  isGeneral: '公共アプリケーション',
+  sortValue: 'ソート',
+  logo: '图标',
+  renwalMsg: '请联系管理员',
+};
