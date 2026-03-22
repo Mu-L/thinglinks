@@ -166,10 +166,10 @@ public class WebSocketDeviceDatasHandler extends WebSocketAbstractMessageHandler
             Map<String, Map<String, Object>> dataMap = new HashMap<>();
 
             device.getServices().forEach(service -> {
-                String productType = Optional.ofNullable(deviceCacheVO.getProductCacheVO())
+                Integer productType = Optional.ofNullable(deviceCacheVO.getProductCacheVO())
                         .map(p -> p.getProductType())
                         .orElse(null);
-                if (StrUtil.isBlank(productType)) {
+                if (productType == null) {
                     log.warn("processingDeviceDataTopic ProductCacheVO or productType is null, deviceId:{}", deviceId);
                     return;
                 }
