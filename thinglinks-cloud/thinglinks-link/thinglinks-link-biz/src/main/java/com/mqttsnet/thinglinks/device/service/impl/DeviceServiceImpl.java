@@ -483,18 +483,20 @@ public class DeviceServiceImpl extends SuperServiceImpl<DeviceManager, Long, Dev
                 .flatMap(this::queryProductInfo)
                 .ifPresent(deviceDetailsResultVO::setProductResultVO);
 
-        // 查询子设备，如果不存在则设置为空列表
-        if (device.getNodeType().equals(DeviceNodeTypeEnum.GATEWAY.getValue())) {
-            List<DeviceResultVO> subDevices = querySubDevices(device.getDeviceIdentification());
-            deviceDetailsResultVO.setSubDeviceResultVOList(subDevices);
-        } else {
-            deviceDetailsResultVO.setSubDeviceResultVOList(Collections.emptyList());
-        }
+        // 查询子设备，如果是网关则查询子设备列表，否则设置为空列表
+        Optional.ofNullable(device.getNodeType())
+                .filter(DeviceNodeTypeEnum.GATEWAY.getValue()::equals)
+                .ifPresentOrElse(
+                        type -> deviceDetailsResultVO.setSubDeviceResultVOList(
+                                querySubDevices(device.getDeviceIdentification())),
+                        () -> deviceDetailsResultVO.setSubDeviceResultVOList(Collections.emptyList())
+                );
 
-        // 查询设备位置信息，如果不存在则设置为null
-        DeviceLocationResultVO location = queryDeviceLocation(device.getDeviceIdentification())
-                .orElse(null);
-        deviceDetailsResultVO.setDeviceLocationResultVO(location);
+        // 查询设备位置信息
+        Optional.ofNullable(device.getDeviceIdentification())
+                .flatMap(this::queryDeviceLocation)
+                .ifPresent(deviceDetailsResultVO::setDeviceLocationResultVO);
+
         return deviceDetailsResultVO;
     }
 
@@ -597,32 +599,31 @@ public class DeviceServiceImpl extends SuperServiceImpl<DeviceManager, Long, Dev
         // 获取设备列表
         List<Device> deviceList = superManager.getDevicList(query);
 
-        List<DeviceDetailsResultVO> deviceResultVOS = BeanPlusUtil.toBeanList(deviceList, DeviceDetailsResultVO.class);
+        List<DeviceDetailsResultVO> deviceResultVOS = Optional.ofNullable(deviceList)
+                .filter(CollUtil::isNotEmpty)
+                .map(list -> BeanPlusUtil.toBeanList(list, DeviceDetailsResultVO.class))
+                .orElseGet(Collections::emptyList);
 
-        if (deviceResultVOS == null || deviceResultVOS.isEmpty()) {
+        if (deviceResultVOS.isEmpty()) {
             return Collections.emptyList();
         }
 
-        // 提取设备标识符列表
+        // 提取设备标识符列表（过滤 null 值）
         List<String> deviceIdentificationList = deviceResultVOS.stream()
                 .map(DeviceDetailsResultVO::getDeviceIdentification)
+                .filter(Objects::nonNull)
+                .distinct()
                 .collect(Collectors.toList());
 
         // 根据设备标识符列表查询设备位置信息
-        DeviceLocationPageQuery deviceLocationPageQuery = new DeviceLocationPageQuery();
-        deviceLocationPageQuery.setDeviceIdentificationList(deviceIdentificationList);
-        List<DeviceLocationResultVO> deviceLocationResultVOList =
-                deviceLocationService.getDeviceLocationResultVOList(deviceLocationPageQuery);
-
-        // 将设备位置信息按设备标识符进行映射，方便后续使用
-        Map<String, DeviceLocationResultVO> deviceLocationResultVOMap = deviceLocationResultVOList.stream()
-                .collect(Collectors.toMap(DeviceLocationResultVO::getDeviceIdentification,
-                        Function.identity(), (existing, replacement) -> existing));
-
+        Map<String, DeviceLocationResultVO> deviceLocationResultVOMap = queryDeviceLocationForDevices(deviceIdentificationList);
 
         // 将设备位置信息封装到设备信息中
-        deviceResultVOS.forEach(deviceResultVO -> Optional.ofNullable(deviceLocationResultVOMap.get(deviceResultVO.getDeviceIdentification()))
-                .ifPresent(deviceResultVO::setDeviceLocationResultVO));
+        deviceResultVOS.forEach(deviceResultVO ->
+                Optional.ofNullable(deviceResultVO.getDeviceIdentification())
+                        .map(deviceLocationResultVOMap::get)
+                        .ifPresent(deviceResultVO::setDeviceLocationResultVO)
+        );
 
         return deviceResultVOS;
     }
@@ -777,18 +778,19 @@ public class DeviceServiceImpl extends SuperServiceImpl<DeviceManager, Long, Dev
                 .flatMap(this::queryProductInfo)
                 .ifPresent(deviceDetailsResultVO::setProductResultVO);
 
-        // 查询子设备，如果不存在则设置为空列表
-        if (device.getNodeType().equals(DeviceNodeTypeEnum.GATEWAY.getValue())) {
-            List<DeviceResultVO> subDevices = querySubDevices(device.getDeviceIdentification());
-            deviceDetailsResultVO.setSubDeviceResultVOList(subDevices);
-        } else {
-            deviceDetailsResultVO.setSubDeviceResultVOList(Collections.emptyList());
-        }
+        // 查询子设备，如果是网关则查询子设备列表，否则设置为空列表
+        Optional.ofNullable(device.getNodeType())
+                .filter(DeviceNodeTypeEnum.GATEWAY.getValue()::equals)
+                .ifPresentOrElse(
+                        type -> deviceDetailsResultVO.setSubDeviceResultVOList(
+                                querySubDevices(device.getDeviceIdentification())),
+                        () -> deviceDetailsResultVO.setSubDeviceResultVOList(Collections.emptyList())
+                );
 
-        // 查询设备位置信息，如果不存在则设置为null
-        DeviceLocationResultVO location = queryDeviceLocation(device.getDeviceIdentification())
-                .orElse(null);
-        deviceDetailsResultVO.setDeviceLocationResultVO(location);
+        // 查询设备位置信息
+        Optional.ofNullable(device.getDeviceIdentification())
+                .flatMap(this::queryDeviceLocation)
+                .ifPresent(deviceDetailsResultVO::setDeviceLocationResultVO);
 
         return deviceDetailsResultVO;
     }
@@ -804,34 +806,44 @@ public class DeviceServiceImpl extends SuperServiceImpl<DeviceManager, Long, Dev
         // 获取设备分页信息
         IPage<Device> deviceIPage = superManager.getDeviceDetailsPage(params);
 
-        // 将 Device 转换为 DeviceDetailsResultVO 列表
-        List<DeviceDetailsResultVO> deviceDetailsResultVOS =
-                BeanPlusUtil.toBeanList(deviceIPage.getRecords(), DeviceDetailsResultVO.class);
+        // 将 Device 转换为 DeviceDetailsResultVO 列表（防空处理）
+        List<DeviceDetailsResultVO> deviceDetailsResultVOS = Optional.ofNullable(deviceIPage.getRecords())
+                .filter(CollUtil::isNotEmpty)
+                .map(records -> BeanPlusUtil.toBeanList(records, DeviceDetailsResultVO.class))
+                .orElseGet(Collections::emptyList);
 
         if (deviceDetailsResultVOS.isEmpty()) {
-            return new Page<>();
+            return new Page<>(deviceIPage.getCurrent(), deviceIPage.getSize(), 0);
         }
 
-        // 提取设备标识符列表
-        List<String> deviceIdentificationList = deviceDetailsResultVOS.parallelStream()
-                .map(DeviceDetailsResultVO::getDeviceIdentification).distinct()
+        // 提取设备标识符列表（过滤 null 值）
+        List<String> deviceIdentificationList = deviceDetailsResultVOS.stream()
+                .map(DeviceDetailsResultVO::getDeviceIdentification)
+                .filter(Objects::nonNull)
+                .distinct()
                 .collect(Collectors.toList());
 
-        // 提取产品标识列表
-        List<String> productIdentificationList = deviceDetailsResultVOS.parallelStream()
-                .map(DeviceDetailsResultVO::getProductIdentification).distinct()
+        // 提取产品标识列表（过滤 null 值）
+        List<String> productIdentificationList = deviceDetailsResultVOS.stream()
+                .map(DeviceDetailsResultVO::getProductIdentification)
+                .filter(Objects::nonNull)
+                .distinct()
                 .collect(Collectors.toList());
 
         // 查询产品信息和设备位置信息
         Map<String, ProductResultVO> productResultVOMap = queryProductInfoForDevices(productIdentificationList);
         Map<String, DeviceLocationResultVO> deviceLocationResultVOMap = queryDeviceLocationForDevices(deviceIdentificationList);
 
-        // 处理每个设备的子设备、产品信息和位置信息
-        deviceDetailsResultVOS.parallelStream().forEach(device ->
-                processDeviceSubDetails(device, productResultVOMap, deviceLocationResultVOMap)
+        // 批量查询所有网关设备的子设备（1次查询代替N次，解决N+1问题）
+        Map<String, List<DeviceResultVO>> subDeviceMap = querySubDevicesForGateways(deviceDetailsResultVOS);
+
+        // 处理每个设备的子设备、产品信息和位置信息（不使用 parallelStream，避免 @DS 数据源上下文丢失）
+        deviceDetailsResultVOS.forEach(device ->
+                processDeviceSubDetails(device, productResultVOMap, deviceLocationResultVOMap, subDeviceMap)
         );
-        // 创建并返回最终的分页对象
-        IPage<DeviceDetailsResultVO> resultPage = BeanPlusUtil.toBeanPage(deviceIPage, DeviceDetailsResultVO.class);
+
+        // 复用分页信息，避免重复 bean 转换
+        Page<DeviceDetailsResultVO> resultPage = new Page<>(deviceIPage.getCurrent(), deviceIPage.getSize(), deviceIPage.getTotal());
         resultPage.setRecords(deviceDetailsResultVOS);
         return resultPage;
     }
@@ -891,30 +903,45 @@ public class DeviceServiceImpl extends SuperServiceImpl<DeviceManager, Long, Dev
      * @return {@link TopoQueryDeviceResultVO} containing the results of the device query.
      */
     private TopoQueryDeviceResultVO queryDeviceInfo(TopoQueryDeviceParam topoQueryDeviceParam) {
-        // Create an instance for the result
         TopoQueryDeviceResultVO topoQueryDeviceResultVO = new TopoQueryDeviceResultVO();
 
-        // Create a list to store the results of device information queries
-        List<TopoQueryDeviceResultVO.DataItem> deviceInfoList = Optional.ofNullable(topoQueryDeviceParam.getDeviceIds())
-                .orElse(Collections.emptyList())
-                .stream()
+        List<String> deviceIds = Optional.ofNullable(topoQueryDeviceParam)
+                .map(TopoQueryDeviceParam::getDeviceIds)
+                .orElseGet(Collections::emptyList);
+
+        // 批量查询所有设备，避免 N+1
+        List<String> distinctDeviceIds = deviceIds.stream()
+                .filter(Objects::nonNull)
                 .distinct()
+                .collect(Collectors.toList());
+
+        Map<String, Device> deviceMap = Optional.of(distinctDeviceIds)
+                .filter(CollUtil::isNotEmpty)
+                .map(ids -> {
+                    DevicePageQuery query = new DevicePageQuery();
+                    query.setDeviceIdentificationList(ids);
+                    List<Device> devices = superManager.getDevicList(query);
+                    return Optional.ofNullable(devices).orElseGet(Collections::emptyList);
+                })
+                .map(devices -> devices.stream()
+                        .filter(d -> d != null && d.getDeviceIdentification() != null)
+                        .collect(Collectors.toMap(Device::getDeviceIdentification, Function.identity(), (a, b) -> a)))
+                .orElseGet(Collections::emptyMap);
+
+        List<TopoQueryDeviceResultVO.DataItem> deviceInfoList = distinctDeviceIds.stream()
                 .map(deviceIdentification -> {
                     TopoQueryDeviceResultVO.DataItem dataItem = new TopoQueryDeviceResultVO.DataItem();
                     try {
                         dataItem.setDeviceId(deviceIdentification);
-                        // Attempt to find device information based on the identification
-                        Optional<Device> optionalDevice = Optional.ofNullable(superManager.findOneByDeviceIdentification(deviceIdentification));
+                        Optional<Device> optionalDevice = Optional.ofNullable(deviceMap.get(deviceIdentification));
                         TopoQueryDeviceResultVO.DataItem.DeviceInfo deviceInfo = optionalDevice
                                 .map(device -> BeanUtil.toBean(device, TopoQueryDeviceResultVO.DataItem.DeviceInfo.class))
                                 .orElse(new TopoQueryDeviceResultVO.DataItem.DeviceInfo());
 
-                        // Set device information and status based on query result
                         dataItem.setDeviceInfo(deviceInfo)
                                 .setStatusCode(optionalDevice.isPresent() ? MqttProtocolTopoStatusEnum.SUCCESS.getValue() : MqttProtocolTopoStatusEnum.FAILURE.getValue())
                                 .setStatusDesc(optionalDevice.isPresent() ? MqttProtocolTopoStatusEnum.SUCCESS.getDesc() : "Device not found");
                     } catch (Exception e) {
-                        // Handle any exceptions and set the error information in the data item
                         dataItem.setStatusCode(MqttProtocolTopoStatusEnum.FAILURE.getValue())
                                 .setStatusDesc("Error querying device: " + e.getMessage());
                     }
@@ -922,7 +949,6 @@ public class DeviceServiceImpl extends SuperServiceImpl<DeviceManager, Long, Dev
                 })
                 .collect(Collectors.toList());
 
-        // Set the list of device information into the result instance
         topoQueryDeviceResultVO.setData(deviceInfoList)
                 .setStatusCode(MqttProtocolTopoStatusEnum.SUCCESS.getValue())
                 .setStatusDesc("Query completed");
@@ -932,16 +958,26 @@ public class DeviceServiceImpl extends SuperServiceImpl<DeviceManager, Long, Dev
 
     private void processDeviceSubDetails(DeviceDetailsResultVO device,
                                          Map<String, ProductResultVO> productResultVOMap,
-                                         Map<String, DeviceLocationResultVO> deviceLocationResultVOMap) {
+                                         Map<String, DeviceLocationResultVO> deviceLocationResultVOMap,
+                                         Map<String, List<DeviceResultVO>> subDeviceMap) {
         Optional.ofNullable(device)
                 .ifPresent(d -> {
-                    d.setProductResultVO(productResultVOMap.get(d.getProductIdentification()));
-                    d.setDeviceLocationResultVO(deviceLocationResultVOMap.get(d.getDeviceIdentification()));
+                    Optional.ofNullable(d.getProductIdentification())
+                            .map(productResultVOMap::get)
+                            .ifPresent(d::setProductResultVO);
+
+                    Optional.ofNullable(d.getDeviceIdentification())
+                            .map(deviceLocationResultVOMap::get)
+                            .ifPresent(d::setDeviceLocationResultVO);
 
                     Optional.ofNullable(d.getNodeType())
                             .filter(DeviceNodeTypeEnum.GATEWAY.getValue()::equals)
                             .ifPresent(type ->
-                                    d.setSubDeviceResultVOList(querySubDevices(d.getDeviceIdentification()))
+                                    d.setSubDeviceResultVOList(
+                                            Optional.ofNullable(d.getDeviceIdentification())
+                                                    .map(subDeviceMap::get)
+                                                    .orElseGet(Collections::emptyList)
+                                    )
                             );
                 });
     }
@@ -954,10 +990,15 @@ public class DeviceServiceImpl extends SuperServiceImpl<DeviceManager, Long, Dev
                     return productService.getProductResultVOList(query);
                 })
                 .map(list -> list.stream()
+                        .filter(p -> p != null && p.getProductIdentification() != null)
                         .collect(Collectors.toMap(
                                 ProductResultVO::getProductIdentification,
                                 Function.identity(),
-                                (a, b) -> a.getCreatedTime().isAfter(b.getCreatedTime()) ? a : b
+                                (a, b) -> {
+                                    if (a.getCreatedTime() == null) return b;
+                                    if (b.getCreatedTime() == null) return a;
+                                    return a.getCreatedTime().isAfter(b.getCreatedTime()) ? a : b;
+                                }
                         ))
                 )
                 .orElseGet(Collections::emptyMap);
@@ -970,15 +1011,44 @@ public class DeviceServiceImpl extends SuperServiceImpl<DeviceManager, Long, Dev
                         new DeviceLocationPageQuery().setDeviceIdentificationList(deviceIdentification)
                 ))
                 .map(list -> list.stream()
+                        .filter(d -> d != null && d.getDeviceIdentification() != null)
                         .collect(Collectors.toMap(
                                 DeviceLocationResultVO::getDeviceIdentification,
                                 Function.identity(),
-                                (a, b) -> a.getCreatedTime().isAfter(b.getCreatedTime()) ? a : b
+                                (a, b) -> {
+                                    if (a.getCreatedTime() == null) return b;
+                                    if (b.getCreatedTime() == null) return a;
+                                    return a.getCreatedTime().isAfter(b.getCreatedTime()) ? a : b;
+                                }
                         ))
                 )
                 .orElseGet(Collections::emptyMap);
     }
 
+
+    /**
+     * 批量查询所有网关设备的子设备（解决N+1查询问题）
+     */
+    private Map<String, List<DeviceResultVO>> querySubDevicesForGateways(List<DeviceDetailsResultVO> deviceList) {
+        return Optional.ofNullable(deviceList)
+                .map(list -> list.stream()
+                        .filter(d -> d != null && DeviceNodeTypeEnum.GATEWAY.getValue().equals(d.getNodeType()))
+                        .map(DeviceDetailsResultVO::getDeviceIdentification)
+                        .filter(Objects::nonNull)
+                        .distinct()
+                        .collect(Collectors.toList()))
+                .filter(CollUtil::isNotEmpty)
+                .map(gatewayIds -> {
+                    DevicePageQuery query = new DevicePageQuery();
+                    query.setGatewayIdList(gatewayIds);
+                    query.setNodeType(DeviceNodeTypeEnum.SUBDEVICE.getValue());
+                    return getDeviceResultVOList(query);
+                })
+                .map(subDevices -> subDevices.stream()
+                        .filter(d -> d != null && d.getGatewayId() != null)
+                        .collect(Collectors.groupingBy(DeviceResultVO::getGatewayId)))
+                .orElseGet(Collections::emptyMap);
+    }
 
     private List<DeviceResultVO> querySubDevices(String gatewayId) {
         DevicePageQuery devicePageQuery = new DevicePageQuery();
@@ -1010,38 +1080,53 @@ public class DeviceServiceImpl extends SuperServiceImpl<DeviceManager, Long, Dev
     }
 
     private TopoDeviceOperationResultVO deleteSubDevice(TopoDeleteSubDeviceParam topoDeleteSubDeviceParam) {
-        // 创建一个操作结果列表用于存储处理结果
-        List<TopoDeviceOperationResultVO.OperationRsp> operationResultList = new ArrayList<>();
+        List<String> deviceIds = Optional.ofNullable(topoDeleteSubDeviceParam)
+                .map(TopoDeleteSubDeviceParam::getDeviceIds)
+                .orElseGet(Collections::emptyList);
 
-        // 遍历子设备标识集合
-        for (String deviceId : topoDeleteSubDeviceParam.getDeviceIds()) {
-            // 根据子设备唯一标识查找设备
-            Device subDevice = superManager.findOneByDeviceIdentification(deviceId);
+        // 批量查询所有设备，避免 N+1
+        List<String> distinctDeviceIds = deviceIds.stream()
+                .filter(Objects::nonNull)
+                .distinct()
+                .collect(Collectors.toList());
 
-            // 创建操作结果实例
-            TopoDeviceOperationResultVO.OperationRsp operationRsp = new TopoDeviceOperationResultVO.OperationRsp()
-                    .setDeviceId(deviceId);
+        Map<String, Device> deviceMap = Optional.of(distinctDeviceIds)
+                .filter(CollUtil::isNotEmpty)
+                .map(ids -> {
+                    DevicePageQuery query = new DevicePageQuery();
+                    query.setDeviceIdentificationList(ids);
+                    List<Device> devices = superManager.getDevicList(query);
+                    return Optional.ofNullable(devices).orElseGet(Collections::emptyList);
+                })
+                .map(devices -> devices.stream()
+                        .filter(d -> d != null && d.getDeviceIdentification() != null)
+                        .collect(Collectors.toMap(Device::getDeviceIdentification, Function.identity(), (a, b) -> a)))
+                .orElseGet(Collections::emptyMap);
 
-            // 判断设备是否存在
-            if (subDevice != null) {
-                // 删除设备
-                boolean deleteFlag = superManager.removeById(subDevice);
+        // 逐个删除并记录结果
+        List<TopoDeviceOperationResultVO.OperationRsp> operationResultList = distinctDeviceIds.stream()
+                .map(deviceId -> {
+                    TopoDeviceOperationResultVO.OperationRsp operationRsp = new TopoDeviceOperationResultVO.OperationRsp()
+                            .setDeviceId(deviceId);
 
-                // 根据删除结果设置状态码和状态描述
-                MqttProtocolTopoStatusEnum deleteStatusEnum = deleteFlag ? MqttProtocolTopoStatusEnum.SUCCESS : MqttProtocolTopoStatusEnum.FAILURE;
-                operationRsp.setStatusCode(deleteStatusEnum.getValue())
-                        .setStatusDesc(deleteStatusEnum.getDesc());
-            } else {
-                // 如果设备不存在，设置状态码和状态描述为FAILURE
-                operationRsp.setStatusCode(MqttProtocolTopoStatusEnum.FAILURE.getValue())
-                        .setStatusDesc(MqttProtocolTopoStatusEnum.FAILURE.getDesc());
-            }
+                    Optional.ofNullable(deviceMap.get(deviceId))
+                            .ifPresentOrElse(
+                                    subDevice -> {
+                                        boolean deleteFlag = superManager.removeById(subDevice);
+                                        MqttProtocolTopoStatusEnum statusEnum = deleteFlag
+                                                ? MqttProtocolTopoStatusEnum.SUCCESS
+                                                : MqttProtocolTopoStatusEnum.FAILURE;
+                                        operationRsp.setStatusCode(statusEnum.getValue())
+                                                .setStatusDesc(statusEnum.getDesc());
+                                    },
+                                    () -> operationRsp.setStatusCode(MqttProtocolTopoStatusEnum.FAILURE.getValue())
+                                            .setStatusDesc(MqttProtocolTopoStatusEnum.FAILURE.getDesc())
+                            );
 
-            // 添加操作结果到操作结果列表
-            operationResultList.add(operationRsp);
-        }
+                    return operationRsp;
+                })
+                .collect(Collectors.toList());
 
-        // 创建返回结果实例并设置状态码、状态描述和操作结果列表
         return TopoDeviceOperationResultVO.builder()
                 .statusCode(MqttProtocolTopoStatusEnum.SUCCESS.getValue())
                 .statusDesc(MqttProtocolTopoStatusEnum.SUCCESS.getDesc())

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
@@ -240,7 +241,7 @@ public class ProductServiceImpl extends SuperServiceImpl<ProductManager, Long, P
 
             // 组装服务的命令列表
             List<ProductCommandParamVO> commands = productCommandList.stream()
-                    .filter(command -> command.getServiceId().equals(ps.getId()))  // Filter by Service ID
+                    .filter(command -> Objects.equals(command.getServiceId(), ps.getId()))  // Filter by Service ID
                     .map(command -> {
                         ProductCommandParamVO commandParamVO = BeanPlusUtil.toBeanIgnoreError(command,
                                 ProductCommandParamVO.class);
@@ -250,7 +251,7 @@ public class ProductServiceImpl extends SuperServiceImpl<ProductManager, Long, P
                                 productCommandRequestService.selectCommandRequests(Collections.singletonList(command.getId()))
                                         .stream()
                                         .map(request -> BeanPlusUtil.toBeanIgnoreError(request, ProductCommandRequestParamVO.class))
-                                        .filter(request -> request.getCommandId().equals(command.getId()))
+                                        .filter(request -> Objects.equals(request.getCommandId(), command.getId()))
                                         .collect(Collectors.toList());
                         commandParamVO.setRequests(filteredRequests);
 
@@ -259,7 +260,7 @@ public class ProductServiceImpl extends SuperServiceImpl<ProductManager, Long, P
                                 productCommandResponseService.selectCommandResponses(Collections.singletonList(command.getId()))
                                         .stream()
                                         .map(response -> BeanPlusUtil.toBeanIgnoreError(response, ProductCommandResponseParamVO.class))
-                                        .filter(response -> response.getCommandId().equals(command.getId()))
+                                        .filter(response -> Objects.equals(response.getCommandId(), command.getId()))
                                         .collect(Collectors.toList());
                         commandParamVO.setResponses(filteredResponses);
 
@@ -270,7 +271,7 @@ public class ProductServiceImpl extends SuperServiceImpl<ProductManager, Long, P
 
             // 组装服务的属性列表
             List<ProductPropertyParamVO> properties = productPropertiesList.stream()
-                    .filter(property -> property.getServiceId().equals(ps.getId()))  // Filter by Service ID
+                    .filter(property -> Objects.equals(property.getServiceId(), ps.getId()))  // Filter by Service ID
                     .map(pp -> BeanPlusUtil.toBeanIgnoreError(pp, ProductPropertyParamVO.class))
                     .collect(Collectors.toList());
             service.setProperties(properties);
@@ -352,18 +353,18 @@ public class ProductServiceImpl extends SuperServiceImpl<ProductManager, Long, P
 
         productList.forEach(product -> {
             // 产品类型统计
-            if (product.getProductType().equals(ProductTypeEnum.COMMON.getValue())) {
+            if (Objects.equals(product.getProductType(), ProductTypeEnum.COMMON.getValue())) {
                 ordinaryCount.incrementAndGet();
-            } else if (product.getProductType().equals(ProductTypeEnum.GATEWAY.getValue())) {
+            } else if (Objects.equals(product.getProductType(), ProductTypeEnum.GATEWAY.getValue())) {
                 gatewayCount.incrementAndGet();
-            } else if (product.getProductType().equals(ProductTypeEnum.UNKNOWN.getValue())) {
+            } else if (Objects.equals(product.getProductType(), ProductTypeEnum.UNKNOWN.getValue())) {
                 unknownCount.incrementAndGet();
             }
 
             // 产品状态统计
-            if (product.getProductStatus().equals(ProductStatusEnum.ACTIVATED.getValue())) {
+            if (Objects.equals(product.getProductStatus(), ProductStatusEnum.ACTIVATED.getValue())) {
                 enabledCount.incrementAndGet();
-            } else if (product.getProductStatus().equals(ProductStatusEnum.LOCKED.getValue())) {
+            } else if (Objects.equals(product.getProductStatus(), ProductStatusEnum.LOCKED.getValue())) {
                 disabledCount.incrementAndGet();
             }
         });

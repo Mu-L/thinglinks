@@ -113,9 +113,9 @@ public class DeviceCommandServiceImpl extends SuperServiceImpl<DeviceCommandMana
                 .map(this::processSingleCommand)
                 .forEach(results::addAll);
 
-        // Process parallel commands concurrently
+        // Process parallel commands（不使用 parallelStream，避免 @DS 数据源上下文在 ForkJoinPool 线程中丢失）
         Optional.ofNullable(commandWrapper.getParallel()).orElseGet(Collections::emptyList)
-                .parallelStream()
+                .stream()
                 .map(this::processSingleCommand)
                 .forEach(results::addAll);
 

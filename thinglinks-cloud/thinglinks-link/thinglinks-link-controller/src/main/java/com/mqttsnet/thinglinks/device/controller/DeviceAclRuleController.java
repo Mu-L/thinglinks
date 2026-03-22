@@ -129,6 +129,7 @@ public class DeviceAclRuleController extends SuperController<DeviceAclRuleServic
                                         .orElseGet(Collections::emptyList)
                                         .stream()
                                         .filter(Objects::nonNull)
+                                        .filter(p -> p.getProductIdentification() != null)
                                         .collect(Collectors.toMap(
                                                 ProductResultVO::getProductIdentification,
                                                 Function.identity(),
@@ -149,6 +150,7 @@ public class DeviceAclRuleController extends SuperController<DeviceAclRuleServic
                                         .orElseGet(Collections::emptyList)
                                         .stream()
                                         .filter(Objects::nonNull)
+                                        .filter(d -> d.getDeviceIdentification() != null)
                                         .collect(Collectors.toMap(
                                                 DeviceResultVO::getDeviceIdentification,
                                                 Function.identity(),

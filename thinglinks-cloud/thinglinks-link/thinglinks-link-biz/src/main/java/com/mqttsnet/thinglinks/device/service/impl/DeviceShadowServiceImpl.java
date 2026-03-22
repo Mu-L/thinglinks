@@ -99,7 +99,7 @@ public class DeviceShadowServiceImpl implements DeviceShadowService {
             // 如果指定了 serviceCode，则只查询指定服务的结果
             return services.stream()
                     .filter(Objects::nonNull)
-                    .filter(service -> service.getServiceCode().equals(deviceShadowPageQuery.getServiceCode()))
+                    .filter(service -> Objects.equals(service.getServiceCode(), deviceShadowPageQuery.getServiceCode()))
                     .map(service -> buildServiceResultVO(deviceShadowPageQuery, productCacheVO, BeanPlusUtil.toBeanIgnoreError(service, ProductServiceResultVO.class)))
                     .collect(Collectors.toList());
         } else {

@@ -162,6 +162,7 @@ public class OtaUpgradeTasksController extends SuperController<OtaUpgradeTasksSe
                                         .stream()
                                         .filter(Objects::nonNull)
                                         .map(dto -> BeanPlusUtil.toBeanIgnoreError(dto, OtaUpgradesResultVO.class))
+                                        .filter(vo -> vo.getId() != null)
                                         .collect(Collectors.toMap(
                                                 OtaUpgradesResultVO::getId,
                                                 Function.identity(),

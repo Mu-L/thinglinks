@@ -144,6 +144,7 @@ public class DeviceCacheService extends CacheSuperAbstract {
      */
     private Map<String, ProductCacheVO> loadProductCacheMap(Long tenantId) {
         return productService.getProductResultVOList(new ProductPageQuery()).stream()
+                .filter(p -> p != null && p.getProductIdentification() != null)
                 .collect(Collectors.toMap(
                         ProductResultVO::getProductIdentification,
                         p -> {
@@ -151,7 +152,8 @@ public class DeviceCacheService extends CacheSuperAbstract {
                             BeanUtil.copyProperties(p, vo);
                             vo.setTenantId(tenantId);
                             return vo;
-                        }
+                        },
+                        (existing, replacement) -> existing
                 ));
     }
 

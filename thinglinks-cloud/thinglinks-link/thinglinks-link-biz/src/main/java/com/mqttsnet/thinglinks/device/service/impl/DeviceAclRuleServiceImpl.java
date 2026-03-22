@@ -2,6 +2,7 @@ package com.mqttsnet.thinglinks.device.service.impl;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -131,8 +132,8 @@ public class DeviceAclRuleServiceImpl extends SuperServiceImpl<DeviceAclRuleMana
             List<DeviceAclRuleCacheVO> filteredRules = deviceAclRuleCacheVOList.stream()
                     .filter(DeviceAclRuleCacheVO::getEnabled)
                     .filter(rule ->
-                            rule.getActionType().equals(ruleActionType.get().getValue()) ||
-                                    rule.getActionType().equals(DeviceAclRuleActionTypeEnum.ALL.getValue())
+                            Objects.equals(rule.getActionType(), ruleActionType.get().getValue()) ||
+                                    Objects.equals(rule.getActionType(), DeviceAclRuleActionTypeEnum.ALL.getValue())
                     )
                     .collect(Collectors.toList());
 
