@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.dynamic.datasource.annotation.DS;
 import com.mqttsnet.basic.base.service.impl.SuperServiceImpl;
 import com.mqttsnet.basic.database.mybatis.conditions.Wraps;
@@ -39,11 +40,13 @@ public class DeviceGroupRelServiceImpl extends SuperServiceImpl<DeviceGroupRelMa
     protected <UpdateVO> DeviceGroupRel updateBefore(UpdateVO vo) {
         DeviceGroupRelUpdateVO updateVO = (DeviceGroupRelUpdateVO) vo;
 
-        if (superManager.count(Wraps.<DeviceGroupRel>lbQ()
-                .eq(DeviceGroupRel::getGroupId, updateVO.getGroupId())
-                .eq(DeviceGroupRel::getDeviceIdentification, updateVO.getDeviceIdentification())
-                .ne(DeviceGroupRel::getId, updateVO.getId())) > 0) {
-            throw BizException.wrap("The device is already in this group");
+        if (updateVO.getGroupId() != null && StrUtil.isNotBlank(updateVO.getDeviceIdentification())) {
+            if (superManager.count(Wraps.<DeviceGroupRel>lbQ()
+                    .eq(DeviceGroupRel::getGroupId, updateVO.getGroupId())
+                    .eq(DeviceGroupRel::getDeviceIdentification, updateVO.getDeviceIdentification())
+                    .ne(DeviceGroupRel::getId, updateVO.getId())) > 0) {
+                throw BizException.wrap("The device is already in this group");
+            }
         }
 
         return super.updateBefore(updateVO);

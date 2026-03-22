@@ -59,7 +59,6 @@ public class DeviceGroupRelSaveVO implements Serializable {
      * 最后修改时间
      */
     @Schema(description = "最后修改时间")
-    @NotNull(message = "请填写最后修改时间")
     private LocalDateTime updatedTime;
     /**
      * 最后修改人

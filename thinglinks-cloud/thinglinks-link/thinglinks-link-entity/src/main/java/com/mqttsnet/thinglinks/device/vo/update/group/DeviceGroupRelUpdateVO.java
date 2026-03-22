@@ -51,7 +51,6 @@ public class DeviceGroupRelUpdateVO implements Serializable {
      * 设备标识
      */
     @Schema(description = "设备标识")
-    @NotEmpty(message = "请填写设备标识")
     @Size(max = 255, message = "设备标识长度不能超过{max}")
     private String deviceIdentification;
     /**
@@ -64,7 +63,6 @@ public class DeviceGroupRelUpdateVO implements Serializable {
      * 最后修改时间
      */
     @Schema(description = "最后修改时间")
-    @NotNull(message = "请填写最后修改时间")
     private LocalDateTime updatedTime;
     /**
      * 最后修改人
