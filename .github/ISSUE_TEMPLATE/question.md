@@ -24,4 +24,4 @@ assignees: ''
 
 <!-- Have you checked the docs? Link any relevant pages -->
 <!-- 是否查阅过文档？请附上相关链接 -->
-<!-- https://mqttsnet.yuque.com/gt6zkc/thinglinks -->
+<!-- https://mqttsnet.yuque.com/trgbro/thinglinks -->
