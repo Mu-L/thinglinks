@@ -24,7 +24,7 @@ import org.pf4j.Extension;
  * File Name: BifromqSettingProviderPluginSettingProvider
  * -----------------------------------------------------------------------------
  * Description:
- * <a href="https://bifromq.io/zh-Hans/docs/plugin/setting_provider/">...</a>
+ * <a href="https://bifromq.apache.org/zh-Hans/docs/plugin/setting_provider/">...</a>
  * 自定义运行时变更的设置项
  * <p>
  * 1. 实现ISettingProvider接口

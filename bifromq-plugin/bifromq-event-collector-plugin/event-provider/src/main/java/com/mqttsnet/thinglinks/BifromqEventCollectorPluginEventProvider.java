@@ -35,7 +35,7 @@ import org.pf4j.Extension;
  * File Name: BifromqEventCollectorPluginEventProvider
  * -----------------------------------------------------------------------------
  * Description:
- * <a href="https://bifromq.io/zh-Hans/docs/plugin/event_collector/">...</a>
+ * <a href="https://bifromq.apache.org/zh-Hans/docs/plugin/event_collector/">...</a>
  * 事件收集器
  * <p>
  * 1. 实现IEventCollector接口

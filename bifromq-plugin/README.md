@@ -20,7 +20,7 @@
 `bifromq-plugin` is the BifroMQ MQTT broker plugin library for the [ThingLinks](https://github.com/mqttsnet/thinglinks) multi-tenant SaaS cloud IoT platform. It enables runtime integration of custom business logic with the ThingLinks IoT system through BifroMQ's plugin mechanism.
 
 - [Deployment Guide](https://mqttsnet.yuque.com/trgbro/thinglinks)
-- [BifroMQ Official Wiki](https://bifromq.io/zh-Hans/docs/plugin/plugin/)
+- [BifroMQ Official Website](https://bifromq.apache.org/)
 
 ## Plugins
 

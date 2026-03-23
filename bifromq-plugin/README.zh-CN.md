@@ -20,7 +20,7 @@
 `bifromq-plugin` 是 [ThingLinks](https://github.com/mqttsnet/thinglinks) 多租户 SaaS 云物联网平台的 BifroMQ MQTT Broker 插件库，通过 BifroMQ 插件机制实现自定义业务与 ThingLinks IoT 系统的运行时集成。
 
 - [部署使用教程](https://mqttsnet.yuque.com/trgbro/thinglinks)
-- [BifroMQ 官方 Wiki](https://bifromq.io/zh-Hans/docs/plugin/plugin/)
+- [BifroMQ 官网](https://bifromq.apache.org/)
 
 ## 插件列表
 

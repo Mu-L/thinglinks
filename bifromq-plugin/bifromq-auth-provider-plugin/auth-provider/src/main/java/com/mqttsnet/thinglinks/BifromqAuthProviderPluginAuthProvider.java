@@ -65,7 +65,7 @@ import org.springframework.http.HttpStatus;
  * File Name: BifromqAuthProviderPluginAuthProvider
  * -----------------------------------------------------------------------------
  * Description:
- * <a href="https://bifromq.io/zh-Hans/docs/plugin/auth_provider/">...</a>
+ * <a href="https://bifromq.apache.org/zh-Hans/docs/plugin/auth_provider/">...</a>
  * Auth Provider插件旨在为BifroMQ运行时提供验证MQTT客户端连接和授权发布/订阅消息主题的能力
  * 认证提供者插件，用于支持 MQTT3 和 MQTT5 客户端的认证。
  * 支持基于 HTTP 请求的客户端身份验证，能够解析 ACL（访问控制列表）信息并返回给客户端。
