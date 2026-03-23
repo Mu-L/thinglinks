@@ -1,108 +1,83 @@
 <div align="center">
-    <a href="https://github.com/mqttsnet">
-        <img alt="MqttsNet Logo" width="200" height="200" src="https://avatars.githubusercontent.com/u/94173946?s=200&v=4">
-    </a>
-    <br><br>
-    <h1>thinglinks-web</h1>
+
+<a href="https://mqttsnet.com"><img src="../docs/images/logo.png" alt="ThingLinks" width="160"></a>
+
+# thinglinks-web
+
+**ThingLinks IoT Platform — Admin Console**
+
+[English](README.md) | [简体中文](README.zh-CN.md) | [日本語](README.ja.md) | [한국어](README.ko.md)
+
 </div>
 
-[中文](./README-zh.md) | **English**
+---
 
-## Introduction
+## About
 
-ThingLinks is a cloud-based Internet of Things (IoT) SaaS platform featuring high performance, high
-throughput, and high scalability. `thinglinks-web`, the web component of ThingLinks, is
-developed using cutting - edge technologies such as `Vue 3`, `Vite 2`, and `TypeScript`.
+`thinglinks-web` is the main admin console for the [ThingLinks](https://github.com/mqttsnet/thinglinks) multi-tenant SaaS cloud IoT platform, built with Vue 3 + TypeScript + Vite.
+
+## Tech Stack
+
+![Vue 3](https://img.shields.io/badge/Vue-3.3-4FC08D?style=flat-square&logo=vuedotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-4.6-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-4.3-646CFF?style=flat-square&logo=vite&logoColor=white)
+![Pinia](https://img.shields.io/badge/Pinia-2.0-FFD859?style=flat-square)
+![Ant Design Vue](https://img.shields.io/badge/Ant%20Design%20Vue-3.x-1890FF?style=flat-square&logo=antdesign&logoColor=white)
+![ECharts](https://img.shields.io/badge/ECharts-5.x-AA344D?style=flat-square&logo=apacheecharts&logoColor=white)
 
 ## Features
 
-- **Cutting - edge Technology Stack**: Leveraging front - end technologies like Vue 3 and Vite 2 to
-  ensure excellent performance and development experience.
-- **TypeScript Integration**: Utilizing TypeScript, an application - level JavaScript language, to
-  enhance code maintainability and robustness.
-- **Configurable Themes**: Allowing flexible theme configuration to meet diverse visual
-  requirements.
-- **Comprehensive Internationalization**: Built - in internationalization solution for easy global
-  market expansion.
-- **Mock Data Scheme**: An internal Mock data solution for convenient front - end development and
-  testing.
-- **Dynamic Permission Management**: A complete dynamic route permission generation scheme to ensure
-  system security and controllable data access.
-- **Component Re - encapsulation**: Re - encapsulating multiple commonly used components to improve
-  development efficiency.
+- Multi-tenant SaaS architecture (NONE / COLUMN / DATASOURCE_COLUMN)
+- Dynamic route-based permission management
+- Configurable themes and internationalization (i18n)
+- Rich component library based on Ant Design Vue
+- Data visualization with ECharts
+- Mock data scheme for development
 
-## Technology Stack
+## Quick Start
 
-- **Vue 3.x**: A modern front - end framework offering an efficient reactive development experience.
-- **vuex 4.x**: A state management library for managing application states.
-- **TypeScript 4.x**: Static type checking to enhance code quality.
-- **ant - design - vue 2.x**: A Vue implementation based on Ant Design, providing a rich set of UI
-  components.
-- **axios 0.21.x**: A powerful HTTP client for data interaction with the backend.
-- **echarts 5.x**: An excellent data visualization library for presenting various charts.
-- **Vite 2.x**: A fast build tool to speed up development and building processes.
+### Requirements
 
-## Environment Requirements
+- **Node.js** >= 18.0.0
+- **pnpm** (install: `npm install -g pnpm`)
 
-- **Node.js**: Version greater than `18.0.0`.
-- **pnpm**: A package manager. Please download the appropriate pnpm version according to the version
-  correspondence between Node, npm, and pnpm.
-
-### Installation
-
-```
-npm install
-```
-
-```
-！！！Download the appropriate pnpm version based on the compatibility between Node, npm, and pnpm versions.
-
-npm install -g pnpm
-
-Download dependencies
-pnpm i
-```
-
-### Development Environment
+### Install & Run
 
 ```bash
-pnpm serve
+# Install dependencies
+pnpm install
+
+# Start dev server (default: http://localhost:3100)
+pnpm dev
+
+# Build for production
+pnpm build
+
+# Build for test environment
+pnpm build:test
 ```
 
-### Build
+### Environment Configuration
 
-```bash
-
-pnpm build # Build the project
-
-pnpm build:no-cache # Build the project after clearing the cache
-
-pnpm report # Generate a build package report preview
-```
-
-### Formatting
-
-```bash
-pnpm lint:stylelint # Format styles
-
-pnpm lint:prettier # Format JS/TS code
-```
+| File | Environment |
+|------|-------------|
+| `.env` | Base config |
+| `.env.development` | Development |
+| `.env.test` | Test |
+| `.env.production` | Production |
 
 ### Other Commands
 
 ```bash
-pnpm reinstall      # Remove dependencies and reinstall (compatible with Windows)
-
-pnpm preview        # Preview the build locally
-
-pnpm log            # Generate CHANGELOG
-
-pnpm clean:cache    # Clear the cache
-
-pnpm clean:lib      # Remove node_modules (compatible with Windows)
-
+pnpm preview         # Preview production build locally
+pnpm build:no-cache  # Build after clearing cache
+pnpm clean:cache     # Clear Vite cache
+pnpm clean:lib       # Remove node_modules
+pnpm lint:prettier   # Format code
 ```
 
-## Copyright Usage Notice
+## License
 
-ThingLinks is licensed under the Apache License, Version 2.0. This license permits commercial use, provided that all original copyright notices and attribution must be retained in all copies or substantial portions of the software.
+This project is part of [ThingLinks](https://github.com/mqttsnet/thinglinks). Community edition is licensed under [Apache License 2.0](../LICENSE) with additional terms — see [LICENSE-COMMERCIAL](../LICENSE-COMMERCIAL).
+
+Copyright &copy; 2019-present [MqttsNet](https://mqttsnet.com)
