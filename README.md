@@ -1,161 +1,214 @@
 <div align="center">
 
-[![MQTTSNET Logo](./docs/images/logo.png)](https://mqttsnet.com)
+<a href="https://mqttsnet.com"><img src="./docs/images/logo.png" alt="ThingLinks" width="200"></a>
+
+# ThingLinks IoT Platform
+
+**Multi-tenant SaaS Cloud IoT Platform — High Performance · High Throughput · Highly Scalable**
+
+[English](README.md) | [简体中文](README.zh-CN.md) | [日本語](README.ja.md) | [한국어](README.ko.md)
+
+[![JDK](https://img.shields.io/badge/JDK-17+-orange?style=flat-square&logo=openjdk)](https://openjdk.org/)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-green?style=flat-square&logo=springboot)](https://spring.io/projects/spring-boot)
+[![Spring Cloud](https://img.shields.io/badge/Spring%20Cloud-2025-green?style=flat-square&logo=spring)](https://spring.io/projects/spring-cloud)
+[![Vue](https://img.shields.io/badge/Vue-3.x-brightgreen?style=flat-square&logo=vuedotjs)](https://vuejs.org/)
+[![TDengine](https://img.shields.io/badge/TDengine-3.0+-blue?style=flat-square)](https://tdengine.com/)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue?style=flat-square)](LICENSE)
+[![GitHub Stars](https://img.shields.io/github/stars/mqttsnet/thinglinks?style=flat-square)](https://github.com/mqttsnet/thinglinks/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/mqttsnet/thinglinks?style=flat-square)](https://github.com/mqttsnet/thinglinks/network/members)
+
+<br>
+
+[![Website](https://img.shields.io/badge/Website-mqttsnet.com-blue?style=for-the-badge)](https://mqttsnet.com)
+[![GitHub](https://img.shields.io/badge/GitHub-mqttsnet/thinglinks-181717?style=for-the-badge&logo=github)](https://github.com/mqttsnet/thinglinks)
+[![Docs](https://img.shields.io/badge/Docs-Documentation-green?style=for-the-badge)](https://mqttsnet.yuque.com/trgbro/thinglinks)
 
 </div>
 
-## ThingLinks | [中文文档](README.zh_CN.md)
+---
 
-# Introduction to ThingLinks Platform
+## About
 
-This system utilizes the Spring Cloud microservice architecture, providing a high-performance, high-throughput, highly-scalable IoT platform. On a single server, it can support millions of connections. Additionally, it boasts customizable extension features for various protocol interactions and supports plug-in development.
-
-
-
-[![OSCS Status](https://www.oscs1024.com/platform/badge/mqttsnet/thinglinks.svg?size=small)](https://www.oscs1024.com/project/mqttsnet/thinglinks?ref=badge_small)
-
-## Tech Stack
-
-1、Adopts a front-end and back-end separation approach using the VUE framework for the frontend.
-
-2、The backend utilizes Spring Boot, Spring Cloud & Alibaba.
-
-3、MqttBroker (supports cluster deployment) is based on Netty, Reactor3, Reactor-netty.
-
-4、The registration center and configuration center are based on Nacos while authentication uses Redis.
-
-5、The traffic control framework is Sentinel and distributed transactions are managed by Seata.
-
-6、The time-series database used is TDengine, an efficient open-source IoT big data platform, capable of handling massive IoT data write-ins and load queries.
-
+ThingLinks is an enterprise-grade **multi-tenant SaaS cloud IoT platform** built on Spring Cloud microservices architecture. It delivers **high-performance, high-throughput, and highly-scalable** device connectivity, supporting **millions of concurrent connections** on a single node with plugin-based extensibility and multi-protocol adaptation.
 
 ## Core Features
 
-Unified product model management, supporting various devices from different manufacturers.
+| Feature | Description |
+|---------|-------------|
+| **Multi-tenant SaaS** | Enterprise-grade multi-tenant architecture with complete tenant isolation |
+| **Million-level Connections** | Single node supports millions of concurrent device connections |
+| **Multi-protocol** | MQTT, WebSocket, TCP, UDP, CoAP, HTTP and more |
+| **Device Management** | Unified product model, device lifecycle, sub-device management |
+| **Rule Engine** | Flexible rules for alarm, notification, data forwarding (Kafka, RocketMQ, RabbitMQ, MySQL, HTTP, etc.) |
+| **SCADA & Visualization** | Device geographic visualization, SCADA dashboards, large-screen displays |
+| **Time-series Database** | TDengine — one table per device, one super-table per device type |
+| **Plugin System** | Plugin-based development for custom protocol and feature extensions |
+| **IoT Card Management** | SIM card channel management, card lifecycle management |
+| **Video Streaming** | Media server integration, video stream proxy |
 
-Unified device connection management with multi-protocol adaptability (MQTT, WebSocket, TCP, UDP, CoAP, HTTP, etc).
+## Tech Stack
 
-A flexible rule engine for device alarms, message notifications, and data forwarding.
-Device geographic location visualization.
+![Java 17+](https://img.shields.io/badge/Java-17+-ED8B00?style=flat-square&logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-6DB33F?style=flat-square&logo=springboot&logoColor=white)
+![Spring Cloud](https://img.shields.io/badge/Spring%20Cloud-2022-6DB33F?style=flat-square&logo=spring&logoColor=white)
+![Netty](https://img.shields.io/badge/Netty-4.x-0E83CD?style=flat-square)
+![Vue 3](https://img.shields.io/badge/Vue.js-3.x-4FC08D?style=flat-square&logo=vuedotjs&logoColor=white)
+![TDengine](https://img.shields.io/badge/TDengine-3.0+-0080FF?style=flat-square)
+![Nacos](https://img.shields.io/badge/Nacos-3.x-1890FF?style=flat-square)
+![Sentinel](https://img.shields.io/badge/Sentinel-1.x-00BFFF?style=flat-square)
+![Seata](https://img.shields.io/badge/Seata-2.x-00CED1?style=flat-square)
+![Redis](https://img.shields.io/badge/Redis-7.x-DC382D?style=flat-square&logo=redis&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=flat-square&logo=mysql&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Supported-2496ED?style=flat-square&logo=docker&logoColor=white)
 
-TDengine time-series database design concept: one table per device, one super-table per device type.
+## Screenshots
 
-## Documentation
+<details>
+<summary><b>Basic Platform</b> (4 screenshots)</summary>
+<br>
+<p>
+  <a href="docs/images/pc/login.png"><img src="docs/images/pc/login.png" width="270" alt="Login"></a>
+  <a href="docs/images/pc/basic/myApplication.png"><img src="docs/images/pc/basic/myApplication.png" width="270" alt="My Application"></a>
+  <a href="docs/images/pc/basic/openAccessKey.png"><img src="docs/images/pc/basic/openAccessKey.png" width="270" alt="Access Key"></a>
+</p>
+<p>
+  <a href="docs/images/pc/basic/openApi.png"><img src="docs/images/pc/basic/openApi.png" width="270" alt="Open API"></a>
+</p>
+</details>
 
-- [Official Documentation](https://mqttsnet.yuque.com/gt6zkc/thinglinks?# 《ThingLinks物联网一体化平台》)
+<details>
+<summary><b>DevOps System</b> (7 screenshots)</summary>
+<br>
+<p>
+  <a href="docs/images/pc/devOperation/tenant.png"><img src="docs/images/pc/devOperation/tenant.png" width="270" alt="Tenant Management"></a>
+  <a href="docs/images/pc/devOperation/project.png"><img src="docs/images/pc/devOperation/project.png" width="270" alt="Project Management"></a>
+  <a href="docs/images/pc/devOperation/application.png"><img src="docs/images/pc/devOperation/application.png" width="270" alt="Application Management"></a>
+</p>
+<p>
+  <a href="docs/images/pc/devOperation/resource.png"><img src="docs/images/pc/devOperation/resource.png" width="270" alt="Resource Management"></a>
+  <a href="docs/images/pc/devOperation/generator.png"><img src="docs/images/pc/devOperation/generator.png" width="270" alt="Code Generator"></a>
+  <a href="docs/images/pc/devOperation/opsInterface.png"><img src="docs/images/pc/devOperation/opsInterface.png" width="270" alt="Ops Interface"></a>
+</p>
+<p>
+  <a href="docs/images/pc/devOperation/sopIsvInfo.png"><img src="docs/images/pc/devOperation/sopIsvInfo.png" width="270" alt="ISV Info"></a>
+</p>
+</details>
 
-## Overall Platform Architecture
+<details>
+<summary><b>IoT System</b> (15 screenshots)</summary>
+<br>
+<p>
+  <a href="docs/images/pc/iotSystem/product.png"><img src="docs/images/pc/iotSystem/product.png" width="270" alt="Product Management"></a>
+  <a href="docs/images/pc/iotSystem/productDetails.png"><img src="docs/images/pc/iotSystem/productDetails.png" width="270" alt="Product Details"></a>
+  <a href="docs/images/pc/iotSystem/productService.png"><img src="docs/images/pc/iotSystem/productService.png" width="270" alt="Product Service"></a>
+</p>
+<p>
+  <a href="docs/images/pc/iotSystem/device.png"><img src="docs/images/pc/iotSystem/device.png" width="270" alt="Device Management"></a>
+  <a href="docs/images/pc/iotSystem/deviceDebug.png"><img src="docs/images/pc/iotSystem/deviceDebug.png" width="270" alt="Device Debug"></a>
+  <a href="docs/images/pc/iotSystem/deviceShadow.png"><img src="docs/images/pc/iotSystem/deviceShadow.png" width="270" alt="Device Shadow"></a>
+</p>
+<p>
+  <a href="docs/images/pc/iotSystem/deviceShadow_1.png"><img src="docs/images/pc/iotSystem/deviceShadow_1.png" width="270" alt="Device Shadow Detail"></a>
+  <a href="docs/images/pc/iotSystem/assetStats.png"><img src="docs/images/pc/iotSystem/assetStats.png" width="270" alt="Asset Statistics"></a>
+  <a href="docs/images/pc/iotSystem/assetmap.png"><img src="docs/images/pc/iotSystem/assetmap.png" width="270" alt="Asset Map"></a>
+</p>
+<p>
+  <a href="docs/images/pc/iotSystem/pluginInfo.png"><img src="docs/images/pc/iotSystem/pluginInfo.png" width="270" alt="Plugin Info"></a>
+  <a href="docs/images/pc/iotSystem/pluginInstance.png"><img src="docs/images/pc/iotSystem/pluginInstance.png" width="270" alt="Plugin Instance"></a>
+  <a href="docs/images/pc/iotSystem/engineChained.png"><img src="docs/images/pc/iotSystem/engineChained.png" width="270" alt="Chained Rule Engine"></a>
+</p>
+<p>
+  <a href="docs/images/pc/iotSystem/engineLinkage.png"><img src="docs/images/pc/iotSystem/engineLinkage.png" width="270" alt="Device Linkage"></a>
+  <a href="docs/images/pc/iotSystem/ruleGroovyScript.png"><img src="docs/images/pc/iotSystem/ruleGroovyScript.png" width="270" alt="Groovy Script Rule"></a>
+  <a href="docs/images/pc/iotSystem/scada.png"><img src="docs/images/pc/iotSystem/scada.png" width="270" alt="SCADA"></a>
+</p>
+</details>
 
-![](doc/imgs/overallArchitecture.png)
+<details>
+<summary><b>IoT Card System</b> (2 screenshots)</summary>
+<br>
+<p>
+  <a href="docs/images/pc/iotCard/cardChannelInfo.png"><img src="docs/images/pc/iotCard/cardChannelInfo.png" width="270" alt="Card Channel Info"></a>
+  <a href="docs/images/pc/iotCard/cardSimInfo.png"><img src="docs/images/pc/iotCard/cardSimInfo.png" width="270" alt="SIM Card Info"></a>
+</p>
+</details>
 
-## Functional Architecture
+<details>
+<summary><b>Visualization Dashboard</b> (1 screenshot)</summary>
+<br>
+<p>
+  <a href="docs/images/pc/view/visualization.png"><img src="docs/images/pc/view/visualization.png" width="540" alt="Visualization Dashboard"></a>
+</p>
+</details>
 
-![](doc/imgs/functionalArchitecture.png)
+<details>
+<summary><b>Video Streaming System</b> (2 screenshots)</summary>
+<br>
+<p>
+  <a href="docs/images/pc/videoSystem/videoMediaServer.png"><img src="docs/images/pc/videoSystem/videoMediaServer.png" width="270" alt="Media Server"></a>
+  <a href="docs/images/pc/videoSystem/videoStreamProxy.png"><img src="docs/images/pc/videoSystem/videoStreamProxy.png" width="270" alt="Stream Proxy"></a>
+</p>
+</details>
 
-## Core Function List
+<details>
+<summary><b>Mobile H5</b> (5 screenshots)</summary>
+<br>
+<p>
+  <a href="docs/images/h5/login.jpg"><img src="docs/images/h5/login.jpg" width="160" alt="Login"></a>
+  <a href="docs/images/h5/index.jpg"><img src="docs/images/h5/index.jpg" width="160" alt="Home"></a>
+  <a href="docs/images/h5/dashboard.jpg"><img src="docs/images/h5/dashboard.jpg" width="160" alt="Dashboard"></a>
+  <a href="docs/images/h5/myHome.jpg"><img src="docs/images/h5/myHome.jpg" width="160" alt="My Home"></a>
+  <a href="docs/images/h5/scene.jpg"><img src="docs/images/h5/scene.jpg" width="160" alt="Scene"></a>
+</p>
+</details>
 
-System Management: User Management, Role Management, Menu Management, Department Management, Post Management, Dictionary Management, Parameter Settings, Notifications, Log Management
+## Edition Comparison
 
-System Monitoring: Online Users, Scheduled Tasks, Sentinel Console, Nacos Console, Admin Console, Task Scheduling Management
+| Feature | Community | Commercial | Enterprise |
+|---------|:---------:|:----------:|:----------:|
+| Business Layer Source Code | ✔ Full (GitHub/Gitee) | ✔ 100% Complete | ✔ Pro 100% Full |
+| ThingLinks-util Core Library | ✕ JAR only | ✕ JAR only | ✔ Full source |
+| Technical Documentation | Community docs | Community docs | Full technical + architecture docs |
+| Private Repository Access | ✕ | ✔ | ✔ |
+| Modify package name | ✕ Prohibited | ✔ Allowed | ✔ Unrestricted |
+| Modify Maven groupId | ✕ Prohibited | ✔ Allowed | ✔ Unrestricted |
+| Modify author info | ✕ Prohibited | ⚠ Allowed (keep copyright) | ✔ Unrestricted |
+| Modify copyright info | ✕ Prohibited | ✕ Must retain | ✔ Unrestricted |
 
-System Tools: Form Builder, Code Generator, System API
+> **Community Edition Notice:** Per the Apache 2.0 License and ThingLinks Commercial License, modification or removal of package names, Maven groupId, author attributions, and copyright notices in community edition source code is prohibited. Upgrade to Commercial or Enterprise edition to modify these identifiers.
 
-Device Integration: Device Management (supports MQTT, WebSocket, and TCP-IP protocols), Sub-device Management, Product Management, Protocol Management, Rule Engine (for device interlinking)
-
-Device Debugging: Real-time Logs, Command Issuance
-
-Rule Engine Message Forwarding: Supports KAFKA, HTTP, PREDICATE, ROCKET_MQ, RABBIT_MQ, MYSQL, MQTT, TOPIC, and LOG nodes.
-
-
-## Development Roadmap
-
-We are currently focused on the development of the Pro version, with the open-source version lagging behind. Gradual open-sourcing will be done in the future. Stay tuned!
-
-*、Rule engine-device interlinking (development completed, lacking alarm information configuration)
-
-*、APP mobile side-My Devices (in progress)
-
-*、Alarm management (planning: DingTalk push, email push, etc.)
-
-*、Large screen display (client, message publish/subscribe, alarms) (in planning)
-
-## Demo Images
-
-![](doc/imgs/deviceIntegration/img.png)
-
-![](doc/imgs/deviceIntegration/img_0.png)
-
-![](doc/imgs/deviceIntegration/img_1.png)
-
-![](doc/imgs/deviceIntegration/img_2.png)
-
-![](doc/imgs/deviceIntegration/img_3.png)
-
-![](doc/imgs/deviceIntegration/img_4.png)
-
-![](doc/imgs/deviceIntegration/img_5.png)
-
-![](doc/imgs/deviceIntegration/img_6.png)
-
-## Business Cooperation & Code Contribution
-
-If you're interested in participating in project development or engaging in business cooperation, please contact the mqttsnet team at mqttsnet@163.com.
+> **Commercial / Enterprise License Activation:** After purchasing, fill in the provided Authorization ID in the [LICENSE-COMMERCIAL](LICENSE-COMMERCIAL) file and commit via git. The git commit history serves as proof of authorized activation. Verify your license at [mqttsnet.com](https://mqttsnet.com).
 
 ## Contributors
 
-Thanks these wonderful people, welcome to join us:   
-[贡献者指南](CONTRIBUTING.md)
+Thanks to all the wonderful people who contribute to this project!
 
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tbody>
-    <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/xiaonannet"><img src="https://avatars.githubusercontent.com/u/57425893?s=400&u=7e19afcd215072e56e0168c6717342456b174b68&v=4" width="100px;" alt="xiaonannet"/><br /><sub><b>xiaonannet</b></sub></a><br /><a href="https://github.com/mqttsnet/thinglinks/commits?author=xiaonannet" title="Code">💻</a> <a href="https://github.com/mqttsnet/thinglinks/commits?author=xiaonannet" title="Documentation">📖</a> <a href="#xiaonannet" title="Design">🎨</a><a href="https://github.com/mqttsnet/thinglinks/commits?author=lvwshuai" title="Bug reports">🐛</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/lovely-shisen"><img src="https://avatars.githubusercontent.com/u/32031196?s=400&u=7e19afcd215072e56e0168c6717342456b174b68&v=4" width="100px;" alt="lovely-shisen"/><br /><sub><b>lovely-shisen</b></sub></a><br /><a href="https://github.com/mqttsnet/thinglinks/commits?author=lovely-shisen" title="Code">💻</a> <a href="https://github.com/mqttsnet/thinglinks/commits?author=lovely-shisen" title="Documentation">📖</a> <a href="#lovely-shisen" title="Design">🎨</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/whb-11"><img src="https://avatars.githubusercontent.com/u/95611581?v=4" width="100px;" alt="wanghoubang"/><br /><sub><b>whb-11</b></sub></a><br /><a href="https://github.com/mqttsnet/thinglinks/commits?author=whb-11" title="Code">💻</a> <a href="https://github.com/mqttsnet/thinglinks/commits?author=whb-11" title="Documentation">📖</a><a href="#lovely-shisen" title="Design">🎨</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/kangkaime"><img src="https://avatars.githubusercontent.com/u/4422866?v=4" width="100px;" alt="kangkaime"/><br /><sub><b>kangkaime</b></sub></a><br /><a href="https://github.com/mqttsnet/thinglinks/commits?author=kangkaime" title="Code">💻</a> <a href="https://github.com/mqttsnet/thinglinks/commits?author=kangkaime" title="Bug reports">🐛</a></td>      
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/lvwshuai"><img src="https://avatars.githubusercontent.com/u/2986900?v=4" width="100px;" alt="lvwshuai"/><br /><sub><b>lvwshuai</b></sub></a><br /><a href="https://github.com/mqttsnet/thinglinks/commits?author=lvwshuai" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/andyz168"><img src="https://avatars.githubusercontent.com/u/22382971?v=4" width="100px;" alt="andyz168"/><br /><sub><b>andyz168</b></sub></a><br /><a href="https://github.com/mqttsnet/thinglinks/commits?author=andyz168" title="Code">💻</a></td>
-    </tr>
-    <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/llJam"><img src="https://avatars.githubusercontent.com/u/113015997?v=4" width="100px;" alt="llJam"/><br /><sub><b>llJam</b></sub></a><br /><a href="https://github.com/mqttsnet/thinglinks/commits?author=llJam" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/qianmenfei"><img src="https://avatars.githubusercontent.com/u/39989430?v=4" width="100px;" alt="qianmenfei"/><br /><sub><b>qianmenfei</b></sub></a><br /><a href="https://github.com/mqttsnet/thinglinks/commits?author=qianmenfei" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/wangfan1997"><img src="https://avatars.githubusercontent.com/u/108504684?v=4" width="100px;" alt="wangfan1997"/><br /><sub><b>wangfan1997</b></sub></a><br /><a href="https://github.com/mqttsnet/thinglinks/commits?author=wangfan1997" title="Code">💻</a></td>
-    </tr>
-  </tbody>
-</table>
+<a href="https://github.com/mqttsnet/thinglinks/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=mqttsnet/thinglinks&max=100&columns=12" alt="Contributors" />
+</a>
 
-<!-- ALL-CONTRIBUTORS-LIST:END -->
+Want to contribute? Check out the [Contributor Guide](CONTRIBUTING.md).
 
-## Related Links
+## Contact
 
-BifroMQ is a high-performance MQTT messaging middleware with a native multi-tenant architecture. Open-sourced by Baidu.
+- Business Cooperation: [mqttsnet@163.com](mailto:mqttsnet@163.com)
+- Issues: [GitHub Issues](https://github.com/mqttsnet/thinglinks/issues)
+- Pull Requests: [GitHub PRs](https://github.com/mqttsnet/thinglinks/pulls)
 
-- [Official Website](bifromq.io)
-- [Github](https://github.com/baidu/bifromq)
-
-High-efficiency MQTT Broker: SMQTTX
-
-- [Github](https://github.com/quickmsg/smqttx)
-- [Gitee](https://gitee.com/quickmsg/smqttx)
-- [GitCode](https://gitcode.com/quickmsg/smqttx)
-
-## Issues (Feedback is appreciated)
-
-[issues](https://github.com/mqttsnet/thinglinks/issues)
-
-## Submit a PR
-
-[pr->feat/contrbute](https://github.com/mqttsnet/thinglinks/pulls)
+> **Note:** This project is mirrored to multiple code hosting platforms. The **only official channel** for bug reports, feature requests, and discussions is [GitHub Issues](https://github.com/mqttsnet/thinglinks/issues). Issues submitted on other platforms (Gitee, Gitea, etc.) will not be monitored or addressed.
 
 ## License
 
-[Apache License, Version 2.0](LICENSE)
+ThingLinks Community Edition is licensed under the [Apache License 2.0](LICENSE) with additional commercial terms — see [LICENSE-COMMERCIAL](LICENSE-COMMERCIAL) for details.
 
-[Thanks to JetBrains for providing a free IDEA License](https://www.jetbrains.com)
+For commercial or enterprise licensing, contact [mqttsnet@163.com](mailto:mqttsnet@163.com).
 
-## Copyright Notice
+---
 
-ThingLinks Open Source Platform adheres to the Apache License, Version 2.0. Commercial use is allowed, but it's imperative to retain attribution and copyright information.
+<div align="center">
+
+Copyright &copy; 2019-present [MqttsNet](https://mqttsnet.com). All rights reserved.
+
+[Thanks to JetBrains for providing free IDE licenses](https://www.jetbrains.com)
+
+</div>

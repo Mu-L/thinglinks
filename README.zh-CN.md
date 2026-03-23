@@ -177,37 +177,25 @@ ThingLinks 是一款企业级**多租户 SaaS 云物联网平台**，基于 Spri
 
 > **社区版用户请注意：** 根据 Apache 2.0 协议与 ThingLinks 授权协议，社区版源码中的 package 包名、Maven groupId、作者署名及版权声明均不可修改或移除。违反此规定将构成侵权。如需修改标识信息，请升级至商业版或旗舰版。
 
+> **商业版 / 旗舰版授权激活：** 购买后，请将我们提供的授权 ID 填入 [LICENSE-COMMERCIAL](LICENSE-COMMERCIAL) 文件中的授权信息区域，并通过 git commit 提交。git 提交记录将作为授权生效的关键证明。通过 [mqttsnet.com](https://mqttsnet.com) 可验证授权状态。
+
 ## 贡献者
 
-感谢所有为本项目做出贡献的优秀开发者。[贡献者指南](CONTRIBUTING.md)
+感谢所有为本项目做出贡献的优秀开发者！
 
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tbody>
-    <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/xiaonannet"><img src="https://avatars.githubusercontent.com/u/57425893?s=400&u=7e19afcd215072e56e0168c6717342456b174b68&v=4" width="100px;" alt="xiaonannet"/><br /><sub><b>xiaonannet</b></sub></a><br /><a href="https://github.com/mqttsnet/thinglinks/commits?author=xiaonannet" title="Code">💻</a> <a href="https://github.com/mqttsnet/thinglinks/commits?author=xiaonannet" title="Documentation">📖</a> <a href="#xiaonannet" title="Design">🎨</a><a href="https://github.com/mqttsnet/thinglinks/commits?author=lvwshuai" title="Bug reports">🐛</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/lovely-shisen"><img src="https://avatars.githubusercontent.com/u/32031196?s=400&u=7e19afcd215072e56e0168c6717342456b174b68&v=4" width="100px;" alt="lovely-shisen"/><br /><sub><b>lovely-shisen</b></sub></a><br /><a href="https://github.com/mqttsnet/thinglinks/commits?author=lovely-shisen" title="Code">💻</a> <a href="https://github.com/mqttsnet/thinglinks/commits?author=lovely-shisen" title="Documentation">📖</a> <a href="#lovely-shisen" title="Design">🎨</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/whb-11"><img src="https://avatars.githubusercontent.com/u/95611581?v=4" width="100px;" alt="wanghoubang"/><br /><sub><b>whb-11</b></sub></a><br /><a href="https://github.com/mqttsnet/thinglinks/commits?author=whb-11" title="Code">💻</a> <a href="https://github.com/mqttsnet/thinglinks/commits?author=whb-11" title="Documentation">📖</a><a href="#lovely-shisen" title="Design">🎨</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/kangkaime"><img src="https://avatars.githubusercontent.com/u/4422866?v=4" width="100px;" alt="kangkaime"/><br /><sub><b>kangkaime</b></sub></a><br /><a href="https://github.com/mqttsnet/thinglinks/commits?author=kangkaime" title="Code">💻</a> <a href="https://github.com/mqttsnet/thinglinks/commits?author=kangkaime" title="Bug reports">🐛</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/lvwshuai"><img src="https://avatars.githubusercontent.com/u/2986900?v=4" width="100px;" alt="lvwshuai"/><br /><sub><b>lvwshuai</b></sub></a><br /><a href="https://github.com/mqttsnet/thinglinks/commits?author=lvwshuai" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/andyz168"><img src="https://avatars.githubusercontent.com/u/22382971?v=4" width="100px;" alt="andyz168"/><br /><sub><b>andyz168</b></sub></a><br /><a href="https://github.com/mqttsnet/thinglinks/commits?author=andyz168" title="Code">💻</a></td>
-    </tr>
-    <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/llJam"><img src="https://avatars.githubusercontent.com/u/113015997?v=4" width="100px;" alt="llJam"/><br /><sub><b>llJam</b></sub></a><br /><a href="https://github.com/mqttsnet/thinglinks/commits?author=llJam" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/qianmenfei"><img src="https://avatars.githubusercontent.com/u/39989430?v=4" width="100px;" alt="qianmenfei"/><br /><sub><b>qianmenfei</b></sub></a><br /><a href="https://github.com/mqttsnet/thinglinks/commits?author=qianmenfei" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/wangfan1997"><img src="https://avatars.githubusercontent.com/u/108504684?v=4" width="100px;" alt="wangfan1997"/><br /><sub><b>wangfan1997</b></sub></a><br /><a href="https://github.com/mqttsnet/thinglinks/commits?author=wangfan1997" title="Code">💻</a></td>
-    </tr>
-  </tbody>
-</table>
-<!-- ALL-CONTRIBUTORS-LIST:END -->
+<a href="https://github.com/mqttsnet/thinglinks/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=mqttsnet/thinglinks&max=100&columns=12" alt="Contributors" />
+</a>
+
+欢迎参与贡献！请查阅 [贡献者指南](CONTRIBUTING.md)。
 
 ## 联系我们
 
 - 商业合作：[mqttsnet@163.com](mailto:mqttsnet@163.com)
 - 问题反馈：[GitHub Issues](https://github.com/mqttsnet/thinglinks/issues)
 - 提交 PR：[GitHub Pull Requests](https://github.com/mqttsnet/thinglinks/pulls)
+
+> **声明：** 本项目同步镜像至多个代码托管平台。Bug 反馈、功能建议、技术讨论的**唯一官方渠道**为 [GitHub Issues](https://github.com/mqttsnet/thinglinks/issues)，其他平台（Gitee、Gitea 等）提交的 Issue 不予处理。
 
 ## 开源协议
 
