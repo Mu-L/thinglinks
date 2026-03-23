@@ -22,7 +22,7 @@
 
 ## 版本管理
 
-### 版本定义位置（共 6 处）
+### 版本定义位置（共 5 处）
 
 | 位置 | 文件 | 说明 |
 |------|------|------|
@@ -31,20 +31,21 @@
 | 后端 Job | `thinglinks-job/pom.xml` | `<revision>` 属性 |
 | 前端主应用 | `thinglinks-web/package.json` | `"version"` 字段 |
 | 前端可视化 | `thinglinks-web-visualize/package.json` | `"version"` 字段 |
-| 前端测试服务 | `thinglinks-web/tests/server/package.json` | `"version"` 字段 |
 
-> **注意：** `thinglinks-util.version`（底层基础依赖库）有独立的版本周期，不随项目版本升级。
+> **注意：**
+> - `thinglinks-util.version`（底层基础依赖库）有独立的版本周期，不随项目版本升级。
+> - `thinglinks-web/tests/server/` 是前端本地 Mock 测试服务器，版本独立管理，不纳入项目统一版本。
 
 ### 一键升级版本
 
 ```bash
-# 升级到指定版本（自动更新全部 6 处 + 验证）
+# 升级到指定版本（自动更新全部 5 处 + 验证）
 ./scripts/bump-version.sh 1.4.0
 ```
 
 脚本会自动：
 1. 更新 3 个 pom.xml 中的 `<revision>`
-2. 更新 3 个 package.json 中的 `"version"`
+2. 更新 2 个 package.json 中的 `"version"`
 3. 逐一验证所有版本是否一致
 4. 输出结果报告
 
@@ -285,12 +286,24 @@ VITE_GLOB_AXIOS_TIMEOUT=30000                     # 请求超时（ms）
 
 ### 前端 CI/CD（Jenkins）
 
-Jenkins Pipeline 位于 `thinglinks-web/Jenkinsfile`，流程：
-1. 环境变量替换
-2. `pnpm build` 构建
-3. 压缩 `dist` 目录
-4. SSH 推送到目标服务器
-5. 执行部署脚本
+Jenkins Pipeline 位于 `thinglinks-web/Jenkinsfile`。
+
+**Jenkins 动态参数：**
+
+| 参数 | 说明 |
+|------|------|
+| `SERVER_SSH_HOST` | 目标服务器（格式：`name_profile`，如 `server01_test`） |
+| `IS_INSTALL` | 是否执行 `pnpm install`（true/false） |
+| `branch` | 拉取的 Git 分支 |
+
+**构建流程：**
+1. 从 `SERVER_SSH_HOST` 解析环境（test/prod）
+2. 根据环境选择构建脚本：`build:test` 或 `build:prod`
+3. `pnpm install`（可选） → `pnpm build` → 压缩 dist
+4. SSH 推送 tgz 到目标服务器
+5. 执行 `server_node_run.sh` 解压部署
+
+> **注意：** 目标服务器需预先部署 `server_node_run.sh` 到 `${WORKSPACE_HOME}/bin/`，并配置 nginx。
 
 ---
 

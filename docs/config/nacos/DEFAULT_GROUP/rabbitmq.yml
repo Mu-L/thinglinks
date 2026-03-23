@@ -6,7 +6,7 @@ thinglinks:
     port: 5672             # AMQP协议端口（切记开放防火墙）
     vhost: '/dev'           # 虚拟主机名称（需与服务端创建的一致）
     username: 'rabbitmq'   # 生产环境建议使用非默认账号
-    password: 'RT3ttHjcTRtALJYP' # 密码应符合企业安全规范
+    password: 'your-rabbitmq-password' # 密码应符合企业安全规范
 
 spring:
   rabbitmq:

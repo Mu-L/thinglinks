@@ -8,7 +8,7 @@ thinglinks:
     validation-query: SELECT 1
   mysql: &db-mysql
     username: 'root'
-    password: 'u67u4ES26'
+    password: 'your-mysql-password'
     driverClassName: com.mysql.cj.jdbc.Driver
     # 主主复制集群的连接 URL，使用服务器IP和端口
     #以下是样例中的默认端口号和数据库名称，请根据实际情况修改

@@ -3,7 +3,7 @@ thinglinks:
   feign: 
     #分布式调度平台
     job:
-      accessToken: 'abcd@1234@qwer'
+      accessToken: 'your-access-token'
       # thinglinks-job-admin服务API
       job-server: http://127.0.0.1:18767
     #bifromq MQTT Broker服务API
@@ -13,21 +13,21 @@ thinglinks:
 
   #openai API
   openai:
-    apiKey: ["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"]
-    apiHost: https://openai.mqttsnet.cn/
+    apiKey: ["your-openai-api-key"]
+    apiHost: https://api.openai.com/
 
   # 系统级安全密钥和初始化向量（IV）
   security:
     algorithms:
       aes:
         # 16字节Hex
-        key: "4f8d59a35c7e2d1a"
-        iv: "a3f98b4c98d2310e"
+        key: "your-aes-key-hex"
+        iv: "your-aes-iv-hex-"
         mode: "CBC"
       sm4:
         # 16字节Hex
-        key: "4f8d59a35c7e2d1a"
-        iv: "a3f98b4c98d2310e"
+        key: "your-sm4-key-hex"
+        iv: "your-sm4-iv-hex-"
         mode: "CBC"
 
   scan:

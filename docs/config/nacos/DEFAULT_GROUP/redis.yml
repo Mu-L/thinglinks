@@ -5,7 +5,7 @@ thinglinks:
     cacheNullVal: false
   redis:
     # 通用配置
-    password: BCfd8nMCdH6z8m1dG3
+    password: your-redis-password
     database: 1
     # ===== 任意选择其中一种模式(对应的模式配置注释需要放行) =====
 
