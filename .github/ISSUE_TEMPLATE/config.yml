@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation / 官方文档
+    url: https://mqttsnet.yuque.com/gt6zkc/thinglinks
+    about: Check the official documentation before opening an issue / 提交 Issue 前请先查阅官方文档
+  - name: Website / 官网
+    url: https://mqttsnet.com
+    about: Visit the official website / 访问官网了解更多
