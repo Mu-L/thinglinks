@@ -9,7 +9,7 @@
 #   ./scripts/bump-version.sh 1.4.0
 #
 # This script updates the project version in ALL locations:
-#   - Backend: 3 pom.xml files defining <revision> (thinglinks-cloud, thinglinks-job, thinglinks-sdk)
+#   - Backend: 4 pom.xml files defining <revision> (thinglinks-cloud, thinglinks-job, thinglinks-sdk, bifromq-plugin)
 #   - Frontend: 2 package.json files (thinglinks-web, thinglinks-web-visualize)
 #
 # NOT modified:
@@ -59,6 +59,7 @@ POM_FILES=(
     "thinglinks-cloud/thinglinks-dependencies-parent/pom.xml"
     "thinglinks-cloud/thinglinks-sdk/pom.xml"
     "thinglinks-job/pom.xml"
+    "bifromq-plugin/pom.xml"
 )
 
 echo -e "${YELLOW}[Backend] Updating <revision> in pom.xml files...${NC}"
@@ -139,7 +140,7 @@ done
 
 echo ""
 if [ $ERRORS -eq 0 ]; then
-    echo -e "${GREEN}All 5 version definitions updated to ${NEW_VERSION} successfully!${NC}"
+    echo -e "${GREEN}All 6 version definitions updated to ${NEW_VERSION} successfully!${NC}"
     echo ""
     echo "Note: thinglinks-util.version remains unchanged (separate release cycle)."
     echo ""

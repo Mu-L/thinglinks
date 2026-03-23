@@ -29,6 +29,7 @@
 | 后端 Cloud 主体 | `thinglinks-cloud/thinglinks-dependencies-parent/pom.xml` | `<revision>` 属性 |
 | 后端 SDK | `thinglinks-cloud/thinglinks-sdk/pom.xml` | `<revision>` 属性 |
 | 后端 Job | `thinglinks-job/pom.xml` | `<revision>` 属性 |
+| BifroMQ 插件 | `bifromq-plugin/pom.xml` | `<revision>` 属性 |
 | 前端主应用 | `thinglinks-web/package.json` | `"version"` 字段 |
 | 前端可视化 | `thinglinks-web-visualize/package.json` | `"version"` 字段 |
 
@@ -39,12 +40,12 @@
 ### 一键升级版本
 
 ```bash
-# 升级到指定版本（自动更新全部 5 处 + 验证）
+# 升级到指定版本（自动更新全部 6 处 + 验证）
 ./scripts/bump-version.sh 1.4.0
 ```
 
 脚本会自动：
-1. 更新 3 个 pom.xml 中的 `<revision>`
+1. 更新 4 个 pom.xml 中的 `<revision>`
 2. 更新 2 个 package.json 中的 `"version"`
 3. 逐一验证所有版本是否一致
 4. 输出结果报告
@@ -84,6 +85,11 @@ thinglinks/
 │   ├── thinglinks-support/              # 支撑服务（监控、执行器）
 │   └── thinglinks-sdk/                  # 设备接入 SDK
 ├── thinglinks-job/                      # 分布式任务调度
+├── bifromq-plugin/                      # BifroMQ MQTT Broker 插件库
+│   ├── bifromq-auth-provider-plugin/    # 认证授权插件
+│   ├── bifromq-event-collector-plugin/  # 事件采集插件
+│   ├── bifromq-resource-throttler-plugin/ # 资源限流插件
+│   └── bifromq-setting-provider-plugin/ # 动态配置插件
 ├── thinglinks-web/                      # 前端主应用（Vue 3）
 ├── thinglinks-web-visualize/            # 前端可视化应用
 ├── docker/                              # Docker 编排文件
