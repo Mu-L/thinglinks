@@ -10,7 +10,10 @@
 #
 # This script updates the project version in ALL locations:
 #   - Backend: 3 pom.xml files defining <revision> (thinglinks-cloud, thinglinks-job, thinglinks-sdk)
-#   - Frontend: 3 package.json files (thinglinks-web, thinglinks-web-visualize, thinglinks-web/tests/server)
+#   - Frontend: 2 package.json files (thinglinks-web, thinglinks-web-visualize)
+#
+# NOT modified:
+#   - thinglinks-web/tests/server/package.json (mock test server, independent version)
 #
 # NOTE: thinglinks-util.version (base library) is NOT modified by this script.
 #       It has its own release cycle and should be updated manually when needed.
@@ -81,7 +84,6 @@ done
 PACKAGE_FILES=(
     "thinglinks-web/package.json"
     "thinglinks-web-visualize/package.json"
-    "thinglinks-web/tests/server/package.json"
 )
 
 echo ""
@@ -137,7 +139,7 @@ done
 
 echo ""
 if [ $ERRORS -eq 0 ]; then
-    echo -e "${GREEN}All 6 version definitions updated to ${NEW_VERSION} successfully!${NC}"
+    echo -e "${GREEN}All 5 version definitions updated to ${NEW_VERSION} successfully!${NC}"
     echo ""
     echo "Note: thinglinks-util.version remains unchanged (separate release cycle)."
     echo ""

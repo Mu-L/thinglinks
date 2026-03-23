@@ -1,5 +1,5 @@
 {
-  "name": "ThingLinks",
+  "name": "thinglinks-web",
   "version": "1.3.0",
   "author": {
     "name": "mqttsnet",
@@ -196,7 +196,7 @@
     "type": "git",
     "url": "git+https://github.com/mqttsnet/thinglinks.git"
   },
-  "license": "MIT",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/mqttsnet/thinglinks/issues"
   },
@@ -210,7 +210,7 @@
       "prettier --write"
     ],
     "{!(package)*.json,*.code-snippets,.!(browserslist)*rc}": [
-      "prettier --write--parser json"
+      "prettier --write --parser json"
     ],
     "package.json": [
       "prettier --write"
