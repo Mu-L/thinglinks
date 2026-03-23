@@ -143,4 +143,9 @@ export default {
     templateHref: '模板下载',
     templateTitle: '点我下载',
   },
+  map: {
+    loading: '地图加载中...',
+    searchPlaceholder: '输入关键字搜索',
+    searchFailed: '搜索失败',
+  },
 };

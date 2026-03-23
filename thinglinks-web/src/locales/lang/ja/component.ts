@@ -132,4 +132,9 @@ export default {
     templateHref: 'テンプレートダウンロード',
     templateTitle: '点我ダウンロード',
   },
+  map: {
+    loading: '地図読み込み中...',
+    searchPlaceholder: 'キーワードを入力して検索',
+    searchFailed: '検索失敗',
+  },
 };
