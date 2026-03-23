@@ -5,7 +5,7 @@
 | Channel | Link | Description |
 |---------|------|-------------|
 | GitHub Issues | [github.com/mqttsnet/thinglinks/issues](https://github.com/mqttsnet/thinglinks/issues) | Bug reports, feature requests, questions |
-| Documentation | [mqttsnet.yuque.com](https://mqttsnet.yuque.com/gt6zkc/thinglinks) | Official documentation |
+| Documentation | [mqttsnet.yuque.com](https://mqttsnet.yuque.com/trgbro/thinglinks) | Official documentation |
 | Website | [mqttsnet.com](https://mqttsnet.com) | Product information |
 | Email | [mqttsnet@163.com](mailto:mqttsnet@163.com) | Business cooperation |
 
@@ -32,5 +32,5 @@ This project is mirrored to multiple code hosting platforms (Gitee, Gitea, GitCo
 ## Before Submitting an Issue / 提交 Issue 前
 
 1. Search [existing issues](https://github.com/mqttsnet/thinglinks/issues) to avoid duplicates
-2. Check the [documentation](https://mqttsnet.yuque.com/gt6zkc/thinglinks)
+2. Check the [documentation](https://mqttsnet.yuque.com/trgbro/thinglinks)
 3. Use the appropriate [issue template](https://github.com/mqttsnet/thinglinks/issues/new/choose)

@@ -76,7 +76,7 @@ services:
       timeout: 10s
       retries: 5
       start_period: 60s
-    <<: *shared-config  # 只引用 shared-config，因为 metadata-config 不应用于服务定义
+    <<: *shared-config
   thinglinks-broker:
     container_name: thinglinks-broker-server
     build:
@@ -93,7 +93,7 @@ services:
       timeout: 10s
       retries: 5
       start_period: 60s
-    <<: *shared-config  # 只引用 shared-config，因为 metadata-config 不应用于服务定义
+    <<: *shared-config
   thinglinks-card:
     container_name: thinglinks-card-server
     build:
@@ -110,7 +110,7 @@ services:
       timeout: 10s
       retries: 5
       start_period: 60s
-    <<: *shared-config  # 只引用 shared-config，因为 metadata-config 不应用于服务定义
+    <<: *shared-config
   thinglinks-gateway:
     container_name: thinglinks-gateway-server
     build:
@@ -127,7 +127,7 @@ services:
       timeout: 10s
       retries: 5
       start_period: 60s
-    <<: *shared-config  # 只引用 shared-config，因为 metadata-config 不应用于服务定义
+    <<: *shared-config
   thinglinks-sop-gateway:
     container_name: thinglinks-sop-gateway-server
     build:
@@ -144,7 +144,7 @@ services:
       timeout: 10s
       retries: 5
       start_period: 60s
-    <<: *shared-config  # 只引用 shared-config，因为 metadata-config 不应用于服务定义
+    <<: *shared-config
   thinglinks-generator:
     container_name: thinglinks-generator-server
     build:
@@ -161,7 +161,7 @@ services:
       timeout: 10s
       retries: 5
       start_period: 60s
-    <<: *shared-config  # 只引用 shared-config，因为 metadata-config 不应用于服务定义
+    <<: *shared-config
   thinglinks-link:
     container_name: thinglinks-link-server
     build:
@@ -178,7 +178,7 @@ services:
       timeout: 10s
       retries: 5
       start_period: 60s
-    <<: *shared-config  # 只引用 shared-config，因为 metadata-config 不应用于服务定义
+    <<: *shared-config
   thinglinks-mobile:
     container_name: thinglinks-mobile-server
     build:
@@ -195,7 +195,7 @@ services:
       timeout: 10s
       retries: 5
       start_period: 60s
-    <<: *shared-config  # 只引用 shared-config，因为 metadata-config 不应用于服务定义
+    <<: *shared-config
   thinglinks-mqs:
     container_name: thinglinks-mqs-server
     build:
@@ -212,7 +212,7 @@ services:
       timeout: 10s
       retries: 5
       start_period: 60s
-    <<: *shared-config  # 只引用 shared-config，因为 metadata-config 不应用于服务定义
+    <<: *shared-config
   thinglinks-oauth:
     container_name: thinglinks-oauth-server
     build:
@@ -229,7 +229,7 @@ services:
       timeout: 10s
       retries: 5
       start_period: 60s
-    <<: *shared-config  # 只引用 shared-config，因为 metadata-config 不应用于服务定义
+    <<: *shared-config
   thinglinks-openapi:
     container_name: thinglinks-openapi-server
     build:
@@ -246,7 +246,7 @@ services:
       timeout: 10s
       retries: 5
       start_period: 60s
-    <<: *shared-config  # 只引用 shared-config，因为 metadata-config 不应用于服务定义
+    <<: *shared-config
   thinglinks-rule:
     container_name: thinglinks-rule-server
     build:
@@ -264,7 +264,7 @@ services:
       timeout: 10s
       retries: 5
       start_period: 60s
-    <<: *shared-config  # 只引用 shared-config，因为 metadata-config 不应用于服务定义
+    <<: *shared-config
   thinglinks-sop-admin:
     container_name: thinglinks-sop-admin-server
     build:
@@ -281,7 +281,7 @@ services:
       timeout: 10s
       retries: 5
       start_period: 60s
-    <<: *shared-config  # 只引用 shared-config，因为 metadata-config 不应用于服务定义
+    <<: *shared-config
   thinglinks-monitor:
     container_name: thinglinks-monitor-server
     build:
@@ -298,7 +298,7 @@ services:
       timeout: 10s
       retries: 5
       start_period: 60s
-    <<: *shared-config  # 只引用 shared-config，因为 metadata-config 不应用于服务定义
+    <<: *shared-config
   thinglinks-base-executor:
     container_name: thinglinks-base-executor
     build:
@@ -317,7 +317,7 @@ services:
       timeout: 10s
       retries: 5
       start_period: 60s
-    <<: *shared-config  # 只引用 shared-config，因为 metadata-config 不应用于服务定义
+    <<: *shared-config
   thinglinks-iot-executor:
     container_name: thinglinks-iot-executor
     build:
@@ -336,7 +336,7 @@ services:
       timeout: 10s
       retries: 5
       start_period: 60s
-    <<: *shared-config  # 只引用 shared-config，因为 metadata-config 不应用于服务定义
+    <<: *shared-config
   thinglinks-system:
     container_name: thinglinks-system-server
     build:
@@ -353,7 +353,7 @@ services:
       timeout: 10s
       retries: 5
       start_period: 60s
-    <<: *shared-config  # 只引用 shared-config，因为 metadata-config 不应用于服务定义
+    <<: *shared-config
   thinglinks-tds:
     container_name: thinglinks-tds-server
     build:
@@ -370,7 +370,7 @@ services:
       timeout: 10s
       retries: 5
       start_period: 60s
-    <<: *shared-config  # 只引用 shared-config，因为 metadata-config 不应用于服务定义
+    <<: *shared-config
   thinglinks-video:
     container_name: thinglinks-video-server
     build:
@@ -387,7 +387,7 @@ services:
       timeout: 10s
       retries: 5
       start_period: 60s
-    <<: *shared-config  # 只引用 shared-config，因为 metadata-config 不应用于服务定义
+    <<: *shared-config
   thinglinks-view:
     container_name: thinglinks-view-server
     build:
@@ -404,4 +404,22 @@ services:
       timeout: 10s
       retries: 5
       start_period: 60s
-    <<: *shared-config  # 只引用 shared-config，因为 metadata-config 不应用于服务定义
+    <<: *shared-config
+  # ─── Job (Distributed Task Scheduling) ───────────────────────────────
+  thinglinks-job-admin:
+    container_name: thinglinks-job-admin
+    build:
+      context: ../thinglinks-job/thinglinks-job-admin
+      dockerfile: Dockerfile
+    ports:
+      - "18767:18767"
+    environment:
+      <<: *env-config
+      SERVICE_PORT: 18767
+    healthcheck:
+      test: [ "CMD", "sh", "-c", "curl -f -u ${ACTUATOR_USERNAME}:${ACTUATOR_PASSWORD} http://localhost:${SERVICE_PORT}/thinglinks-job-admin/actuator/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    <<: *shared-config
