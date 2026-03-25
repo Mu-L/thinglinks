@@ -21,7 +21,7 @@
 
 [![Website](https://img.shields.io/badge/Website-mqttsnet.com-blue?style=for-the-badge)](https://mqttsnet.com)
 [![GitHub](https://img.shields.io/badge/GitHub-mqttsnet/thinglinks-181717?style=for-the-badge&logo=github)](https://github.com/mqttsnet/thinglinks)
-[![Docs](https://img.shields.io/badge/Docs-Documentation-green?style=for-the-badge)](https://mqttsnet.yuque.com/trgbro/thinglinks)
+[![Docs](https://img.shields.io/badge/Docs-Documentation-green?style=for-the-badge)](https://mqttsnet.com)
 
 </div>
 
@@ -31,26 +31,39 @@
 
 ThingLinks is an enterprise-grade **multi-tenant SaaS cloud IoT platform** built on Spring Cloud microservices architecture. It delivers **high-performance, high-throughput, and highly-scalable** device connectivity, supporting **millions of concurrent connections** on a single node with plugin-based extensibility and multi-protocol adaptation.
 
+## Architecture
+
+<details>
+<summary><b>Architecture Diagram</b> (click to expand)</summary>
+<br>
+<a href="docs/images/architecture.png"><img src="docs/images/architecture.png" alt="ThingLinks Architecture" width="100%"></a>
+</details>
+
 ## Core Features
 
 | Feature | Description |
 |---------|-------------|
 | **Multi-tenant SaaS** | Enterprise-grade multi-tenant architecture with complete tenant isolation |
 | **Million-level Connections** | Single node supports millions of concurrent device connections |
-| **Multi-protocol** | MQTT, WebSocket, TCP, UDP, CoAP, HTTP and more |
-| **Device Management** | Unified product model, device lifecycle, sub-device management |
-| **Rule Engine** | Flexible rules for alarm, notification, data forwarding (Kafka, RocketMQ, RabbitMQ, MySQL, HTTP, etc.) |
-| **SCADA & Visualization** | Device geographic visualization, SCADA dashboards, large-screen displays |
+| **Multi-protocol** | MQTT, WebSocket, TCP, UDP, CoAP, HTTP, Modbus and more |
+| **Device Management** | Unified product model, device lifecycle, device shadow, firmware OTA |
+| **Rule Engine** | Chained rules, event orchestration, scene linkage (property/action/timer triggers) |
+| **Alarm Center** | Multi-channel alarm notification, alarm records and tracking |
+| **SCADA & Visualization** | Asset map, device geographic visualization, SCADA dashboards, large-screen displays |
 | **Time-series Database** | TDengine — one table per device, one super-table per device type |
 | **Plugin System** | Plugin-based development for custom protocol and feature extensions |
+| **Message Bus** | Message governance: formatting, routing, filtering, queueing, security |
+| **Protocol SDK** | Java-SDK, C-SDK, Python-SDK for protocol extensions |
 | **IoT Card Management** | SIM card channel management, card lifecycle management |
 | **Video Streaming** | Media server integration, video stream proxy |
+| **AI Data Platform** | Big data platform, AI analytics, BI analysis, video center (Planned) |
+| **Ecosystem** | Huawei IoT, Alibaba IoT, Apache BifroMQ integration |
 
 ## Tech Stack
 
 ![Java 17+](https://img.shields.io/badge/Java-17+-ED8B00?style=flat-square&logo=openjdk&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-6DB33F?style=flat-square&logo=springboot&logoColor=white)
-![Spring Cloud](https://img.shields.io/badge/Spring%20Cloud-2022-6DB33F?style=flat-square&logo=spring&logoColor=white)
+![Spring Cloud](https://img.shields.io/badge/Spring%20Cloud-2025-6DB33F?style=flat-square&logo=spring&logoColor=white)
 ![Netty](https://img.shields.io/badge/Netty-4.x-0E83CD?style=flat-square)
 ![Vue 3](https://img.shields.io/badge/Vue.js-3.x-4FC08D?style=flat-square&logo=vuedotjs&logoColor=white)
 ![TDengine](https://img.shields.io/badge/TDengine-3.0+-0080FF?style=flat-square)
@@ -59,7 +72,96 @@ ThingLinks is an enterprise-grade **multi-tenant SaaS cloud IoT platform** built
 ![Seata](https://img.shields.io/badge/Seata-2.x-00CED1?style=flat-square)
 ![Redis](https://img.shields.io/badge/Redis-7.x-DC382D?style=flat-square&logo=redis&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=flat-square&logo=mysql&logoColor=white)
+![Kafka](https://img.shields.io/badge/Kafka-Supported-231F20?style=flat-square&logo=apachekafka&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-Supported-2496ED?style=flat-square&logo=docker&logoColor=white)
+
+## Quick Start
+
+### Requirements
+
+| Component | Version |
+|-----------|---------|
+| JDK | 17+ |
+| Node.js | 18+ |
+| MySQL | 8.0+ |
+| Redis | 7.x |
+| TDengine | 3.x |
+| Nacos | 3.x |
+
+### Backend
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/mqttsnet/thinglinks.git
+
+# 2. Import SQL scripts (see docs/sql/)
+
+# 3. Configure Nacos, MySQL, Redis, TDengine connection info
+
+# 4. Build
+cd thinglinks/thinglinks-cloud
+mvn clean install -DskipTests
+
+# 5. Start services (gateway, oauth, link, etc.)
+```
+
+### Frontend
+
+```bash
+# Admin Console
+cd thinglinks-web
+pnpm install
+pnpm run dev
+
+# Visualization Dashboard
+cd thinglinks-web-visualize
+pnpm install
+pnpm run dev
+```
+
+### Docker
+
+```bash
+# One-click deployment
+docker-compose up -d
+```
+
+> For detailed deployment guide, visit [mqttsnet.com](https://mqttsnet.com).
+
+## Project Structure
+
+```
+thinglinks/
+├── thinglinks-cloud/                # Backend Microservices
+│   ├── thinglinks-gateway/          # API Gateway
+│   ├── thinglinks-oauth/            # Authentication & Authorization
+│   ├── thinglinks-link/             # IoT Device Connectivity Core
+│   ├── thinglinks-broker/           # MQTT Broker Integration (BifroMQ)
+│   ├── thinglinks-rule/             # Rule Engine
+│   ├── thinglinks-mqs/              # Message Queue Service
+│   ├── thinglinks-card/             # IoT Card Management
+│   ├── thinglinks-mobile/           # Mobile API
+│   ├── thinglinks-support/          # Monitor & Admin Services
+│   ├── thinglinks-sop-admin/        # DevOps Management
+│   ├── thinglinks-generator/        # Code Generator
+│   ├── thinglinks-openapi/          # Open API Service
+│   ├── thinglinks-public/           # Public Service
+│   ├── thinglinks-base/             # Base Platform Service
+│   └── thinglinks-sdk/              # SDK
+├── thinglinks-web/                  # Admin Console (Vue 3 + Vben)
+├── thinglinks-web-visualize/        # Visualization Dashboard (Vue 3 + ECharts)
+├── thinglinks-job/                  # Scheduled Task Service (XXL-JOB)
+├── bifromq-plugin/                  # Apache BifroMQ Plugin
+├── docker/                          # Docker Compose Deployment
+├── docs/                            # Documentation & Screenshots
+└── scripts/                         # Build & Utility Scripts
+```
+
+## Documentation
+
+For complete documentation including quick start guides, development guides, API references, and deployment instructions, visit the official website:
+
+[![Docs](https://img.shields.io/badge/Documentation-mqttsnet.com-blue?style=for-the-badge)](https://mqttsnet.com)
 
 ## Screenshots
 
@@ -179,6 +281,20 @@ ThingLinks is an enterprise-grade **multi-tenant SaaS cloud IoT platform** built
 
 > **Commercial / Enterprise License Activation:** After purchasing, fill in the provided Authorization ID in the [LICENSE-COMMERCIAL](LICENSE-COMMERCIAL) file and commit via git. The git commit history serves as proof of authorized activation. Verify your license at [mqttsnet.com](https://mqttsnet.com).
 
+## Roadmap
+
+See [GitHub Milestones](https://github.com/mqttsnet/thinglinks/milestones) for our planned features and upcoming releases.
+
+## Star History
+
+<a href="https://star-history.com/#mqttsnet/thinglinks&Date">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=mqttsnet/thinglinks&type=Date&theme=dark" />
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=mqttsnet/thinglinks&type=Date" />
+    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=mqttsnet/thinglinks&type=Date" />
+  </picture>
+</a>
+
 ## Contributors
 
 Thanks to all the wonderful people who contribute to this project!
@@ -196,6 +312,19 @@ Want to contribute? Check out the [Contributor Guide](CONTRIBUTING.md).
 - Pull Requests: [GitHub PRs](https://github.com/mqttsnet/thinglinks/pulls)
 
 > **Note:** This project is mirrored to multiple code hosting platforms. The **only official channel** for bug reports, feature requests, and discussions is [GitHub Issues](https://github.com/mqttsnet/thinglinks/issues). Issues submitted on other platforms (Gitee, Gitea, etc.) will not be monitored or addressed.
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="docs/images/wechat-mp.png" width="200" alt="WeChat: MqttsNet"><br>
+      <sub>WeChat: MqttsNet</sub>
+    </td>
+  </tr>
+</table>
+
+## Acknowledgments
+
+- [Apache BifroMQ](https://github.com/apache/bifromq) — High-performance MQTT broker
 
 ## License
 
