@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mqttsnet.thinglinks.project.mapper.ProjectMapper">
+    <!--
+        代码生成器 by 2023-05-17 13:47:04
+        自定义sql建议在base文件夹同级新建ext文件夹，并新建同名且同namespace的xml进行编写。方便修改字段时，重新生成此文件。
+    -->
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.mqttsnet.thinglinks.project.entity.Project">
+        <id column="id" property="id"/>
+        <result column="project_identification" property="projectIdentification"/>
+        <result column="project_name" property="projectName"/>
+        <result column="status" property="status"/>
+        <result column="index_image_id" property="indexImageId"/>
+        <result column="content" property="content"/>
+        <result column="remark" property="remark"/>
+        <result column="created_time" property="createdTime"/>
+        <result column="created_by" property="createdBy"/>
+        <result column="updated_time" property="updatedTime"/>
+        <result column="updated_by" property="updatedBy"/>
+        <result column="created_org_id" property="createdOrgId"/>
+    </resultMap>
+
+    <!-- 通用查询结果列（包含所有字段） -->
+    <sql id="Base_Column_List">
+        id, project_identification, project_name, status, index_image_id, content, remark,
+        created_time, created_by, updated_time, updated_by, created_org_id
+    </sql>
+
+    <!-- 不包含content字段的查询列 -->
+    <sql id="Base_Column_List_Without_Content">
+        id, project_identification, project_name, status, index_image_id, remark,
+        created_time, created_by, updated_time, updated_by, created_org_id
+    </sql>
+
+
+    <!-- 详情查询（包含content） -->
+    <select id="getByProjectIdentification" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from view_project
+        where project_identification = #{projectIdentification}
+    </select>
+</mapper>

@@ -1,0 +1,26 @@
+export default {
+  table: {
+    title: '組織リスト',
+  },
+  form: {
+    title: '役割リスト',
+  },
+  id: '主键',
+  name: '名称',
+  type: 'タイプ',
+  shortName: '简称',
+  treeGrade: '树层级',
+  treePath: '树路径',
+  state: 'ステータス',
+  remarks: '备考',
+  label: '名称',
+  parentId: '父機関',
+  sortValue: 'ソート',
+  bindRole: '绑定役割',
+  phoneMsg: '携帯電話番号已存在',
+  vertical: '垂直展示',
+  foldedNode: '折叠ノード',
+  scope: '范围',
+  batchBinding: '批量绑定',
+  batchCancellation: '批量キャンセル',
+};

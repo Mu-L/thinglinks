@@ -1,0 +1,9 @@
+springdoc:
+  group-configs:
+    - group: 'tds'
+      displayName: '时序数据服务'
+      paths-to-match: '/**'
+      packages-to-scan: com.mqttsnet.thinglinks
+
+server:
+  port: 18788

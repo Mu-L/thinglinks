@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mqttsnet.thinglinks.video.mapper.media.VideoStreamProxyMapper">
+    <!--
+        代码生成器 by 2024-07-05 22:32:06
+        自定义sql建议在base文件夹同级新建ext文件夹，并新建同名且同namespace的xml进行编写。方便修改字段时，重新生成此文件。
+    -->
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.mqttsnet.thinglinks.video.entity.media.VideoStreamProxy">
+        <id column="id" property="id"/>
+        <result column="app_id" property="appId"/>
+        <result column="proxy_type" property="proxyType"/>
+        <result column="proxy_name" property="proxyName"/>
+        <result column="stream_identification" property="streamIdentification"/>
+        <result column="url" property="url"/>
+        <result column="src_url" property="srcUrl"/>
+        <result column="dst_url" property="dstUrl"/>
+        <result column="timeout_ms" property="timeoutMs"/>
+        <result column="ffmpeg_cmd_key" property="ffmpegCmdKey"/>
+        <result column="rtp_type" property="rtpType"/>
+        <result column="gb_identification" property="gbIdentification"/>
+        <result column="media_identification" property="mediaIdentification"/>
+        <result column="enable_audio" property="enableAudio"/>
+        <result column="enable_mp4" property="enableMp4"/>
+        <result column="status" property="status"/>
+        <result column="enable_remove_none_reader" property="enableRemoveNoneReader"/>
+        <result column="stream_key" property="streamKey"/>
+        <result column="enable_disable_none_reader" property="enableDisableNoneReader"/>
+        <result column="extend_params" property="extendParams"/>
+        <result column="remark" property="remark"/>
+        <result column="created_time" property="createdTime"/>
+        <result column="created_by" property="createdBy"/>
+        <result column="updated_time" property="updatedTime"/>
+        <result column="updated_by" property="updatedBy"/>
+        <result column="created_org_id" property="createdOrgId"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, app_id, proxy_type, proxy_name, stream_identification, url, 
+        src_url, dst_url, timeout_ms, ffmpeg_cmd_key, rtp_type, gb_identification, 
+        media_identification, enable_audio, enable_mp4, status, enable_remove_none_reader, stream_key, 
+        enable_disable_none_reader, extend_params, remark, created_time, created_by, updated_time, 
+        updated_by, created_org_id
+    </sql>
+
+</mapper>

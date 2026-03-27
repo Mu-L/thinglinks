@@ -1,0 +1,296 @@
+<template>
+  <PageWrapper dense contentFullHeight>
+    <BasicTable
+      @register="registerTable"
+      @switch-change="getSwitchChange"
+      :switchFlag="switchFlag"
+      :isLinkAge="true"
+    >
+      <template #toolbar>
+        <a-button
+          type="primary"
+          color="error"
+          preIcon="ant-design:delete-outlined"
+          @click="handleBatchDelete"
+        >
+          {{ t('common.title.delete') }}
+        </a-button>
+        <a-button type="primary" preIcon="ant-design:plus-outlined" @click="handleAdd">
+          {{ t('common.title.add') }}
+        </a-button>
+        <a-button preIcon="ant-design:swap-outlined" @click="switchView"
+          >{{ t('iot.link.device.device.switchView') }}
+        </a-button>
+      </template>
+      <template #effectiveType="{ record }">
+        {{ getDictLabel('RULE_EFFECTIVE_TYPE', record?.effectiveType, '') }}
+      </template>
+      <template #status="{ record }">
+        <a-switch
+          v-model:checked="record.status"
+          @change="toggleStatus(record)"
+          :checkedValue="1"
+          :unCheckedValue="0"
+        />
+      </template>
+      <template #bodyCell="{ column, record }">
+        <template v-if="column.dataIndex === 'action'">
+          <TableAction
+            :actions="[
+              {
+                tooltip: t('common.title.view'),
+                icon: 'ant-design:search-outlined',
+                onClick: handleView.bind(null, record),
+              },
+              {
+                tooltip: t('common.title.view') + t('iot.link.engine.linkage.log'),
+                icon: 'ant-design:switcher-outlined',
+                auth: 'rule:engine:linkage:executionLogDetail',
+                onClick: openDetailDrawer.bind(null, record),
+              },
+              {
+                tooltip: t('common.title.edit'),
+                icon: 'ant-design:edit-outlined',
+                onClick: handleEdit.bind(null, record),
+              },
+              {
+                tooltip: t('common.title.delete'),
+                icon: 'ant-design:delete-outlined',
+                color: 'error',
+                popConfirm: {
+                  title: t('common.tips.confirmDelete'),
+                  confirm: handleDelete.bind(null, record),
+                },
+              },
+            ]"
+            :stopButtonPropagation="true"
+          />
+        </template>
+      </template>
+    </BasicTable>
+    <EditModal @register="registerModal" @success="handleSuccess" />
+    <executionLogDetail @register="executionLogDetailRegister" />
+  </PageWrapper>
+</template>
+<script lang="ts">
+  import { defineComponent, ref, onMounted, watch } from 'vue';
+  import { useI18n } from '/@/hooks/web/useI18n';
+  import { useMessage } from '/@/hooks/web/useMessage';
+  import { BasicTable, useTable, TableAction } from '/@/components/Table';
+  import { PageWrapper } from '/@/components/Page';
+  import { useModal } from '/@/components/Modal';
+  import executionLogDetail from './executionLog/detail.vue';
+  import { useDrawer } from '/@/components/Drawer';
+  import { handleFetchParams } from '/@/utils/thinglinks/common';
+  import { ActionEnum } from '/@/enums/commonEnum';
+  import {
+    page,
+    deleteSingle,
+    remove,
+    changeStatus,
+  } from '../../../../../api/iot/rule/engine/linkage/linkage';
+  import { columns, searchFormSchema } from './linkage.data';
+  import EditModal from './Edit.vue';
+  import { useRouter } from 'vue-router';
+  import { Button } from 'ant-design-vue';
+  import { useDict } from '/@/components/Dict';
+  const { getDictLabel } = useDict();
+
+  export default defineComponent({
+    // 若需要开启页面缓存，请将此参数跟菜单名保持一致
+    name: '场景联动',
+    components: {
+      BasicTable,
+      PageWrapper,
+      TableAction,
+      EditModal,
+      AButton: Button,
+      executionLogDetail,
+    },
+    setup() {
+      const { t } = useI18n();
+      const { createConfirm, notification } = useMessage();
+      const [executionLogDetailRegister, { openDrawer: openDetail }] = useDrawer();
+      const [registerModal, { openModal }] = useModal();
+      const { push } = useRouter();
+
+      // 表格
+      const [registerTable, { reload, getSelectRowKeys }] = useTable({
+        title: t('iot.link.engine.linkage.table.title'),
+        api: page,
+        immediate: false,
+        columns: columns(),
+        formConfig: {
+          name: 'ProductSearch',
+          labelWidth: 120,
+          schemas: searchFormSchema(),
+          autoSubmitOnEnter: true,
+          resetButtonOptions: {
+            preIcon: 'ant-design:rest-outlined',
+          },
+          submitButtonOptions: {
+            preIcon: 'ant-design:search-outlined',
+          },
+        },
+        beforeFetch: handleFetchParams,
+        useSearchForm: true,
+        showTableSetting: true,
+        bordered: true,
+        rowKey: 'id',
+        rowSelection: {
+          type: 'checkbox',
+          columnWidth: 40,
+        },
+        actionColumn: {
+          width: 200,
+          title: t('common.column.action'),
+          dataIndex: 'action',
+        },
+      });
+
+      onMounted(async () => {});
+      // 弹出新增页面
+      function handleAdd() {
+        openModal(true, {
+          type: ActionEnum.ADD,
+        });
+        // push({
+        //   name: '场景详情',
+        //   query: { type:'handleAdd' },
+        // });
+      }
+
+      // 弹出查看页面
+      function handleView(record: Recordable, e: Event) {
+        e?.stopPropagation();
+        push({
+          name: '场景详情',
+          params: { id: record.id },
+          query: { id: record.id, type: 'handleView' },
+        });
+      }
+
+      // 弹出编辑页面
+      function handleEdit(record: Recordable, e: Event) {
+        e?.stopPropagation();
+        openModal(true, {
+          record,
+          type: ActionEnum.EDIT,
+        });
+        // console.log(push)
+        // return false;
+        // push({
+        //   name: '场景详情',
+        //   query: { id: record.id, type:'handleEdit' },
+        // });
+      }
+
+      // 新增或编辑成功回调
+      function handleSuccess() {
+        reload();
+      }
+
+      // 删除单条数据
+      const handleDeleteSingle = async (id: string) => {
+        await deleteSingle(id);
+        notification.success({
+          message: t('common.tips.tips'),
+          description: t('common.tips.deleteSuccess'),
+        });
+        handleSuccess();
+      };
+
+      async function batchDelete(ids: string[]) {
+        await remove(ids);
+        notification.success({
+          message: t('common.tips.tips'),
+          description: t('common.tips.deleteSuccess'),
+        });
+        handleSuccess();
+      }
+
+      // 点击单行删除
+      function handleDelete(record: Recordable, e: Event) {
+        e?.stopPropagation();
+        if (record?.id) {
+          handleDeleteSingle(record.id);
+        }
+      }
+
+      // 点击批量删除
+      function handleBatchDelete() {
+        const ids = getSelectRowKeys();
+        if (!ids || ids.length <= 0) {
+          notification.warning({
+            message: t('common.tips.tips'),
+            description: t('common.tips.pleaseSelectTheData'),
+          });
+          return;
+        }
+        createConfirm({
+          iconType: 'warning',
+          content: t('common.tips.confirmDelete'),
+          onOk: async () => {
+            try {
+              await batchDelete(ids);
+            } catch (e) {}
+          },
+        });
+      }
+
+      // 切换状态
+      async function toggleStatus(record) {
+        let { id, status } = record;
+        status = record.status ? 1 : 0;
+        await changeStatus(id, status);
+        notification.success({
+          message: t('common.tips.tips'),
+          description: t('common.tips.editSuccess'),
+        });
+        handleSuccess();
+      }
+
+      // 切换视图 卡片&&列表
+      const switchFlag = ref<boolean>(true);
+      function switchView() {
+        console.log('switchView');
+        switchFlag.value = !switchFlag.value;
+      }
+
+      function getSwitchChange(e) {
+        switchFlag.value = e;
+      }
+      watch(switchFlag, (newValue) => {
+        if (newValue === false) {
+          reload();
+        }
+      });
+      // 查看执行日志
+      const openDetailDrawer = (record: Recordable, e: Event) => {
+        e?.stopPropagation();
+        openDetail(true, {
+          ruleIdentification: record.ruleIdentification,
+        });
+      };
+      return {
+        t,
+        registerTable,
+        registerModal,
+        handleView,
+        handleAdd,
+        handleEdit,
+        handleDelete,
+        handleBatchDelete,
+        handleSuccess,
+        switchFlag,
+        switchView,
+        getSwitchChange,
+        getDictLabel,
+        toggleStatus,
+        executionLogDetailRegister,
+        openDetailDrawer,
+      };
+    },
+  });
+</script>
+../../../../../api/iot/link/linkage/linkage

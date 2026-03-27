@@ -1,0 +1,130 @@
+import login from './login'
+import project from './project'
+import components from './components'
+
+const global = {
+  doc_addr: 'ドキュメントアドレス',
+  code_addr: 'リポジトリアドレス',
+  form_account: 'アカウントまたはメールアドレスを入力してください',
+  form_password: 'パスワードを入力してください',
+  // ヘッダー
+  doc: '説明ドキュメント',
+  help: 'ヘルプセンター',
+  contact: 'ソフトウェアについて',
+  logout: 'ログアウト',
+  logout_success: 'ログアウト成功！',
+  logout_failure: 'ログアウト失敗！',
+  my_info: 'マイ情報',
+  // システム設定
+  sys_set: 'システム設定',
+  sys_switch_tenant: 'テナント切り替え',
+  lang_set: '言語設定',
+  // 機能キー
+  r_edit: '編集',
+  r_preview: 'プレビュー',
+  r_copy: 'クローン',
+  r_copy_success: 'クローン成功！',
+  r_rename: '名前変更',
+  r_rename_success: '名前変更成功！',
+  r_publish: '公開',
+  r_publish_success: '公開成功！',
+  r_unpublish: '公開をキャンセル',
+  r_unpublish_success: 'キャンセル成功！',
+  r_download: 'ダウンロード',
+  r_delete: '削除',
+  r_delete_success: '削除成功！',
+  r_more: 'その他',
+  // テナント切り替え
+  switch_tenant_title: 'テナント切り替え',
+  set_default: 'デフォルトに設定',
+  notes: '注意事項',
+  note_user: '1.【ユーザー】：アカウントのこと。このプラットフォームのすべての人が一意のユーザーデータを持っています。ユーザーテーブルのデータはアカウントと理解でき、電話番号、身分証、ログインアカウントなどの一意の情報によって一意性が決定されます。ユーザーテーブルのidはWeChatプラットフォームのunionIdに似ています。',
+  note_employee: '2.【従業員】：ユーザーがテナントに属している場合、そのユーザーはそのテナントの従業員です。1人のユーザーは複数のテナントに属することができ、ユーザーと従業員は一対多の関係です。ユーザーが複数のテナントに属している場合、ユーザーテーブルに1つのデータがあり、従業員テーブルに複数のデータがあります。従業員テーブルのidはWeChatプラットフォームのopenIdに似ています。',
+  note_company: '3.【企業】：テナントのこと。1人のユーザーは複数の企業に属することができ、ユーザーが複数の企業に属している場合、システムにログインすると、デフォルトの企業に入ります。',
+  note_unit: '4.【単位】：「従業員」は特定の「企業」の下で複数の単位に属することができます。従業員は直接単位の下に配置することも、部門の下に配置することもできます。部門の下に配置することをお勧めします。',
+  note_department: '5. 【部門】：「従業員」は特定の「企業」の下で複数の部門に属することができます。',
+  cancel: 'キャンセル',
+  confirm: '確定',
+  dialog_tip: 'ヒント',
+  dialog_delete_confirm: 'このデータを削除してもよろしいですか?',
+  dialog_operation_confirm: 'この操作を実行してもよろしいですか?',
+  get_tenant_list_failed: 'テナントリストの取得に失敗しました。再試行してください',
+  set_default_tenant_success: 'デフォルトテナントの設定に成功しました。テナントリスト情報が更新されます',
+  confirm_set_default_tenant: '【{name}】をデフォルト企業に変更してもよろしいですか？',
+  set_default_tenant_tip: '変更は即座に有効になります。デフォルト企業に設定すると、次回ログイン時にデフォルトでこの企業に入ります！',
+  cannot_switch_tenant: 'この企業に切り替えることができません。正常な企業を選択してください',
+  tenant_disabled: 'この企業は無効になっています',
+  employee_disabled: 'この会社でのアカウントが無効になっています。会社管理者にお問い合わせください',
+  // システム設定
+  menu_collapse: 'メニュー折りたたみ',
+  menu_collapse_desc: 'ホームページメニューが折りたたまれているときにインターフェース外に非表示',
+  hide_category: 'カテゴリを非表示',
+  hide_category_desc: 'ワークスペースフォームカテゴリが1つのみの場合に非表示',
+  switch_lang: '言語切り替え',
+  switch_lang_desc: '言語切り替え時にページを再読み込み',
+  switch_lang_tip: '一部の領域で言語切り替えが失敗する場合は、有効にすることをお勧めします',
+  hide_toolbar: 'ツールバーを非表示',
+  hide_toolbar_desc: 'マウスを移動すると、展開モードに切り替えて表示されます',
+  toolbar_display: 'ツールバー表示',
+  toolbar_display_desc: 'ワークスペースツールバーの表示方法',
+  toolbar_aside: 'サイドバー',
+  toolbar_dock: '下部Dock',
+  move_distance: '移動距離',
+  move_distance_desc: 'ワークスペース方向キー制御移動距離',
+  align_range: '吸着距離',
+  align_range_desc: 'ワークスペースでチャートを移動する際の吸着距離',
+  // 私たちについて
+  about_us: '私たちについて',
+  copyright: '著作権声明：',
+  copyright_desc: 'thinglinks 大画面可視化システムの著作権は MqttsNet コミュニティに帰属します',
+  license_note: 'ライセンス備考：',
+  license_note_desc: 'オープンソース Apache ライセンスを遵守してください。上記の声明',
+  license_note_required: '削除できません',
+  license_note_warning: '、そうでない場合は著作権侵害と見なされ、結果は自己責任となります！',
+  commercial_license: '商用ライセンス：',
+  commercial_license_desc: '著作権声明を保持したくない場合は、プロジェクトコミュニティに連絡してライセンスを取得してください',
+  // 編集ツール
+  import: 'インポート',
+  export: 'エクスポート',
+  setting: '設定',
+  sync_content_tip: '上部の【コンテンツを同期】ボタンで最新データを同期してください！',
+  // エディター
+  editor_title: 'ページオンラインエディター',
+  save: '保存',
+  ctrl_s_update_view: '「Ctrl + S ビューを更新」',
+  do_not_refresh_window: 'このウィンドウをリフレッシュしないでください！',
+  import_data_confirm: 'データをインポートすると内容が上書きされます。この操作は元に戻せません。続行しますか？',
+  import_success: 'インポート成功！',
+  import_failed: 'インポートに失敗しました。ファイルが破損していないか確認してください！',
+  updating: '更新中...',
+  source_window_closed: 'ソースウィンドウが閉じられています。ビューの同期に失敗しました！',
+  overwrite_source_confirm: 'ソースビューの内容を上書きしますか？この操作は元に戻せません！',
+  syncing_content: 'コンテンツを同期中...',
+  content_format_error: 'コンテンツ形式エラー',
+  // ファイルアップロード
+  only_support_json_file: '【JSON】形式のファイルのみサポートされています。再度アップロードしてください！',
+  select_import_method: 'インポート方法を選択してください:',
+  add_import: '追加（元に戻すことができます）',
+  overwrite_import: '上書き（元に戻すことができません）',
+  component_import_failed: 'コンポーネントのインポートに失敗しました。ファイルの整合性を確認してください！',
+  import_failed_contact_admin: 'インポートに失敗しました。データを確認するか、管理者に連絡してください！',
+  // テーマカラー選択
+  color: '色',
+  theme_color_select: 'テーマカラー選択',
+  chinese_color: '中国色',
+  chinese_color_source: '中国色リストは以下から：',
+}
+
+const http = {
+  error_message: 'データの取得に失敗しました。しばらくしてから再試行してください！',
+  token_overdue_message: 'ログイン期限切れ、再度ログインしてください！'
+}
+
+export default {
+  global,
+  http,
+  login,
+  project,
+  components
+}
+

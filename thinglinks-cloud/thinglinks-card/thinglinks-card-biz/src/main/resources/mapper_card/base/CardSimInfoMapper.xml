@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mqttsnet.thinglinks.card.mapper.sim.CardSimInfoMapper">
+    <!--
+        代码生成器 by 2024-06-26 23:45:39
+        自定义sql建议在base文件夹同级新建ext文件夹，并新建同名且同namespace的xml进行编写。方便修改字段时，重新生成此文件。
+    -->
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.mqttsnet.thinglinks.card.entity.sim.CardSimInfo">
+        <id column="id" property="id"/>
+        <result column="imsi" property="imsi"/>
+        <result column="iccid" property="iccid"/>
+        <result column="card_number" property="cardNumber"/>
+        <result column="card_type" property="cardType"/>
+        <result column="channel_id" property="channelId"/>
+        <result column="flows_used" property="flowsUsed"/>
+        <result column="flows_total" property="flowsTotal"/>
+        <result column="flows_rest" property="flowsRest"/>
+        <result column="virtual_flows_used" property="virtualFlowsUsed"/>
+        <result column="virtual_flows_rest" property="virtualFlowsRest"/>
+        <result column="virtual_flows_total" property="virtualFlowsTotal"/>
+        <result column="sms_flag" property="smsFlag"/>
+        <result column="gprs_flag" property="gprsFlag"/>
+        <result column="open_time" property="openTime"/>
+        <result column="last_open_time" property="lastOpenTime"/>
+        <result column="start_time" property="startTime"/>
+        <result column="end_time" property="endTime"/>
+        <result column="flows_end_time" property="flowsEndTime"/>
+        <result column="carrier_type" property="carrierType"/>
+        <result column="sms_count" property="smsCount"/>
+        <result column="status" property="status"/>
+        <result column="use_type" property="useType"/>
+        <result column="apn_name" property="apnName"/>
+        <result column="ip_address" property="ipAddress"/>
+        <result column="gain_time" property="gainTime"/>
+        <result column="online_flag" property="onlineFlag"/>
+        <result column="stop_card_type" property="stopCardType"/>
+        <result column="monthly_warning" property="monthlyWarning"/>
+        <result column="imei" property="imei"/>
+        <result column="limit_flow" property="limitFlow"/>
+        <result column="limit_flag" property="limitFlag"/>
+        <result column="limit_status" property="limitStatus"/>
+        <result column="offer_id" property="offerId"/>
+        <result column="searchable_status" property="searchableStatus"/>
+        <result column="remark" property="remark"/>
+        <result column="created_time" property="createdTime"/>
+        <result column="created_by" property="createdBy"/>
+        <result column="updated_time" property="updatedTime"/>
+        <result column="updated_by" property="updatedBy"/>
+        <result column="created_org_id" property="createdOrgId"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, imsi, iccid, card_number, card_type, channel_id, 
+        flows_used, flows_total, flows_rest, virtual_flows_used, virtual_flows_rest, virtual_flows_total, 
+        sms_flag, gprs_flag, open_time, last_open_time, start_time, end_time, 
+        flows_end_time, carrier_type, sms_count, status, use_type, apn_name, 
+        ip_address, gain_time, online_flag, stop_card_type, monthly_warning, imei, 
+        limit_flow, limit_flag, limit_status, offer_id, searchable_status, remark, 
+        created_time, created_by, updated_time, updated_by, created_org_id
+    </sql>
+
+</mapper>

@@ -1,0 +1,18 @@
+export default {
+  inviteUser: '邀请用户',
+  waitingInviteUser: '待邀请用户',
+  pleaseSelectWaitingInviteUser: '请选择待邀请用户',
+  inviteSuccess: '邀请成功',
+  themeBackground: '主题背景',
+  white: '洁白无瑕',
+  orange: '金橙',
+  gold: '金光灿灿',
+  gray: '珊瑚灰',
+  lightpink: '姹紫嫣红',
+  chocolate: '黑朱古力',
+  tomato: '红彤彤',
+  orgTree: '机构(单位/部门)树',
+  rootNode: '根节点',
+  pleaseSelectNode: '请选择节点',
+  pleaseSelectNodeAndChildren: '选中节点【{name}】及其子结点将被永久删除, 是否确定删除？',
+};

@@ -1,0 +1,16 @@
+export default {
+  table: { title: 'DefTenantApplicationRel list' },
+  id: 'ID',
+  tenantId: 'tenantId',
+  applicationId: 'applicationId',
+  expirationTime: 'expirationTime',
+  resourceIdList: 'resourceIdList',
+  expired: 'expired',
+  authorizationTime: 'authorizationTime',
+  authorization: 'Authorization',
+  cancelAuthorization: 'cancel Authorization',
+  cancelMsg: 'Are you sure you want to cancel the authorization?',
+  unbind: 'unBind',
+  expire: 'expired',
+  notExpired: 'notExpired',
+};

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.mqttsnet.thinglinks</groupId>
+        <artifactId>thinglinks-dependencies-parent</artifactId>
+        <version>${revision}</version>
+        <relativePath>../thinglinks-dependencies-parent/pom.xml</relativePath>
+    </parent>
+    <artifactId>thinglinks-support</artifactId>
+
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+    <name>${project.artifactId}</name>
+    <description>支撑模块</description>
+
+    <modules>
+        <!-- 监控和全链路调用监控 开发环境可以不用启动 -->
+        <module>thinglinks-monitor-server</module>
+        <module>thinglinks-base-executor</module>
+        <module>thinglinks-iot-executor</module>
+    </modules>
+
+</project>

@@ -1,0 +1,15 @@
+export default {
+  table: { title: '分组列表' },
+  id: 'id',
+  groupName: '分组名称',
+  deletedAt: '是否删除',
+  createdTime: '添加时间',
+  updatedTime: '修改时间',
+  createdBy: '创建人id',
+  updatedBy: '修改人id',
+  authorization: '授权',
+  authorizationSuccess: '授权成功',
+  tips: '仅显示需要授权的开放接口！',
+  selectTips: '请先选择',
+  SelectOptGroupTips: '请先选择分组',
+};

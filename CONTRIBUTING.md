@@ -1,6 +1,6 @@
 <div align="center">
 
-[![MQTTSNET Logo](./doc/imgs/logo.png)](http://www.mqttsnet.com)
+[![MQTTSNET Logo](./docs/images/logo.png)](https://mqttsnet.com)
 
 </div>
 
@@ -41,7 +41,7 @@ Even small corrections to typos are very welcome :)
 > effective.
 
 - Start both back-end & front-end
-  [Refer to official documentation](https://mqttsnet.yuque.com/gt6zkc/thinglinks?# 《ThingLinks IoT Integrated Platform》)
+  [Refer to official documentation](https://mqttsnet.yuque.com/trgbro/thinglinks?# 《ThingLinks IoT Integrated Platform》)
 
 ### Find tasks
 
@@ -58,7 +58,7 @@ Of course, if you have a good idea, you can also propose it directly on GitHub D
 2. Then download the code locally with git command:
 
 ```shell
-git clone https://github.com:${YOUR_USERNAME}/thinglinks.git #Recommended  
+git clone https://github.com/${YOUR_USERNAME}/thinglinks.git #Recommended  
 
 ```
 
@@ -164,7 +164,7 @@ keep at, you can become a Committer!
 
 - 后端&前端启动
 
-- [可参考官方文档](https://mqttsnet.yuque.com/gt6zkc/thinglinks?# 《ThingLinks物联网一体化平台》)
+- [可参考官方文档](https://mqttsnet.yuque.com/trgbro/thinglinks?# 《ThingLinks物联网一体化平台》)
 
 ### 寻找任务
 
@@ -180,7 +180,7 @@ keep at, you can become a Committer!
 2. 然后 用git命令 将代码下载到本地:
 
 ```shell
-git clone https://github.com:${YOUR_USERNAME}/thinglinks.git #Recommended  
+git clone https://github.com/${YOUR_USERNAME}/thinglinks.git #Recommended  
 ```
 
 3. 下载完成后，请参考目标仓库的入门指南或者 README 文件对项目进行初始化。

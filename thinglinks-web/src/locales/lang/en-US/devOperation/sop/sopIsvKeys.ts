@@ -1,0 +1,16 @@
+export default {
+  table: { title: 'SopIsvKeys list' },
+  id: 'Id',
+  isvId: 'IsvId',
+  keyFormat: 'KeyFormat',
+  publicKeyIsv: 'PublicKeyIsv',
+  privateKeyIsv: 'PrivateKeyIsv',
+  publicKeyPlatform: 'PublicKeyPlatform',
+  privateKeyPlatform: 'PrivateKeyPlatform',
+  createdTime: 'CreatedTime',
+  updatedTime: 'UpdatedTime',
+  createdBy: 'CreatedBy',
+  updatedBy: 'UpdatedBy',
+  resetIsvKeys: 'ResetIsvKeys',
+  restPlatformKeys: 'RestPlatformKeys',
+};

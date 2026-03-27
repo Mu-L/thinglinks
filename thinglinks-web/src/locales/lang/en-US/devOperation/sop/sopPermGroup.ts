@@ -1,0 +1,15 @@
+export default {
+  table: { title: 'SopPermGroup list' },
+  id: 'Id',
+  groupName: 'GroupName',
+  deletedAt: 'DeletedAt',
+  createdTime: 'CreatedTime',
+  updatedTime: 'UpdatedTime',
+  createdBy: 'CreatedBy',
+  updatedBy: 'UpdatedBy',
+  authorization: 'Authorization',
+  authorizationSuccess: 'Authorization success',
+  tips: 'Only display the open interfaces that require authorization!',
+  selectTips: 'Please select first',
+  SelectOptGroupTips: 'Please select the group first',
+};

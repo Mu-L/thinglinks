@@ -1,0 +1,16 @@
+export default {
+  table: { title: 'Alarm list' },
+  id: 'Id',
+  alarmName: 'AlarmName',
+  alarmIdentification: 'AlarmIdentification',
+  level: 'Level',
+  appId: 'AppId',
+  alarmScene: 'AlarmScene',
+  alarmChannel: 'AlarmChannel',
+  createBy: 'CreateBy',
+  createTime: 'CreateTime',
+  updateBy: 'UpdateBy',
+  updateTime: 'UpdateTime',
+  remark: 'Remark',
+  status: 'Status',
+};

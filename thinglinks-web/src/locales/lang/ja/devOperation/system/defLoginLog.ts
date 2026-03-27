@@ -1,0 +1,22 @@
+export default {
+  table: {
+    title: 'ログインログリスト',
+  },
+  id: '主键',
+  tenantId: '所属企業',
+  employeeId: 'ログイン従業員',
+  userId: 'ログインユーザー',
+  requestIp: 'ログインIP',
+  nickName: 'ログイン人姓名',
+  username: 'ログイン人アカウント',
+  status: 'ログインステータス',
+  description: 'ログイン説明',
+  loginDate: 'ログイン时间',
+  ua: '浏览器请求头',
+  browser: '浏览器名称',
+  browserVersion: '浏览器バージョン',
+  operatingSystem: '操作システム',
+  location: 'ログイン地点',
+  clear: '清除ログ',
+  clearMsg: '確認要清理データ吗?',
+};

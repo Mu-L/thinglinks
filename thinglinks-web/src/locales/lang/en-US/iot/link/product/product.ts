@@ -1,0 +1,69 @@
+export default {
+  table: { title: 'Product list' },
+  id: 'Id',
+  appId: 'AppId',
+  title: 'Product enablement',
+  templateId: 'TemplateId',
+  productName: 'ProductName',
+  productIdentification: 'ProductIdentification',
+  productType: 'ProductType',
+  manufacturerId: 'ManufacturerId',
+  manufacturerName: 'ManufacturerName',
+  model: 'Model',
+  dataFormat: 'DataFormat',
+  deviceType: 'DeviceType',
+  protocolType: 'ProtocolType',
+  productStatus: 'ProductStatus',
+  productVersion: 'ProductVersion',
+  icon: 'Icon',
+  remark: 'Remark',
+  createdTime: 'CreatedTime',
+  createdBy: 'CreatedBy',
+  updatedTime: 'UpdatedTime',
+  updatedBy: 'UpdatedBy',
+  createdOrgId: 'CreatedOrgId',
+  updateProductButton: 'Update Product information',
+  detailTitle: 'Product Details',
+  productInfo: 'Product Information',
+  tab0: 'Basic Information',
+  tab1: 'Model Definition',
+  tab2: 'Topic List',
+  tab3: 'Product empowerment',
+  tab4: 'Equipment debugging',
+  productImage: 'Product Image',
+  helpMessage: {
+    productName:
+      'Customizable, supports Chinese and English case, numbers, underscores and hyphens, length [2,64]',
+    productType:
+      'Support the following two product types: \n 1:COMMON(Ordinary product, requires direct connection to the device.) \n 2:GATEWAY(Gateway product, capable of mounting sub-devices)',
+    manufacturerId:
+      'Supports upper and lower case of English, numbers, underscores and underlines, length [2,50]',
+    manufacturerName:
+      'Supports Chinese and English upper and lower case, numbers, underscores and underlines, length [2,64]',
+    model:
+      'The product model is recommended to include letters or numbers to ensure scalability. Supports upper and lower case of English letters, numbers, underscores and hyphens, with a length of [2,50]',
+    dataFormat: 'The data format is set to JSON by default and no modification is required',
+    deviceType:
+      'Supports upper and lower case of English letters, numbers, underscores and hyphens, with a length of [3,50]',
+    protocolType:
+      'The protocol type for the device to access the platform is MQTT by default and does not need to be modified',
+    productVersion:
+      'Enter the product version number in the following format: Major version number. Minor version number. Revision number, for example, 1.0.0',
+  },
+  quick: {
+    service: 'product service',
+    serviceAttributes: 'product service attributes',
+    serviceCommands: 'product service commands',
+    serviceRequestCommand: 'product service request command',
+    serviceResponseCommand: 'product service response command',
+  },
+  import: {
+    warningDescription: {
+      prefix:
+        'When importing product models, please ensure the following field combinations are unique in the system:\n\n',
+      highlight: 'Manufacturer ID + Product Model + Device Type',
+      suffix:
+        '\n\nIf records with the same combination already exist in the system, the new product model cannot be imported.\nIt is recommended to verify data through the product list before importing.',
+    },
+  },
+};

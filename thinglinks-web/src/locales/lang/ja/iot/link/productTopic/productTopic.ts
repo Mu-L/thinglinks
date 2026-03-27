@@ -1,0 +1,30 @@
+export default {
+  table: {
+    title: '製品Topic情報リスト',
+  },
+  id: 'id',
+  productId: 'デバイスid',
+  functionType: '機能タイプ',
+  topicType: 'Topicタイプ',
+  topic: 'topic',
+  publisher: 'リリース者',
+  subscriber: '订阅者',
+  remark: '备考',
+  createdTime: '作成時間',
+  createdBy: '作成者',
+  updatedTime: '最后更新時間',
+  updatedBy: '最后更新者',
+  createdOrgId: '作成者組織',
+  DefineTopic: 'Topicクラスを定義する',
+  topicModal: {
+    title: 'Topic フォーマット仕様 ',
+    content:
+      'Topic は標準的な階層構造を採用しており、各階層の間は "/" を区切り文字として使用します。業務ニーズに応じて、以下の 5 つのパラメーターから自由に組み合わせて Topic 階層を定義することができます。',
+    title1: ' 利用可能なパラメーター：',
+    parameter1: ' アプリケーションシナリオ ID',
+    parameter2: ' デバイスユーザー名 ',
+    parameter3: ' デバイス一意識別子 ',
+    parameter4: ' デバイス SDK バージョン ',
+    parameter5: ' 製品一意識別子 ',
+  },
+};

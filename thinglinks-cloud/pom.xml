@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <groupId>com.mqttsnet.thinglinks</groupId>
+        <artifactId>thinglinks-dependencies-parent</artifactId>
+        <version>${revision}</version>
+        <relativePath>./thinglinks-dependencies-parent/pom.xml</relativePath>
+    </parent>
+
+    <artifactId>thinglinks-cloud</artifactId>
+    <version>${revision}</version>
+
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+
+    <name>${project.artifactId}</name>
+    <description>thinglinks-cloud</description>
+    <url>https://github.com/mqttsnet/thinglinks</url>
+    <developers>
+        <developer>
+            <name>mqttsnet</name>
+            <email>mqttsnet@163.com</email>
+        </developer>
+    </developers>
+
+    <distributionManagement>
+        <!-- 快照版本用的仓库 -->
+        <snapshotRepository>
+            <id>rdc-snapshots</id>
+            <url>https://packages.aliyun.com/maven/repository/2446134-snapshot-FpCQNY/</url>
+        </snapshotRepository>
+        <!-- 发布版本用的仓库 -->
+        <repository>
+            <id>rdc-releases</id>
+            <url>https://packages.aliyun.com/maven/repository/2446134-release-cMMjMp/</url>
+        </repository>
+    </distributionManagement>
+
+    <modules>
+        <!-- @thinglinks.generator auto insert root.pom.xml -->
+        <module>thinglinks-video</module>
+        <module>thinglinks-card</module>
+        <module>thinglinks-view</module>
+        <module>thinglinks-broker</module>
+        <module>thinglinks-tds</module>
+        <module>thinglinks-rule</module>
+        <module>thinglinks-mobile</module>
+        <module>thinglinks-mqs</module>
+        <module>thinglinks-link</module>
+        <module>thinglinks-dependencies-parent</module>
+        <module>thinglinks-public</module>
+        <module>thinglinks-base</module>
+        <module>thinglinks-oauth</module>
+        <module>thinglinks-system</module>
+        <module>thinglinks-gateway</module>
+        <module>thinglinks-support</module>
+        <module>thinglinks-generator</module>
+        <module>thinglinks-sdk</module>
+        <module>thinglinks-openapi</module>
+        <module>thinglinks-sop-admin</module>
+    </modules>
+
+</project>

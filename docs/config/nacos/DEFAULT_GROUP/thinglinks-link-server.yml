@@ -1,0 +1,301 @@
+springdoc:
+  group-configs:
+    - group: 'link'
+      displayName: '设备集成服务'
+      paths-to-match: '/**'
+      packages-to-scan: com.mqttsnet.thinglinks
+
+server:
+  port: 18782
+
+# 产品Topic 系统基础模版
+# 
+# topicType 枚举值说明:
+#   0 - 系统Topic (系统预定义，不可修改)
+#   1 - 自定义Topic (用户自定义)
+# 
+# functionType 枚举值说明:
+#   1 - 安全认证 (Security & Authentication)
+#   2 - 设备拓扑管理 (Device Topology Management) 
+#   3 - 物模型通信 (Thing Model Communication)
+#   4 - 时间同步 (Time Synchronization)
+#   5 - OTA升级 (OTA Update)
+#   6 - AI服务 (AI Services)
+#
+# publisher/subscriber 枚举值说明:
+#   0 - 物联网平台 (IoT Platform)
+#   1 - 边缘设备/网关设备 (Edge Device/Gateway Device)
+#   2 - 终端设备/普通设备 (Terminal Device/Normal Device)
+#
+thinglinks:
+  topic-templates:
+    productTopicTemplates:
+      # 网关设备模板
+      GATEWAY:
+        - topic: "/${device_sdk_version}/devices/${device_identification}/topo/secretKey"
+          publisher: 1  # 边缘设备/网关设备
+          subscriber: 0  # 物联网平台
+          remark: "网关设备获取物联网平台密钥信息"
+          topicType: 0
+          functionType: 1  # 安全认证
+        - topic: "/${device_sdk_version}/devices/${device_identification}/topo/secretKeyResponse"
+          publisher: 0  # 物联网平台
+          subscriber: 1  # 边缘设备/网关设备
+          remark: "物联网平台返回设备密钥信息"
+          topicType: 0
+          functionType: 1  # 安全认证
+        - topic: "/${device_sdk_version}/devices/${device_identification}/topo/add"
+          publisher: 1  # 边缘设备/网关设备
+          subscriber: 0  # 物联网平台
+          remark: "网关设备添加子设备"
+          topicType: 0
+          functionType: 2  # 设备拓扑管理
+        - topic: "/${device_sdk_version}/devices/${device_identification}/topo/addResponse"
+          publisher: 0  # 物联网平台
+          subscriber: 1  # 边缘设备/网关设备
+          remark: "物联网平台返回的添加子设备的响应"
+          topicType: 0
+          functionType: 2  # 设备拓扑管理
+        - topic: "/${device_sdk_version}/devices/${device_identification}/topo/delete"
+          publisher: 1  # 边缘设备/网关设备
+          subscriber: 0  # 物联网平台
+          remark: "网关设备删除子设备"
+          topicType: 0
+          functionType: 2  # 设备拓扑管理
+        - topic: "/${device_sdk_version}/devices/${device_identification}/topo/deleteResponse"
+          publisher: 0  # 物联网平台
+          subscriber: 1  # 边缘设备/网关设备
+          remark: "物联网平台返回的删除子设备的响应"
+          topicType: 0
+          functionType: 2  # 设备拓扑管理
+        - topic: "/${device_sdk_version}/devices/${device_identification}/topo/update"
+          publisher: 1  # 边缘设备/网关设备
+          subscriber: 0  # 物联网平台
+          remark: "网关设备更新子设备状态"
+          topicType: 0
+          functionType: 2  # 设备拓扑管理
+        - topic: "/${device_sdk_version}/devices/${device_identification}/topo/updateResponse"
+          publisher: 0  # 物联网平台
+          subscriber: 1  # 边缘设备/网关设备
+          remark: "物联网平台返回的更新子设备状态的响应"
+          topicType: 0
+          functionType: 2  # 设备拓扑管理
+        - topic: "/${device_sdk_version}/devices/${device_identification}/topo/query"
+          publisher: 1  # 边缘设备/网关设备
+          subscriber: 0  # 物联网平台
+          remark: "网关设备查询设备信息"
+          topicType: 0
+          functionType: 2  # 设备拓扑管理
+        - topic: "/${device_sdk_version}/devices/${device_identification}/topo/queryResponse"
+          publisher: 0  # 物联网平台
+          subscriber: 1  # 边缘设备/网关设备
+          remark: "物联网平台返回查询的设备信息响应"
+          topicType: 0
+          functionType: 2  # 设备拓扑管理
+        - topic: "/${device_sdk_version}/devices/${device_identification}/datas"
+          publisher: 1  # 边缘设备/网关设备
+          subscriber: 0  # 物联网平台
+          remark: "网关设备上报数据"
+          topicType: 0
+          functionType: 3  # 物模型通信
+        - topic: "/${device_sdk_version}/devices/${device_identification}/command"
+          publisher: 0  # 物联网平台
+          subscriber: 1  # 边缘设备/网关设备
+          remark: "物联网平台给网关设备下发命令"
+          topicType: 0
+          functionType: 3  # 物模型通信
+        - topic: "/${device_sdk_version}/devices/${device_identification}/commandResponse"
+          publisher: 1  # 边缘设备/网关设备
+          subscriber: 0  # 物联网平台
+          remark: "网关设备返回给物联网平台的命令响应"
+          topicType: 0
+          functionType: 3  # 物模型通信
+        - topic: "/${device_sdk_version}/devices/${device_identification}/topo/timeSyncRequest"
+          publisher: 1  # 边缘设备/网关设备
+          subscriber: 0  # 物联网平台
+          remark: "网关设备同步服务器时间"
+          topicType: 0
+          functionType: 4  # 时间同步
+        - topic: "/${device_sdk_version}/devices/${device_identification}/topo/timeSyncResponse"
+          publisher: 0  # 物联网平台
+          subscriber: 1  # 边缘设备/网关设备
+          remark: "物联网平台给网关设备返回服务器时间"
+          topicType: 0
+          functionType: 4  # 时间同步
+        - topic: "/${device_sdk_version}/devices/${device_identification}/topo/otaCommand"
+          publisher: 0  # 物联网平台
+          subscriber: 1  # 边缘设备/网关设备
+          remark: "物联网平台给网关设备下发OTA远程升级命令"
+          topicType: 0
+          functionType: 5  # OTA升级
+        - topic: "/${device_sdk_version}/devices/${device_identification}/topo/otaCommandResponse"
+          publisher: 1  # 边缘设备/网关设备
+          subscriber: 0  # 物联网平台
+          remark: "网关设备返回给物联网平台的OTA远程升级命令响应"
+          topicType: 0
+          functionType: 5  # OTA升级
+        - topic: "/${device_sdk_version}/devices/${device_identification}/topo/otaPull"
+          publisher: 1  # 边缘设备/网关设备
+          subscriber: 0  # 物联网平台
+          remark: "网关设备拉取物联网平台的最新软固件信息"
+          topicType: 0
+          functionType: 5  # OTA升级
+        - topic: "/${device_sdk_version}/devices/${device_identification}/topo/otaPullResponse"
+          publisher: 0  # 物联网平台
+          subscriber: 1  # 边缘设备/网关设备
+          remark: "物联网平台响应软固件信息给设备"
+          topicType: 0
+          functionType: 5  # OTA升级
+        - topic: "/${device_sdk_version}/devices/${device_identification}/topo/otaReport"
+          publisher: 1  # 边缘设备/网关设备
+          subscriber: 0  # 物联网平台
+          remark: "网关设备向物联网平台上报软固件版本"
+          topicType: 0
+          functionType: 5  # OTA升级
+        - topic: "/${device_sdk_version}/devices/${device_identification}/topo/otaReportResponse"
+          publisher: 0  # 物联网平台
+          subscriber: 1  # 边缘设备/网关设备
+          remark: "物联网平台接收到上报软固件信息响应"
+          topicType: 0
+          functionType: 5  # OTA升级
+        - topic: "/${device_sdk_version}/devices/${device_identification}/topo/otaRead"
+          publisher: 0  # 物联网平台
+          subscriber: 1  # 边缘设备/网关设备
+          remark: "物联网平台读取设备软固件版本"
+          topicType: 0
+          functionType: 5  # OTA升级
+        - topic: "/${device_sdk_version}/devices/${device_identification}/topo/otaReadResponse"
+          publisher: 1  # 边缘设备/网关设备
+          subscriber: 0  # 物联网平台
+          remark: "网关设备回复物联网平台读取设备固件版本指令"
+          topicType: 0
+          functionType: 5  # OTA升级
+        - topic: "/${device_sdk_version}/devices/${device_identification}/chatgpt/request"
+          publisher: 1  # 边缘设备/网关设备
+          subscriber: 0  # 物联网平台
+          remark: "网关设备发送会话内容到 OpenAI API"
+          topicType: 0
+          functionType: 6  # AI服务
+        - topic: "/${device_sdk_version}/devices/${device_identification}/chatgpt/response"
+          publisher: 0  # 物联网平台
+          subscriber: 1  # 边缘设备/网关设备
+          remark: "物联网平台响应OpenAI API会话内容"
+          topicType: 0
+          functionType: 6  # AI服务
+
+      # 普通设备模板
+      COMMON:
+        - topic: "/${device_sdk_version}/devices/${device_identification}/topo/secretKey"
+          publisher: 2  # 终端设备/普通设备
+          subscriber: 0  # 物联网平台
+          remark: "普通设备获取物联网平台密钥信息"
+          topicType: 0
+          functionType: 1  # 安全认证
+        - topic: "/${device_sdk_version}/devices/${device_identification}/topo/secretKeyResponse"
+          publisher: 0  # 物联网平台
+          subscriber: 2  # 终端设备/普通设备
+          remark: "物联网平台返回设备密钥信息"
+          topicType: 0
+          functionType: 1  # 安全认证
+        - topic: "/${device_sdk_version}/devices/${device_identification}/topo/query"
+          publisher: 2  # 终端设备/普通设备
+          subscriber: 0  # 物联网平台
+          remark: "普通设备查询设备信息"
+          topicType: 0
+          functionType: 2  # 设备拓扑管理
+        - topic: "/${device_sdk_version}/devices/${device_identification}/topo/queryResponse"
+          publisher: 0  # 物联网平台
+          subscriber: 2  # 终端设备/普通设备
+          remark: "物联网平台返回查询的设备信息响应"
+          topicType: 0
+          functionType: 2  # 设备拓扑管理
+        - topic: "/${device_sdk_version}/devices/${device_identification}/datas"
+          publisher: 2  # 终端设备/普通设备
+          subscriber: 0  # 物联网平台
+          remark: "普通设备上报数据"
+          topicType: 0
+          functionType: 3  # 物模型通信
+        - topic: "/${device_sdk_version}/devices/${device_identification}/command"
+          publisher: 0  # 物联网平台
+          subscriber: 2  # 终端设备/普通设备
+          remark: "物联网平台给普通设备下发命令"
+          topicType: 0
+          functionType: 3  # 物模型通信
+        - topic: "/${device_sdk_version}/devices/${device_identification}/commandResponse"
+          publisher: 2  # 终端设备/普通设备
+          subscriber: 0  # 物联网平台
+          remark: "普通设备返回给物联网平台的命令响应"
+          topicType: 0
+          functionType: 3  # 物模型通信
+        - topic: "/${device_sdk_version}/devices/${device_identification}/topo/timeSyncRequest"
+          publisher: 2  # 终端设备/普通设备
+          subscriber: 0  # 物联网平台
+          remark: "普通设备同步服务器时间"
+          topicType: 0
+          functionType: 4  # 时间同步
+        - topic: "/${device_sdk_version}/devices/${device_identification}/topo/timeSyncResponse"
+          publisher: 0  # 物联网平台
+          subscriber: 2  # 终端设备/普通设备
+          remark: "物联网平台给普通设备返回服务器时间"
+          topicType: 0
+          functionType: 4  # 时间同步
+        - topic: "/${device_sdk_version}/devices/${device_identification}/topo/otaCommand"
+          publisher: 0  # 物联网平台
+          subscriber: 2  # 终端设备/普通设备
+          remark: "物联网平台给普通设备下发OTA远程升级命令"
+          topicType: 0
+          functionType: 5  # OTA升级
+        - topic: "/${device_sdk_version}/devices/${device_identification}/topo/otaCommandResponse"
+          publisher: 2  # 终端设备/普通设备
+          subscriber: 0  # 物联网平台
+          remark: "普通设备返回给物联网平台的OTA远程升级命令响应"
+          topicType: 0
+          functionType: 5  # OTA升级
+        - topic: "/${device_sdk_version}/devices/${device_identification}/topo/otaPull"
+          publisher: 2  # 终端设备/普通设备
+          subscriber: 0  # 物联网平台
+          remark: "普通设备拉取物联网平台的最新软固件信息"
+          topicType: 0
+          functionType: 5  # OTA升级
+        - topic: "/${device_sdk_version}/devices/${device_identification}/topo/otaPullResponse"
+          publisher: 0  # 物联网平台
+          subscriber: 2  # 终端设备/普通设备
+          remark: "物联网平台响应软固件信息给设备"
+          topicType: 0
+          functionType: 5  # OTA升级
+        - topic: "/${device_sdk_version}/devices/${device_identification}/topo/otaReport"
+          publisher: 2  # 终端设备/普通设备
+          subscriber: 0  # 物联网平台
+          remark: "普通设备向物联网平台上报软固件版本"
+          topicType: 0
+          functionType: 5  # OTA升级
+        - topic: "/${device_sdk_version}/devices/${device_identification}/topo/otaReportResponse"
+          publisher: 0  # 物联网平台
+          subscriber: 2  # 终端设备/普通设备
+          remark: "物联网平台接收到上报软固件信息响应"
+          topicType: 0
+          functionType: 5  # OTA升级
+        - topic: "/${device_sdk_version}/devices/${device_identification}/topo/otaRead"
+          publisher: 0  # 物联网平台
+          subscriber: 2  # 终端设备/普通设备
+          remark: "物联网平台读取设备软固件版本"
+          topicType: 0
+          functionType: 5  # OTA升级
+        - topic: "/${device_sdk_version}/devices/${device_identification}/topo/otaReadResponse"
+          publisher: 2  # 终端设备/普通设备
+          subscriber: 0  # 物联网平台
+          remark: "普通设备回复物联网平台读取设备固件版本指令"
+          topicType: 0
+          functionType: 5  # OTA升级
+        - topic: "/${device_sdk_version}/devices/${device_identification}/chatgpt/request"
+          publisher: 2  # 终端设备/普通设备
+          subscriber: 0  # 物联网平台
+          remark: "普通设备发送会话内容到 OpenAI API"
+          topicType: 0
+          functionType: 6  # AI服务
+        - topic: "/${device_sdk_version}/devices/${device_identification}/chatgpt/response"
+          publisher: 0  # 物联网平台
+          subscriber: 2  # 终端设备/普通设备
+          remark: "物联网平台响应OpenAI API会话内容"
+          topicType: 0
+          functionType: 6  # AI服务

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>thinglinks-oauth</artifactId>
+        <groupId>com.mqttsnet.thinglinks</groupId>
+        <version>${revision}</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>thinglinks-oauth-biz</artifactId>
+    <name>${project.artifactId}</name>
+    <description>认证服务-业务模块</description>
+    <dependencies>
+        <dependency>
+            <groupId>com.mqttsnet.thinglinks</groupId>
+            <artifactId>thinglinks-base-api</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mqttsnet.thinglinks</groupId>
+            <artifactId>thinglinks-oauth-entity</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.mqttsnet.thinglinks</groupId>
+            <artifactId>thinglinks-sop-admin-entity</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.mqttsnet.thinglinks</groupId>
+            <artifactId>thinglinks-system-biz</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.mqttsnet.thinglinks</groupId>
+            <artifactId>thinglinks-base-biz</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <!-- jwt 只有认证服务需要使用 -->
+        <dependency>
+            <groupId>com.mqttsnet.basic</groupId>
+            <artifactId>thinglinks-boot</artifactId>
+        </dependency>
+        <!-- log 只有认证服务biz模块引用，其他服务都在controller模块 -->
+        <dependency>
+            <groupId>com.mqttsnet.basic</groupId>
+            <artifactId>thinglinks-log-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mqttsnet.basic</groupId>
+            <artifactId>thinglinks-captcha-starter</artifactId>
+        </dependency>
+
+
+    </dependencies>
+
+
+</project>

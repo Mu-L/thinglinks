@@ -1,0 +1,2 @@
+mybatis:
+  print-sql: true

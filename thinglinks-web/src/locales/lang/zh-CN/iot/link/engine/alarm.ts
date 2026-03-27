@@ -1,0 +1,16 @@
+export default {
+  table: { title: '告警规则列表' },
+  id: '告警id',
+  alarmName: '告警名称',
+  alarmIdentification: '告警规则编码',
+  level: '告警级别',
+  appId: '应用场景',
+  alarmScene: '告警场景',
+  alarmChannel: '告警渠道',
+  createBy: '创建人',
+  createTime: '创建时间',
+  updateBy: '更新人',
+  updateTime: '更新时间',
+  remark: '规则描述',
+  status: '状态',
+};

@@ -1,0 +1,9 @@
+springdoc:
+  group-configs:
+    - group: 'card'
+      displayName: 'card服务'
+      paths-to-match: '/**'
+      packages-to-scan: com.mqttsnet.thinglinks
+
+server:
+  port: 18794

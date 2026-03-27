@@ -1,0 +1,10 @@
+springdoc:
+  group-configs:
+    - group: 'broker'
+      displayName: 'Broker服务'
+      paths-to-match: '/**'
+      packages-to-scan: com.mqttsnet.thinglinks
+
+
+server:
+  port: 18790

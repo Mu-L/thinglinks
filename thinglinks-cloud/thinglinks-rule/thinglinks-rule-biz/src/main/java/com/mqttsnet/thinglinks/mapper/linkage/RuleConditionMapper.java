@@ -1,0 +1,22 @@
+package com.mqttsnet.thinglinks.mapper.linkage;
+
+import com.mqttsnet.basic.base.mapper.SuperMapper;
+import com.mqttsnet.thinglinks.entity.linkage.RuleCondition;
+import org.springframework.stereotype.Repository;
+
+/**
+ * <p>
+ * Mapper 接口
+ * 规则条件表
+ * </p>
+ *
+ * @author mqttsnet
+ * @date 2023-07-19 23:36:30
+ * @create [2023-07-19 23:36:30] [mqttsnet]
+ */
+@Repository
+public interface RuleConditionMapper extends SuperMapper<RuleCondition> {
+
+}
+
+

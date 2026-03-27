@@ -1,0 +1,16 @@
+export default {
+  title: 'WebSocket デバッグ',
+  send: '发送',
+  connectionStatus: '接続ステータス',
+  closeConnection: '閉じる接続',
+  openConnection: '开启接続',
+  server: 'サービス地址',
+  serverPlaceholder: '需要发送到サービス器的内容',
+  message: 'メッセージ',
+  record: 'メッセージ记录',
+  receivedMsg: '收到メッセージ',
+  setting: '設定',
+  mqttTitle: 'MQTTコマンド下发',
+  payload: '// 二進制データは0xで始まる16進数入力、文字列データ入力元の文字列',
+  pleaseEnter: '请输入',
+};

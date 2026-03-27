@@ -1,0 +1,28 @@
+export default {
+  table: { title: 'ProductTopic list' },
+  id: 'Id',
+  productId: 'ProductId',
+  functionType: 'FunctionType',
+  topicType: 'TopicType',
+  topic: 'Topic',
+  publisher: 'Publisher',
+  subscriber: 'Subscriber',
+  remark: 'Remark',
+  createdTime: 'CreatedTime',
+  createdBy: 'CreatedBy',
+  updatedTime: 'UpdatedTime',
+  updatedBy: 'UpdatedBy',
+  createdOrgId: 'CreatedOrgId',
+  DefineTopic: 'Define the Topic class',
+  topicModal: {
+    title: 'Topic Format Specifications',
+    content:
+      'Topics adopt a standard hierarchical structure, with "/" used as the separator between levels. You can freely combine and define Topic levels from the following five parameters according to business requirements:',
+    title1: 'Available Parameters:',
+    parameter1: 'Application Scenario ID',
+    parameter2: 'Device Username',
+    parameter3: 'Unique Device Identifier',
+    parameter4: 'Device SDK Version',
+    parameter5: 'Unique Product Identifier',
+  },
+};

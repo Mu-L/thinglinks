@@ -1,0 +1,28 @@
+export default {
+  table: { title: '产品Topic信息列表' },
+  id: 'id',
+  productId: '设备id',
+  functionType: '功能类型',
+  topicType: 'Topic类型',
+  topic: 'topic',
+  publisher: '发布者',
+  subscriber: '订阅者',
+  remark: '备注',
+  createdTime: '创建时间',
+  createdBy: '创建人',
+  updatedTime: '最后修改时间',
+  updatedBy: '最后修改人',
+  createdOrgId: '创建人组织',
+  DefineTopic: '定义Topic类',
+  topicModal: {
+    title: 'Topic 格式规范',
+    content:
+      'Topic 采用标准的分层结构，各级之间使用 "/" 分隔。您可以根据业务需求，从以下五个参数中自由组合定义 Topic 层级：',
+    title1: '可用参数：',
+    parameter1: '应用场景 ID',
+    parameter2: '设备用户名',
+    parameter3: '设备唯一标识',
+    parameter4: '设备 SDK 版本',
+    parameter5: '产品唯一标识',
+  },
+};

@@ -1,0 +1,20 @@
+export default {
+  table: {
+    title: 'メッセージリスト',
+  },
+  id: '主键',
+  bizId: '业务ID',
+  bizType: '业务タイプ',
+  msgType: 'メッセージタイプ',
+  title: '标题',
+  content: '内容',
+  author: 'リリース人',
+  handlerUrl: '处理地址',
+  handlerParams: '处理パラメータ',
+  isSingleHandle: 'はいいいえ单人处理',
+  createTime: '作成時間',
+  updateTime: '最后更新時間',
+  todos: '保留中',
+  warning: 'アラート＃アラート＃',
+  reminder: 'リマインダ',
+};

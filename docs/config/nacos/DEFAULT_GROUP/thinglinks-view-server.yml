@@ -1,0 +1,10 @@
+springdoc:
+  group-configs:
+    - group: 'View'
+      displayName: 'View服务'
+      paths-to-match: '/**'
+      packages-to-scan: com.mqttsnet.thinglinks
+
+
+server:
+  port: 18792

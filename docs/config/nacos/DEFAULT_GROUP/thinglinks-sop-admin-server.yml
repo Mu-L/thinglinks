@@ -1,0 +1,29 @@
+springdoc:
+  group-configs:
+    - group: 'sopadmin'
+      displayName: 'sop-admin服务'
+      paths-to-match: '/**'
+      packages-to-scan: com.mqttsnet.thinglinks.sop.controller
+
+server:
+  port: 18765
+
+
+dubbo:
+  protocol:
+    name: dubbo
+    port: -1
+    parameters:
+      sba: ignore    
+  application:
+    qos-enable: false
+  # 提供方
+  provider:
+    validation: jvalidationNew
+  # 消费方
+  consumer:
+    check: false
+    validation: jvalidationNew
+  registry:
+    address: nacos://${thinglinks.nacos.username}:${thinglinks.nacos.password}@${thinglinks.nacos.ip}:${thinglinks.nacos.port}?namespace=${thinglinks.nacos.namespace}
+    check: false

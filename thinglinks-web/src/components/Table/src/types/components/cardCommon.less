@@ -1,0 +1,218 @@
+.tr {
+  text-align: right;
+}
+
+.loading {
+  width: 100%;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 33px;
+
+  span {
+    margin-left: 7px;
+    font-weight: 500;
+    font-size: 18px;
+  }
+
+  & > div {
+    display: flex;
+
+    .ant-btn {
+      margin: 0 8px 8px 0;
+    }
+  }
+}
+
+.product-item {
+  overflow: hidden;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  padding: 16px 0;
+  position: relative;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 104% 104%;
+  transition: all 0.3s;
+  min-height: 208px;
+  height: 100%;
+
+  &.product-item--select {
+    min-height: 170px;
+
+    .product-img {
+      top: 40px;
+    }
+  }
+
+  &.normal {
+    background-image: url('../../../../../assets/images/iot/link/blue-bg.png');
+
+    .status {
+      background: #d9dffd;
+      color: #1966ff;
+    }
+  }
+
+  &.error {
+    background-image: url('../../../../../assets/images/iot/link/red-bg.png');
+
+    .status {
+      background: #fad7d9;
+      color: #d43030;
+    }
+  }
+
+  &.warning {
+    background-image: url('../../../../../assets/images/iot/link/red-bg.png');
+
+    .status {
+      background: #efe0e1;
+      color: #daae2b;
+    }
+  }
+
+  .product-info {
+    flex-direction: column;
+    max-width: calc(100% - 128px);
+    padding-left: 16px;
+
+    .status {
+      min-width: 57px;
+      max-width: 120px;
+      height: 25px;
+      padding: 0 8px;
+      border-radius: 6px 0 0 6px;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 25px;
+      text-align: center;
+      position: absolute;
+      right: 0;
+      top: 16px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #050708;
+      line-height: 20px;
+      max-height: 40px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .props {
+      margin-top: 10px;
+
+      .prop {
+        flex: 1;
+        margin-bottom: 10px;
+
+        .label {
+          font-size: 12px;
+          font-weight: 400;
+          color: #666;
+          line-height: 14px;
+        }
+
+        .value {
+          font-size: 14px;
+          font-weight: 600;
+          color: #050708;
+          line-height: 14px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          margin-top: 6px;
+        }
+      }
+    }
+
+    .btns {
+      display: flex;
+      position: absolute;
+      left: 16px;
+      bottom: 16px;
+      margin-top: 20px;
+      width: 130px;
+      height: 28px;
+      border-radius: 45px;
+      justify-content: space-around;
+      padding: 0 10px;
+      align-items: center;
+      border: 2px solid #1a66ff;
+
+      .btn {
+        width: 28px;
+        text-align: center;
+        position: relative;
+
+        & + .btn::before {
+          content: '';
+          display: block;
+          position: absolute;
+          width: 1px;
+          height: 7px;
+          background-color: #e2e2e2;
+          left: 0;
+          top: 5px;
+        }
+
+        & + .btn_chain::before {
+          left: -5px;
+        }
+
+        img {
+          width: 15px;
+          height: 15px;
+          margin: 0 auto;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .product-img {
+    position: absolute;
+    right: 20px;
+    top: 50px;
+
+    img {
+      cursor: pointer;
+      width: 120px;
+    }
+  }
+
+  .ota-img {
+    right: 0;
+
+    img {
+      width: 200px;
+    }
+  }
+
+  .channel-card-img {
+    img {
+      width: 88px;
+      transition: all linear 0.3s;
+
+      &:hover {
+        transform: scale(1.1);
+        transition: all ease-in-out 0.3s;
+      }
+    }
+  }
+}

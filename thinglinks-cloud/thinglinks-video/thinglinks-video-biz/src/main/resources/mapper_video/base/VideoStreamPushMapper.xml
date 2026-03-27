@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mqttsnet.thinglinks.video.mapper.media.VideoStreamPushMapper">
+    <!--
+        代码生成器 by 2024-07-07 19:19:57
+        自定义sql建议在base文件夹同级新建ext文件夹，并新建同名且同namespace的xml进行编写。方便修改字段时，重新生成此文件。
+    -->
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.mqttsnet.thinglinks.video.entity.media.VideoStreamPush">
+        <id column="id" property="id"/>
+        <result column="app_id" property="appId"/>
+        <result column="stream_identification" property="streamIdentification"/>
+        <result column="total_reader_count" property="totalReaderCount"/>
+        <result column="origin_type" property="originType"/>
+        <result column="origin_url" property="originUrl"/>
+        <result column="vhost" property="vhost"/>
+        <result column="bytes_speed" property="bytesSpeed"/>
+        <result column="alive_second" property="aliveSecond"/>
+        <result column="media_identification" property="mediaIdentification"/>
+        <result column="server_id" property="serverId"/>
+        <result column="push_time" property="pushTime"/>
+        <result column="status" property="status"/>
+        <result column="push_ing" property="pushIng"/>
+        <result column="self" property="self"/>
+        <result column="extend_params" property="extendParams"/>
+        <result column="remark" property="remark"/>
+        <result column="created_time" property="createdTime"/>
+        <result column="created_by" property="createdBy"/>
+        <result column="updated_time" property="updatedTime"/>
+        <result column="updated_by" property="updatedBy"/>
+        <result column="created_org_id" property="createdOrgId"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, app_id, stream_identification, total_reader_count, origin_type, origin_url, 
+        vhost, bytes_speed, alive_second, media_identification, server_id, push_time, 
+        status, push_ing, self, extend_params, remark, created_time, 
+        created_by, updated_time, updated_by, created_org_id
+    </sql>
+
+</mapper>

@@ -1,0 +1,20 @@
+thinglinks:
+  database:
+    # 是否启用分布式事务. 为了大家上手简单默认关闭，但关闭后存在分布式事务不一致可能！！！生产一定设置为true，并启动seata
+    # isSeata: true
+    # 若你的业务服务需要连接不同的租户库，请在这里配置多个租户库前缀，并在业务服务配置对应的租户库前缀。
+    # initDatabasePrefix: 
+    # - thinglinks_local_ds_c_base
+    # - thinglinks__ds_c_extend
+
+springdoc:
+  group-configs:
+    - group: 'system'
+      displayName: '租户服务'
+      paths-to-match: '/**'
+      packages-to-scan: com.mqttsnet.thinglinks
+
+
+
+server:
+  port: 18778

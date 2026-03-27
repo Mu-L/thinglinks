@@ -1,0 +1,16 @@
+export default {
+  table: { title: '租户的应用列表' },
+  id: '主键',
+  tenantId: '租户',
+  applicationId: '应用',
+  expirationTime: '过期时间',
+  resourceIdList: '分配的资源',
+  expired: '是否过期',
+  authorizationTime: '授权时间',
+  authorization: '授权',
+  cancelAuthorization: '取消授权',
+  cancelMsg: '是否确认要取消授权?',
+  unbind: '解绑',
+  expire: '已过期',
+  notExpired: '未过期',
+};
